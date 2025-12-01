@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chronon-field.com/sitemap.xml

@@ -21,6 +21,21 @@ export const metadata = {
     shortcut: '/logo.svg',
     apple: '/logo.svg',
   },
+  openGraph: {
+    title: "Chronon Field",
+    description: "Institut de recherche non homologué explorant les mystères du temps.",
+    url: "https://chronon-field.com",
+    siteName: "Chronon Field",
+    images: [
+      {
+        url: "/og-image.jpg", // Assumes an og-image exists or will exist
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {

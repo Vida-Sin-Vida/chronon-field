@@ -70,22 +70,22 @@ export default function PdfViewer({ src }) {
                     <button
                         disabled={pageNumber <= 1}
                         onClick={previousPage}
-                        className={`absolute left-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-black/20 hover:bg-black/40 text-white transition-all duration-300 backdrop-blur-sm ${pageNumber <= 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                        className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-secondary hover:text-white transition-all duration-300 transform hover:scale-110 outline-none focus:text-white ${pageNumber <= 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
                         aria-label="Previous page"
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                     </button>
 
                     <button
                         disabled={pageNumber >= numPages}
                         onClick={nextPage}
-                        className={`absolute right-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-black/20 hover:bg-black/40 text-white transition-all duration-300 backdrop-blur-sm ${pageNumber >= numPages ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                        className={`absolute right-4 top-1/2 transform -translate-y-1/2 text-secondary hover:text-white transition-all duration-300 transform hover:scale-110 outline-none focus:text-white ${pageNumber >= numPages ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
                         aria-label="Next page"
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                     </button>
 

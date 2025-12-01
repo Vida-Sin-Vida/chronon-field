@@ -149,18 +149,24 @@ export default function VulgarisationClient({ series }) {
                                     tabIndex={article.isPublished ? "0" : "-1"}
                                     role="button"
                                     aria-disabled={!article.isPublished}
-                                    className={`p-6 rounded-lg border transition-all duration-200 
+                                    className={`p-6 rounded-lg border transition-all duration-200 group relative
                                         ${article.isPublished
                                             ? 'cursor-pointer border-gray-100 hover:border-accent/30 hover:bg-gray-50 outline-none focus:ring-2 focus:ring-accent/50'
                                             : 'cursor-not-allowed border-gray-100 bg-gray-50 opacity-60'}`}
                                 >
-                                    <h3 className="text-xl font-bold text-foreground mb-2 flex justify-between items-center">
-                                        {article.title}
-                                        {article.isPublished && <span className="text-accent text-sm">→</span>}
-                                    </h3>
-                                    <p className="text-sm text-secondary">
-                                        {article.isPublished ? `${article.formats.length} formats disponibles` : 'Bientôt disponible'}
-                                    </p>
+                                    <div className="pr-12">
+                                        <h3 className="text-xl font-bold text-foreground mb-2">
+                                            {article.title}
+                                        </h3>
+                                        <p className="text-sm text-secondary">
+                                            {article.isPublished ? `${article.formats.length} formats disponibles` : 'Bientôt disponible'}
+                                        </p>
+                                    </div>
+                                    {article.isPublished && (
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="absolute right-6 top-1/2 -translate-y-1/2 h-8 w-8 text-secondary transition-all duration-300 transform group-hover:text-accent group-hover:scale-110 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                        </svg>
+                                    )}
                                 </div>
                             ))}
                         </div>
