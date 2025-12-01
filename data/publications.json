@@ -1,0 +1,57 @@
+[
+  {
+    "id": "traité_fr.pdf",
+    "title": "Traité Fr",
+    "type": "Traité",
+    "language": "FR",
+    "date": "2025-11-30T16:20:53.492Z",
+    "excerpt": "Document PDF (FR) - 26.82 MB",
+    "link": "/document/traité_fr.pdf",
+    "authors": "Institut Chronon Field",
+    "size": 28128011
+  },
+  {
+    "id": "chronon_field_serie_1_fr.pdf",
+    "title": "The Chronon Field Series - Episode 1",
+    "type": "Article",
+    "language": "FR",
+    "date": "2025-11-30T16:20:53.356Z",
+    "excerpt": "Document PDF (FR) - 0.87 MB",
+    "link": "/document/chronon_field_serie_1_fr.pdf",
+    "authors": "Institut Chronon Field",
+    "size": 917094
+  },
+  {
+    "id": "chronon_field_serie_1_en.pdf",
+    "title": "The Chronon Field Series - Episode 1",
+    "type": "Article",
+    "language": "EN",
+    "date": "2025-11-30T16:20:53.351Z",
+    "excerpt": "Document PDF (EN) - 0.89 MB",
+    "link": "/document/chronon_field_serie_1_en.pdf",
+    "authors": "Institut Chronon Field",
+    "size": 930743
+  },
+  {
+    "id": "CHRONON_1.pdf",
+    "title": "Chronon 1 - Rapport Préliminaire",
+    "type": "Article",
+    "language": "FR",
+    "date": "2025-11-30T16:20:53.346Z",
+    "excerpt": "Document PDF (FR) - 1.21 MB",
+    "link": "/document/CHRONON_1.pdf",
+    "authors": "Institut Chronon Field",
+    "size": 1267567
+  },
+  {
+    "id": "chronon_field_serie_2_en.pdf",
+    "title": "The Chronon Field Series - Episode 2",
+    "type": "Article",
+    "language": "EN",
+    "date": "2025-11-27T19:49:42.128Z",
+    "excerpt": "Document PDF (EN) - 0.86 MB",
+    "link": "/document/chronon_field_serie_2_en.pdf",
+    "authors": "Institut Chronon Field",
+    "size": 906237
+  }
+]
