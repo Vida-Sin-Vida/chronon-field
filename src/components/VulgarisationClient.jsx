@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import ImageViewer from './ImageViewer';
+import AudioPlayer from './AudioPlayer';
 
 export default function VulgarisationClient({ series }) {
     const [selectedSeries, setSelectedSeries] = useState(null);
@@ -226,17 +228,16 @@ export default function VulgarisationClient({ series }) {
 
                             <div className="flex-grow bg-black flex items-center justify-center p-4 overflow-auto">
                                 {viewingFormat.type === 'Mind Map' || viewingFormat.type === 'Infographie' ? (
-                                    <img src={viewingFormat.src} alt={viewingFormat.type} className="max-w-full max-h-full object-contain" />
+                                    <ImageViewer src={viewingFormat.src} alt={viewingFormat.type} />
                                 ) : viewingFormat.type === 'Audio' ? (
-                                    <audio controls className="w-full max-w-md">
-                                        <source src={viewingFormat.src} />
-                                        Votre navigateur ne supporte pas l'élément audio.
-                                    </audio>
+                                    <AudioPlayer src={viewingFormat.src} title={viewingFormat.article.title} />
                                 ) : viewingFormat.type === 'Vidéo' ? (
                                     <video controls className="max-w-full max-h-full">
                                         <source src={viewingFormat.src} />
                                         Votre navigateur ne supporte pas l'élément vidéo.
                                     </video>
+                                ) : (viewingFormat.type === 'Point Scientifique' || viewingFormat.type.includes('Article Complet')) ? (
+                                    <iframe src={viewingFormat.src} className="w-full h-full bg-white" title={viewingFormat.type} />
                                 ) : (
                                     <div className="text-white text-center">
                                         <p className="text-2xl mb-4">Format non supporté</p>

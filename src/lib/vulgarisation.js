@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const PUBLICATION_DIR = path.join(process.cwd(), 'public', 'publication');
+const DOCUMENTS_DIR = path.join(process.cwd(), 'public', 'document');
 
 export function getVulgarisationData() {
     // Define series metadata statically as requested, but scan for content
@@ -39,7 +40,7 @@ export function getVulgarisationData() {
                 if (fs.existsSync(path.join(episodePath, `graphi_${i}.png`))) {
                     formats.push({ type: 'Infographie', src: `/publication/${series.folderName}/${i}/graphi_${i}.png` });
                 }
-                if (fs.existsSync(path.join(episodePath, `audio_${i}.m4a`))) { // Note: User said .mp4 in request but file is .m4a in dir list. Checking both or sticking to what I saw.
+                if (fs.existsSync(path.join(episodePath, `audio_${i}.m4a`))) {
                     formats.push({ type: 'Audio', src: `/publication/${series.folderName}/${i}/audio_${i}.m4a` });
                 } else if (fs.existsSync(path.join(episodePath, `audio_${i}.mp4`))) {
                     formats.push({ type: 'Audio', src: `/publication/${series.folderName}/${i}/audio_${i}.mp4` });
@@ -48,16 +49,30 @@ export function getVulgarisationData() {
                 if (fs.existsSync(path.join(episodePath, `video_${i}.mp4`))) {
                     formats.push({ type: 'Vidéo', src: `/publication/${series.folderName}/${i}/video_${i}.mp4` });
                 }
+
+                if (fs.existsSync(path.join(episodePath, `point_${i}.pdf`))) {
+                    formats.push({ type: 'Point Scientifique', src: `/publication/${series.folderName}/${i}/point_${i}.pdf` });
+                }
             }
+
+            // Check for associated full article in public/document
+            // Pattern: chronon_field_serie_{i}_en.pdf or similar
+            // We'll check for both EN and FR
+            const articleEn = `chronon_field_serie_${i}_en.pdf`;
+            const articleFr = `chronon_field_serie_${i}_fr.pdf`;
+
+            if (fs.existsSync(path.join(DOCUMENTS_DIR, articleEn))) {
+                formats.push({ type: 'Article Complet (EN)', src: `/document/${articleEn}` });
+            } else if (fs.existsSync(path.join(DOCUMENTS_DIR, articleFr))) {
+                formats.push({ type: 'Article Complet (FR)', src: `/document/${articleFr}` });
+            }
+
 
             // Determine title and status
             let title = `${i.toString().padStart(2, '0')} — `;
             if (formats.length > 0) {
-                // If we have content, we might want a specific title. 
-                // For now, I'll use a generic one or try to map it if I had a title map.
-                // The original data had "Le temps qui bat" for ep 1.
-                // I will keep a small map for known titles or default to "Episode X"
                 if (i === 1 && series.id === 'chronon-field') title += 'Le temps qui bat';
+                else if (i === 2 && series.id === 'chronon-field') title += 'L\'effondrement opérationnel';
                 else title += 'Episode ' + i;
             } else {
                 title += 'A venir';
