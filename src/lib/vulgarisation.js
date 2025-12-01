@@ -55,17 +55,7 @@ export function getVulgarisationData() {
                 }
             }
 
-            // Check for associated full article in public/document
-            // Pattern: chronon_field_serie_{i}_en.pdf or similar
-            // We'll check for both EN and FR
-            const articleEn = `chronon_field_serie_${i}_en.pdf`;
-            const articleFr = `chronon_field_serie_${i}_fr.pdf`;
-
-            if (fs.existsSync(path.join(DOCUMENTS_DIR, articleEn))) {
-                formats.push({ type: 'Article Complet (EN)', src: `/document/${articleEn}` });
-            } else if (fs.existsSync(path.join(DOCUMENTS_DIR, articleFr))) {
-                formats.push({ type: 'Article Complet (FR)', src: `/document/${articleFr}` });
-            }
+            // Article Complet logic removed as requested for Vulgarisation page
 
 
             // Determine title and status

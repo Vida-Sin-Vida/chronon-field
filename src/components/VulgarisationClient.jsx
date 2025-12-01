@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import ImageViewer from './ImageViewer';
 import AudioPlayer from './AudioPlayer';
+
+const PdfViewer = dynamic(() => import('./PdfViewer'), { ssr: false });
 
 export default function VulgarisationClient({ series }) {
     const [selectedSeries, setSelectedSeries] = useState(null);
@@ -59,6 +62,14 @@ export default function VulgarisationClient({ series }) {
             const firstArticle = document.getElementById('article-card-0');
             if (firstArticle) firstArticle.focus();
         }
+    };
+
+    // Determine modal size based on content type
+    const getModalSizeClass = () => {
+        if (!viewingFormat) return 'max-w-5xl';
+        if (viewingFormat.type === 'Point Scientifique') return 'max-w-[1100px] w-full h-[90vh]';
+        if (viewingFormat.type === 'Mind Map' || viewingFormat.type === 'Infographie') return 'max-w-[95vw] w-full h-[95vh]';
+        return 'max-w-5xl';
     };
 
     return (
@@ -207,7 +218,7 @@ export default function VulgarisationClient({ series }) {
             {
                 viewingFormat && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8 animate-fade-in">
-                        <div className="bg-white w-full max-w-5xl max-h-[90vh] rounded-xl overflow-hidden shadow-2xl flex flex-col relative">
+                        <div className={`bg-white rounded-xl overflow-hidden shadow-2xl flex flex-col relative transition-all duration-300 ${getModalSizeClass()}`}>
                             <button
                                 onClick={closeViewer}
                                 className="absolute top-4 right-4 text-gray-500 hover:text-black z-10 bg-white/50 rounded-full p-2 hover:bg-white transition-colors"
@@ -217,7 +228,7 @@ export default function VulgarisationClient({ series }) {
                                 </svg>
                             </button>
 
-                            <div className="p-6 border-b border-gray-100 bg-gray-50">
+                            <div className="p-6 border-b border-gray-100 bg-gray-50 flex-shrink-0">
                                 <h3 className="text-xl font-bold text-foreground">
                                     {viewingFormat.article.title}
                                 </h3>
@@ -226,7 +237,7 @@ export default function VulgarisationClient({ series }) {
                                 </span>
                             </div>
 
-                            <div className="flex-grow bg-black flex items-center justify-center p-4 overflow-auto">
+                            <div className="flex-grow bg-black flex items-center justify-center overflow-hidden relative">
                                 {viewingFormat.type === 'Mind Map' || viewingFormat.type === 'Infographie' ? (
                                     <ImageViewer src={viewingFormat.src} alt={viewingFormat.type} />
                                 ) : viewingFormat.type === 'Audio' ? (
@@ -236,8 +247,8 @@ export default function VulgarisationClient({ series }) {
                                         <source src={viewingFormat.src} />
                                         Votre navigateur ne supporte pas l'élément vidéo.
                                     </video>
-                                ) : (viewingFormat.type === 'Point Scientifique' || viewingFormat.type.includes('Article Complet')) ? (
-                                    <iframe src={viewingFormat.src} className="w-full h-full bg-white" title={viewingFormat.type} />
+                                ) : viewingFormat.type === 'Point Scientifique' ? (
+                                    <PdfViewer src={viewingFormat.src} />
                                 ) : (
                                     <div className="text-white text-center">
                                         <p className="text-2xl mb-4">Format non supporté</p>
