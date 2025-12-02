@@ -36,7 +36,7 @@ export default function PublicationsClient({ initialPublications }) {
                         Publications
                     </h1>
                     <p className="text-secondary text-lg max-w-2xl">
-                        Archives des travaux de recherche de l'Institut.
+                        Archives des travaux de recherche de l&apos;Institut.
                     </p>
                 </div>
 

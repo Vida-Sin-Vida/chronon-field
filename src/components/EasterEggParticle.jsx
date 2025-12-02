@@ -110,7 +110,7 @@ export default function EasterEggParticle() {
             const playPromise = audioRef.current.play();
             if (playPromise !== undefined) {
                 playPromise.catch((error) => {
-                    console.log('Audio play failed, using fallback:', error);
+                    // Audio play failed, using fallback
                     playFallbackSound();
                 });
             }

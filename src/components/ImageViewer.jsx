@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function ImageViewer({ src, alt }) {
     const [scale, setScale] = useState(1);
@@ -14,13 +15,6 @@ export default function ImageViewer({ src, alt }) {
     const MIN_SCALE = 1; // Start at 1 (fit) and don't go below
     const MAX_SCALE = 8; // Allow deeper zoom
 
-    // Reset position when scale goes back to 1
-    useEffect(() => {
-        if (scale <= 1) {
-            setPosition({ x: 0, y: 0 });
-        }
-    }, [scale]);
-
     const handleWheel = (e) => {
         e.preventDefault();
         e.stopPropagation(); // Stop event from bubbling up to page scroll
@@ -28,6 +22,10 @@ export default function ImageViewer({ src, alt }) {
         const delta = -e.deltaY * 0.002;
         const newScale = Math.min(Math.max(scale + delta, MIN_SCALE), MAX_SCALE);
         setScale(newScale);
+
+        if (newScale <= 1) {
+            setPosition({ x: 0, y: 0 });
+        }
     };
 
     const handleMouseDown = (e) => {
@@ -56,7 +54,11 @@ export default function ImageViewer({ src, alt }) {
     };
 
     const handleZoomOut = () => {
-        setScale(Math.max(scale - 0.5, MIN_SCALE));
+        const newScale = Math.max(scale - 0.5, MIN_SCALE);
+        setScale(newScale);
+        if (newScale <= 1) {
+            setPosition({ x: 0, y: 0 });
+        }
     };
 
     const handleReset = () => {
@@ -139,15 +141,18 @@ export default function ImageViewer({ src, alt }) {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
-                <img
+                <Image
                     ref={imageRef}
                     src={src}
                     alt={alt}
+                    fill
                     className="max-w-full max-h-full object-contain transition-transform duration-100 ease-out will-change-transform"
                     style={{
                         transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
                     }}
                     draggable={false}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    unoptimized
                 />
             </div>
         </div>

@@ -3,6 +3,47 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+class Particle {
+    constructor(canvas) {
+        this.canvas = canvas;
+        // Emit from the center of the screen
+        this.x = canvas.width / 2;
+        this.y = canvas.height / 2;
+        this.size = Math.random() * 3 + 1; // 1-4px
+
+        // Radial movement
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 2 + 1; // Speed
+        this.speedX = Math.cos(angle) * velocity;
+        this.speedY = Math.sin(angle) * velocity;
+
+        this.opacity = Math.random() * 0.5 + 0.2;
+        // Color matching Home page: #0B2240
+        this.color = `rgba(11, 34, 64, ${this.opacity})`;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    isOutOfBounds() {
+        return (
+            this.x < -50 ||
+            this.x > this.canvas.width + 50 ||
+            this.y < -50 ||
+            this.y > this.canvas.height + 50
+        );
+    }
+}
+
 const ParticleWave = () => {
     const canvasRef = useRef(null);
 
@@ -21,50 +62,10 @@ const ParticleWave = () => {
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class Particle {
-            constructor() {
-                // Emit from the center of the screen
-                this.x = canvas.width / 2;
-                this.y = canvas.height / 2;
-                this.size = Math.random() * 3 + 1; // 1-4px
-
-                // Radial movement
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = Math.random() * 2 + 1; // Speed
-                this.speedX = Math.cos(angle) * velocity;
-                this.speedY = Math.sin(angle) * velocity;
-
-                this.opacity = Math.random() * 0.5 + 0.2;
-                // Color matching Home page: #0B2240
-                this.color = `rgba(11, 34, 64, ${this.opacity})`;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            isOutOfBounds() {
-                return (
-                    this.x < -50 ||
-                    this.x > canvas.width + 50 ||
-                    this.y < -50 ||
-                    this.y > canvas.height + 50
-                );
-            }
-        }
-
         const init = () => {
             // Create a burst of particles
             for (let i = 0; i < 50; i++) {
-                particles.push(new Particle());
+                particles.push(new Particle(canvas));
             }
         };
 
@@ -74,14 +75,14 @@ const ParticleWave = () => {
             // Emit particles only for the first 1.5 seconds
             if (Date.now() - startTime < 1500) {
                 if (particles.length < 500) {
-                    particles.push(new Particle());
-                    particles.push(new Particle());
+                    particles.push(new Particle(canvas));
+                    particles.push(new Particle(canvas));
                 }
             }
 
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
-                particles[i].draw();
+                particles[i].draw(ctx);
                 if (particles[i].isOutOfBounds()) {
                     particles.splice(i, 1);
                     i--;
@@ -227,7 +228,7 @@ export default function Contact() {
                         Contact
                     </h1>
                     <p className="text-secondary text-center mb-12">
-                        Pour toute demande de collaboration ou d'information, veuillez utiliser le formulaire ci-dessous.
+                        Pour toute demande de collaboration ou d&apos;information, veuillez utiliser le formulaire ci-dessous.
                     </p>
 
                     <div className="relative min-h-[500px]">

@@ -113,7 +113,7 @@ export default function Home() {
             aria-pressed={isPlaying}
             aria-label="Activer l'ambiance sonore — battement du monde"
           >
-            "Le temps n'est pas une ligne, c'est un champ de possibles."
+            &quot;Le temps n&apos;est pas une ligne, c&apos;est un champ de possibles.&quot;
           </blockquote>
         </div>
 

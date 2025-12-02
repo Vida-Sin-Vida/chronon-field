@@ -251,7 +251,7 @@ export default function VulgarisationClient({ series }) {
                                 ) : viewingFormat.type === 'Vidéo' ? (
                                     <video controls className="max-w-full max-h-full">
                                         <source src={viewingFormat.src} />
-                                        Votre navigateur ne supporte pas l'élément vidéo.
+                                        Votre navigateur ne supporte pas l&apos;élément vidéo.
                                     </video>
                                 ) : viewingFormat.type === 'Point Scientifique' ? (
                                     <PdfViewer src={viewingFormat.src} />

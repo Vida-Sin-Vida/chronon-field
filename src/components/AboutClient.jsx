@@ -9,7 +9,10 @@ export default function AboutClient({ publicationCount }) {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        setIsVisible(true);
+        const timer = setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
+        return () => clearTimeout(timer);
     }, []);
 
     return (
@@ -72,8 +75,8 @@ export default function AboutClient({ publicationCount }) {
 
                     <div className="pt-6">
                         <p className="font-medium text-foreground text-xl md:text-2xl italic font-serif opacity-90 drop-shadow-md animate-subtle-breathe">
-                            "Ce site n’est pas une vitrine.<br />
-                            C’est un lieu où je dépose ce que je pense vraiment."
+                            &quot;Ce site n’est pas une vitrine.<br />
+                            C’est un lieu où je dépose ce que je pense vraiment.&quot;
                         </p>
                     </div>
 

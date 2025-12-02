@@ -33,25 +33,45 @@ export function getVulgarisationData() {
             const formats = [];
 
             if (fs.existsSync(episodePath)) {
+                const getAssetUrl = (filename) => {
+                    const filePath = path.join(episodePath, filename);
+                    if (fs.existsSync(filePath)) {
+                        const mtime = Math.floor(fs.statSync(filePath).mtimeMs);
+                        return `/publication/${series.folderName}/${i}/${filename}?v=${mtime}`;
+                    }
+                    return null;
+                };
+
                 // Check for specific files
-                if (fs.existsSync(path.join(episodePath, `map_${i}.png`))) {
-                    formats.push({ type: 'Mind Map', src: `/publication/${series.folderName}/${i}/map_${i}.png` });
-                }
-                if (fs.existsSync(path.join(episodePath, `graphi_${i}.png`))) {
-                    formats.push({ type: 'Infographie', src: `/publication/${series.folderName}/${i}/graphi_${i}.png` });
-                }
-                if (fs.existsSync(path.join(episodePath, `audio_${i}.m4a`))) {
-                    formats.push({ type: 'Audio', src: `/publication/${series.folderName}/${i}/audio_${i}.m4a` });
-                } else if (fs.existsSync(path.join(episodePath, `audio_${i}.mp4`))) {
-                    formats.push({ type: 'Audio', src: `/publication/${series.folderName}/${i}/audio_${i}.mp4` });
+                const mapUrl = getAssetUrl(`map_${i}.png`);
+                if (mapUrl) {
+                    formats.push({ type: 'Mind Map', src: mapUrl });
                 }
 
-                if (fs.existsSync(path.join(episodePath, `video_${i}.mp4`))) {
-                    formats.push({ type: 'Vidéo', src: `/publication/${series.folderName}/${i}/video_${i}.mp4` });
+                const graphiUrl = getAssetUrl(`graphi_${i}.png`);
+                const graphUrl = getAssetUrl(`graph_${i}.png`);
+                if (graphiUrl) {
+                    formats.push({ type: 'Infographie', src: graphiUrl });
+                } else if (graphUrl) {
+                    formats.push({ type: 'Infographie', src: graphUrl });
                 }
 
-                if (fs.existsSync(path.join(episodePath, `point_${i}.pdf`))) {
-                    formats.push({ type: 'Point Scientifique', src: `/publication/${series.folderName}/${i}/point_${i}.pdf` });
+                const audioM4aUrl = getAssetUrl(`audio_${i}.m4a`);
+                const audioMp4Url = getAssetUrl(`audio_${i}.mp4`);
+                if (audioM4aUrl) {
+                    formats.push({ type: 'Audio', src: audioM4aUrl });
+                } else if (audioMp4Url) {
+                    formats.push({ type: 'Audio', src: audioMp4Url });
+                }
+
+                const videoUrl = getAssetUrl(`video_${i}.mp4`);
+                if (videoUrl) {
+                    formats.push({ type: 'Vidéo', src: videoUrl });
+                }
+
+                const pointUrl = getAssetUrl(`point_${i}.pdf`);
+                if (pointUrl) {
+                    formats.push({ type: 'Point Scientifique', src: pointUrl });
                 }
             }
 

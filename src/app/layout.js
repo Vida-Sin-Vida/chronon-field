@@ -2,6 +2,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import DesignerBadge from "../components/DesignerBadge";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <DesignerBadge />
       </body>
     </html>
   );
