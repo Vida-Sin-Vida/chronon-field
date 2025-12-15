@@ -18,7 +18,7 @@ export function getVulgarisationData() {
             id: 'other',
             title: 'Other',
             description: 'Explorations diverses et curiosités scientifiques.',
-            folderName: 'other',
+            folderName: 'Other',
             totalEpisodes: 1
         }
     ];
@@ -83,6 +83,7 @@ export function getVulgarisationData() {
             if (formats.length > 0) {
                 if (i === 1 && series.id === 'chronon-field') title += 'Le temps qui bat';
                 else if (i === 2 && series.id === 'chronon-field') title += 'L\'effondrement opérationnel';
+                else if (i === 1 && series.id === 'other') title += 'Chronon & Vide : Dialogue critique';
                 else title += 'Episode ' + i;
             } else {
                 title += 'A venir';

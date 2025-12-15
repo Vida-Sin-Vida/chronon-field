@@ -12,7 +12,7 @@
   },
   {
     "id": "chronon_field_serie_1_fr.pdf",
-    "title": "The Chronon Field Series - Episode 1",
+    "title": "Série Champ de Chronon - Épisode 1",
     "type": "Article",
     "language": "FR",
     "date": "2025-11-01T16:20:53.356Z",
@@ -53,5 +53,16 @@
     "link": "/document/chronon_field_serie_2_en.pdf",
     "authors": "B. Brécheteau",
     "size": 906237
+  },
+  {
+    "id": "Collab - Chronons and Void.pdf",
+    "title": "Chronons and Void",
+    "type": "Collaboration",
+    "language": "EN",
+    "date": "2025-12-15T12:00:00.000Z",
+    "excerpt": "Document PDF (EN) - 1.41 MB",
+    "link": "/document/Collab - Chronons and Void.pdf",
+    "authors": "B. Brécheteau, et al.",
+    "size": 1479582
   }
 ]
