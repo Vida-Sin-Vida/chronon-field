@@ -231,7 +231,7 @@ export default function VulgarisationClient({ series }) {
                             <div className={`bg-white rounded-xl overflow-hidden shadow-2xl flex flex-col relative transition-all duration-300 ${getModalSizeClass()}`}>
                                 <button
                                     onClick={closeViewer}
-                                    className="absolute top-6 right-6 text-gray-500 hover:text-black z-10 bg-white/50 rounded-full p-2 hover:bg-white transition-colors"
+                                    className="absolute top-12 right-6 text-gray-500 hover:text-black z-10 bg-white/50 rounded-full p-2 hover:bg-white transition-colors"
                                 >
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

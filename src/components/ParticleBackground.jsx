@@ -3,8 +3,9 @@
 import { useEffect, useRef } from 'react';
 
 class Particle {
-    constructor(canvas) {
+    constructor(canvas, color) {
         this.canvas = canvas;
+        this.color = color || [11, 34, 64]; // Default #0B2240
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1; // 1-3px
@@ -24,14 +25,14 @@ class Particle {
     }
 
     draw(ctx) {
-        ctx.fillStyle = `rgba(11, 34, 64, ${this.opacity})`; // #0B2240
+        ctx.fillStyle = `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
     }
 }
 
-export default function ParticleBackground() {
+export default function ParticleBackground({ className, color }) {
     const canvasRef = useRef(null);
 
     useEffect(() => {
@@ -41,8 +42,14 @@ export default function ParticleBackground() {
         let particles = [];
 
         const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const parent = canvas.parentElement;
+            if (parent) {
+                canvas.width = parent.clientWidth;
+                canvas.height = parent.clientHeight;
+            } else {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
         };
 
         window.addEventListener('resize', resizeCanvas);
@@ -52,7 +59,7 @@ export default function ParticleBackground() {
             particles = [];
             const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000); // Density
             for (let i = 0; i < numberOfParticles; i++) {
-                particles.push(new Particle(canvas));
+                particles.push(new Particle(canvas, color));
             }
         };
 
@@ -72,12 +79,12 @@ export default function ParticleBackground() {
             window.removeEventListener('resize', resizeCanvas);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [color]);
 
     return (
         <canvas
             ref={canvasRef}
-            className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
+            className={className || "fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"}
         />
     );
 }

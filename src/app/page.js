@@ -90,6 +90,8 @@ export default function Home() {
     };
   }, []);
 
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+
   return (
     <div className="relative h-[calc(100vh-80px)] md:h-screen flex flex-col items-center justify-center overflow-hidden">
       <ParticleBackground />
@@ -98,9 +100,15 @@ export default function Home() {
         <div className="flex-grow flex flex-col items-center justify-center">
           <Logo className="w-32 h-32 md:w-48 md:h-48 text-accent mb-6 md:mb-8 animate-fade-in opacity-80" />
 
-          <p className="text-sm md:text-base uppercase tracking-widest text-secondary mb-4 animate-fade-in-up">
-            Institut de recherche non homologué
-          </p>
+          <button
+            onClick={() => setIsInfoOpen(true)}
+            className="text-sm md:text-base uppercase tracking-widest text-secondary mb-4 animate-fade-in-up hover:text-accent transition-colors duration-300 outline-none focus:text-accent relative group"
+            aria-label="Voir les informations légales de l'institut"
+          >
+            BRECHETEAU RESEARCH INSTITUT
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-500 ease-out group-hover:w-1/2 opacity-50"></span>
+            <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-accent transition-all duration-500 ease-out group-hover:w-1/2 opacity-50"></span>
+          </button>
           <h1 className="text-4xl md:text-6xl lg:text-8xl font-serif font-bold text-foreground mb-6 animate-fade-in-up delay-100">
             Chronon Field
           </h1>
@@ -122,6 +130,65 @@ export default function Home() {
       </div>
 
       <SocialIcons />
+
+      {/* Info Modal */}
+      {isInfoOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full relative animate-scale-up border border-gray-100 overflow-hidden">
+            <ParticleBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" color={[159, 179, 200]} />
+            <button
+              onClick={() => setIsInfoOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-accent transition-colors p-2 z-20"
+              aria-label="Fermer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="text-center space-y-4 relative z-10">
+              <div className="w-24 h-24 mx-auto bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                <Logo className="w-16 h-16 text-accent" />
+              </div>
+
+              <h2 className="text-xl font-serif font-bold text-foreground">
+                BRÈCHETEAU RESEARCH INSTITUTE
+              </h2>
+
+              <div className="space-y-1">
+                <p className="text-secondary font-medium">
+                  Registered non-profit association
+                </p>
+                <p className="text-sm text-secondary/80 italic">
+                  (French Law 1901)
+                </p>
+              </div>
+
+              <div className="py-4 border-t border-b border-gray-100 my-4 space-y-2 text-sm text-secondary">
+                <p className="flex justify-between">
+                  <span>RNA:</span>
+                  <span className="font-mono font-bold text-foreground">W442031361</span>
+                </p>
+                <p className="flex justify-between">
+                  <span>Declared on:</span>
+                  <span className="font-medium text-foreground">December 18, 2025</span>
+                </p>
+                <p className="flex justify-between">
+                  <span>Location:</span>
+                  <span className="font-medium text-foreground">Loire-Atlantique, France</span>
+                </p>
+              </div>
+
+              <p className="text-xs text-secondary/60 pt-2">
+                Dedicated to the exploration of Chronon Physics and Void modulation.
+              </p>
+            </div>
+          </div>
+
+          {/* Backdrop click to close */}
+          <div className="absolute inset-0 -z-10" onClick={() => setIsInfoOpen(false)}></div>
+        </div>
+      )}
     </div>
   );
 }

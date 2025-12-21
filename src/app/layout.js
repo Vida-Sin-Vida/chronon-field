@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   title: "Chronon Field",
-  description: "Institut de recherche non homologué",
+  description: "BRECHETEAU RESEARCH INSTITUT",
   icons: {
     icon: '/logo.svg',
     shortcut: '/logo.svg',
@@ -24,7 +24,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Chronon Field",
-    description: "Institut de recherche non homologué explorant les mystères du temps.",
+    description: "BRECHETEAU RESEARCH INSTITUT explorant les mystères du temps.",
     url: "https://chronon-field.com",
     siteName: "Chronon Field",
     images: [
