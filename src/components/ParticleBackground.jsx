@@ -6,8 +6,12 @@ class Particle {
     constructor(canvas, color) {
         this.canvas = canvas;
         this.color = color || [11, 34, 64]; // Default #0B2240
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        const dpr = window.devicePixelRatio || 1;
+        const width = canvas.width / dpr;
+        const height = canvas.height / dpr;
+
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
         this.size = Math.random() * 2 + 1; // 1-3px
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
@@ -18,10 +22,19 @@ class Particle {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        if (this.x > this.canvas.width) this.x = 0;
-        if (this.x < 0) this.x = this.canvas.width;
-        if (this.y > this.canvas.height) this.y = 0;
-        if (this.y < 0) this.y = this.canvas.height;
+        // Use logical coordinates (divided by DPR is handled by scale on draw, but boundaries need care)
+        // Actually, easier to keep logic in logical coords and canvas in physical
+        // Wait, if we scale ctx, we draw in logical coords.
+        // So boundaries should be logical width/height.
+
+        const dpr = window.devicePixelRatio || 1;
+        const width = this.canvas.width / dpr;
+        const height = this.canvas.height / dpr;
+
+        if (this.x > width) this.x = 0;
+        if (this.x < 0) this.x = width;
+        if (this.y > height) this.y = 0;
+        if (this.y < 0) this.y = height;
     }
 
     draw(ctx) {
@@ -44,20 +57,51 @@ export default function ParticleBackground({ className, color }) {
         const resizeCanvas = () => {
             const parent = canvas.parentElement;
             if (parent) {
-                canvas.width = parent.clientWidth;
-                canvas.height = parent.clientHeight;
+                // Use getBoundingClientRect for precise pixel values
+                const rect = parent.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+
+                // Set actual canvas size (accounting for DPR)
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+
+                // Scale context to match DPR
+                ctx.scale(dpr, dpr);
+
+                // Set display size via CSS
+                canvas.style.width = `${rect.width}px`;
+                canvas.style.height = `${rect.height}px`;
             } else {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = window.innerWidth * dpr;
+                canvas.height = window.innerHeight * dpr;
+                ctx.scale(dpr, dpr);
+                canvas.style.width = `${window.innerWidth}px`;
+                canvas.style.height = `${window.innerHeight}px`;
             }
         };
 
-        window.addEventListener('resize', resizeCanvas);
+        // Initial resize
         resizeCanvas();
+
+        // Use ResizeObserver for more robust resizing (especially in modals)
+        const resizeObserver = new ResizeObserver(() => {
+            resizeCanvas();
+        });
+
+        if (canvas.parentElement) {
+            resizeObserver.observe(canvas.parentElement);
+        } else {
+            window.addEventListener('resize', resizeCanvas);
+        }
 
         const init = () => {
             particles = [];
-            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000); // Density
+            // Calculate effective area for density
+            const width = canvas.width / (window.devicePixelRatio || 1);
+            const height = canvas.height / (window.devicePixelRatio || 1);
+            const numberOfParticles = Math.floor((width * height) / 10000); // Density
+
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push(new Particle(canvas, color));
             }
@@ -77,6 +121,7 @@ export default function ParticleBackground({ className, color }) {
 
         return () => {
             window.removeEventListener('resize', resizeCanvas);
+            resizeObserver.disconnect();
             cancelAnimationFrame(animationFrameId);
         };
     }, [color]);

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import ParticleBackground from '../components/ParticleBackground';
 import SocialIcons from '../components/SocialIcons';
 import Logo from '../components/Logo';
+import { useGlobal } from '../context/GlobalContext';
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -90,7 +91,7 @@ export default function Home() {
     };
   }, []);
 
-  const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const { isModalOpen, setIsModalOpen, t } = useGlobal();
 
   return (
     <div className="relative h-[calc(100vh-80px)] md:h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -101,11 +102,11 @@ export default function Home() {
           <Logo className="w-32 h-32 md:w-48 md:h-48 text-accent mb-6 md:mb-8 animate-fade-in opacity-80" />
 
           <button
-            onClick={() => setIsInfoOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             className="text-sm md:text-base uppercase tracking-widest text-secondary mb-4 animate-fade-in-up hover:text-accent transition-colors duration-300 outline-none focus:text-accent relative group"
-            aria-label="Voir les informations légales de l'institut"
+            aria-label={t('institute_label')}
           >
-            BRECHETEAU RESEARCH INSTITUT
+            {t('institute_name')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-500 ease-out group-hover:w-1/2 opacity-50"></span>
             <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-accent transition-all duration-500 ease-out group-hover:w-1/2 opacity-50"></span>
           </button>
@@ -119,9 +120,9 @@ export default function Home() {
             tabIndex="0"
             role="button"
             aria-pressed={isPlaying}
-            aria-label="Activer l'ambiance sonore — battement du monde"
+            aria-label={t('audio_label')}
           >
-            &quot;Le temps n&apos;est pas une ligne, c&apos;est un champ de possibles.&quot;
+            {t('quote')}
           </blockquote>
         </div>
 
@@ -132,14 +133,14 @@ export default function Home() {
       <SocialIcons />
 
       {/* Info Modal */}
-      {isInfoOpen && (
+      {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
           <div className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full relative animate-scale-up border border-gray-100 overflow-hidden">
             <ParticleBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" color={[159, 179, 200]} />
             <button
-              onClick={() => setIsInfoOpen(false)}
+              onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-accent transition-colors p-2 z-20"
-              aria-label="Fermer"
+              aria-label={t('close')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -152,41 +153,41 @@ export default function Home() {
               </div>
 
               <h2 className="text-xl font-serif font-bold text-foreground">
-                BRÈCHETEAU RESEARCH INSTITUTE
+                {t('institute_name')}
               </h2>
 
               <div className="space-y-1">
                 <p className="text-secondary font-medium">
-                  Registered non-profit association
+                  {t('association_type')}
                 </p>
                 <p className="text-sm text-secondary/80 italic">
-                  (French Law 1901)
+                  {t('law_ref')}
                 </p>
               </div>
 
               <div className="py-4 border-t border-b border-gray-100 my-4 space-y-2 text-sm text-secondary">
                 <p className="flex justify-between">
-                  <span>RNA:</span>
+                  <span>{t('rna')}</span>
                   <span className="font-mono font-bold text-foreground">W442031361</span>
                 </p>
                 <p className="flex justify-between">
-                  <span>Declared on:</span>
-                  <span className="font-medium text-foreground">December 18, 2025</span>
+                  <span>{t('declared_on')}</span>
+                  <span className="font-medium text-foreground">{t('date_value')}</span>
                 </p>
                 <p className="flex justify-between">
-                  <span>Location:</span>
-                  <span className="font-medium text-foreground">Loire-Atlantique, France</span>
+                  <span>{t('location')}</span>
+                  <span className="font-medium text-foreground">{t('location_value')}</span>
                 </p>
               </div>
 
               <p className="text-xs text-secondary/60 pt-2">
-                Dedicated to the exploration of Chronon Physics and Void modulation.
+                {t('dedicated_to')}
               </p>
             </div>
           </div>
 
           {/* Backdrop click to close */}
-          <div className="absolute inset-0 -z-10" onClick={() => setIsInfoOpen(false)}></div>
+          <div className="absolute inset-0 -z-10" onClick={() => setIsModalOpen(false)}></div>
         </div>
       )}
     </div>

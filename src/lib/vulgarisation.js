@@ -9,15 +9,27 @@ export function getVulgarisationData() {
     const seriesMetadata = [
         {
             id: 'chronon-field',
-            title: 'The Chronon Field Series',
-            description: 'Une plongée au cœur de la théorie du champ de chronon.',
+            title: {
+                fr: 'Série Champ de Chronon',
+                en: 'The Chronon Field Series'
+            },
+            description: {
+                fr: 'Une plongée au cœur de la théorie du champ de chronon.',
+                en: 'A deep dive into the Chronon field theory.'
+            },
             folderName: 'chronon_field_serie',
             totalEpisodes: 12 // As per original data
         },
         {
             id: 'other',
-            title: 'Other',
-            description: 'Explorations diverses et curiosités scientifiques.',
+            title: {
+                fr: 'Autre',
+                en: 'Other'
+            },
+            description: {
+                fr: 'Explorations diverses et curiosités scientifiques.',
+                en: 'Various explorations and scientific curiosities.'
+            },
             folderName: 'Other',
             totalEpisodes: 1
         }
@@ -79,14 +91,28 @@ export function getVulgarisationData() {
 
 
             // Determine title and status
-            let title = `${i.toString().padStart(2, '0')} — `;
+            let title = { fr: `${i.toString().padStart(2, '0')} — `, en: `${i.toString().padStart(2, '0')} — ` };
+
             if (formats.length > 0) {
-                if (i === 1 && series.id === 'chronon-field') title += 'Le temps qui bat';
-                else if (i === 2 && series.id === 'chronon-field') title += 'L\'effondrement opérationnel';
-                else if (i === 1 && series.id === 'other') title += 'Chronon & Vide : Dialogue critique';
-                else title += 'Episode ' + i;
+                if (i === 1 && series.id === 'chronon-field') {
+                    title.fr += 'Le temps qui bat';
+                    title.en += 'The Beating Time';
+                }
+                else if (i === 2 && series.id === 'chronon-field') {
+                    title.fr += 'L\'effondrement opérationnel';
+                    title.en += 'Operational Collapse';
+                }
+                else if (i === 1 && series.id === 'other') {
+                    title.fr += 'Chronon & Vide : Dialogue critique';
+                    title.en += 'Chronon & Void: Critical Dialogue';
+                }
+                else {
+                    title.fr += 'Episode ' + i;
+                    title.en += 'Episode ' + i;
+                }
             } else {
-                title += 'A venir';
+                title.fr += 'A venir';
+                title.en += 'Coming soon';
             }
 
             articles.push({

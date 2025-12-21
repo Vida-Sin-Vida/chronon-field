@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGlobal } from '../../context/GlobalContext';
 
 class Particle {
     constructor(canvas) {
@@ -114,6 +115,7 @@ const ParticleWave = () => {
 };
 
 export default function Contact() {
+    const { t } = useGlobal();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -225,10 +227,10 @@ export default function Contact() {
                     transition={{ duration: 0.6 }}
                 >
                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-8 text-center">
-                        Contact
+                        {t('contact_title')}
                     </h1>
                     <p className="text-secondary text-center mb-12">
-                        Pour toute demande de collaboration ou d&apos;information, veuillez utiliser le formulaire ci-dessous.
+                        {t('contact_desc')}
                     </p>
 
                     <div className="relative min-h-[500px]">
@@ -245,7 +247,7 @@ export default function Contact() {
                                 >
                                     <motion.div variants={itemVariants}>
                                         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                                            Nom
+                                            {t('contact_name')}
                                         </label>
                                         <input
                                             type="text"
@@ -260,7 +262,7 @@ export default function Contact() {
 
                                     <motion.div variants={itemVariants}>
                                         <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                                            Email
+                                            {t('contact_email')}
                                         </label>
                                         <input
                                             type="email"
@@ -275,7 +277,7 @@ export default function Contact() {
 
                                     <motion.div variants={itemVariants}>
                                         <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                                            Sujet
+                                            {t('contact_subject')}
                                         </label>
                                         <input
                                             type="text"
@@ -290,7 +292,7 @@ export default function Contact() {
 
                                     <motion.div variants={itemVariants}>
                                         <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                                            Message
+                                            {t('contact_message')}
                                         </label>
                                         <textarea
                                             id="message"
@@ -310,7 +312,7 @@ export default function Contact() {
                                         type="submit"
                                         className="w-full py-4 bg-accent text-white font-bold rounded-lg shadow-md hover:bg-accent/90 transition-colors duration-200"
                                     >
-                                        Envoyer
+                                        {t('contact_send')}
                                     </motion.button>
                                 </motion.form>
                             ) : (
@@ -342,9 +344,9 @@ export default function Contact() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </motion.div>
-                                    <h2 className="text-3xl font-serif font-bold text-foreground mb-4">Message envoyé !</h2>
+                                    <h2 className="text-3xl font-serif font-bold text-foreground mb-4">{t('contact_success_title')}</h2>
                                     <p className="text-secondary text-lg">
-                                        Merci de nous avoir contactés. Vos informations ont été transmises avec succès.
+                                        {t('contact_success_desc')}
                                     </p>
                                 </motion.div>
                             )}

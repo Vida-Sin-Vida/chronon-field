@@ -2,13 +2,18 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { timelineData } from '../data/timeline';
+import { useGlobal } from '../context/GlobalContext';
 
 export default function SoundTimeline() {
+    const { t, language } = useGlobal();
     const [activeId, setActiveId] = useState(null);
     const [hoveredId, setHoveredId] = useState(null);
     const [containerWidth, setContainerWidth] = useState(0);
     const containerRef = useRef(null);
     const audioRef = useRef(null);
+
+    // Get current language data, default to french if issue
+    const data = timelineData[language] || timelineData['fr'];
 
     // Handle resize
     useEffect(() => {
@@ -83,14 +88,14 @@ export default function SoundTimeline() {
 
     // Generate Waveform Path
     const waveformPath = useMemo(() => {
-        if (containerWidth === 0 || timelineData.length === 0) return '';
+        if (containerWidth === 0 || data.length === 0) return '';
 
         // Calculate points
         // We want points distributed evenly along the width
         // Padding on sides: 20px
         const padding = 20;
         const availableWidth = containerWidth - (padding * 2);
-        const step = availableWidth / (timelineData.length - 1);
+        const step = availableWidth / (data.length - 1);
 
         let path = `M ${padding} 96`; // Start middle (height 192px assumed for h-48)
 
@@ -99,7 +104,7 @@ export default function SoundTimeline() {
         // Or better: A sine wave that passes through the points?
         // Let's do a cubic bezier connecting points to look like a "waveform"
 
-        for (let i = 0; i < timelineData.length - 1; i++) {
+        for (let i = 0; i < data.length - 1; i++) {
             const x1 = padding + (i * step);
             const y1 = 96;
             const x2 = padding + ((i + 1) * step);
@@ -117,14 +122,14 @@ export default function SoundTimeline() {
         }
 
         return path;
-    }, [containerWidth]);
+    }, [containerWidth, data]);
 
     return (
         <div className="py-8 w-full" ref={containerRef}>
             <h3 className="text-xl font-serif font-bold text-foreground mb-12 flex items-center gap-2">
-                <span>Chronologie Sonore</span>
+                <span>{t('timeline_title')}</span>
                 <span className="text-xs font-normal text-secondary/60 bg-secondary/10 px-2 py-0.5 rounded-full">
-                    Interactive
+                    {t('timeline_interactive')}
                 </span>
             </h3>
 
@@ -159,11 +164,11 @@ export default function SoundTimeline() {
 
                 {/* Points */}
                 <div className="absolute top-0 left-0 w-full h-full z-10">
-                    {timelineData.map((item, index) => {
+                    {data.map((item, index) => {
                         // Calculate position same as SVG
                         const padding = 20;
                         const availableWidth = containerWidth - (padding * 2);
-                        const step = timelineData.length > 1 ? availableWidth / (timelineData.length - 1) : 0;
+                        const step = data.length > 1 ? availableWidth / (data.length - 1) : 0;
                         const left = padding + (index * step);
 
                         const isActive = activeId === item.id;
@@ -228,7 +233,7 @@ export default function SoundTimeline() {
             </div>
 
             <p className="text-sm text-secondary/60 mt-4 text-center italic">
-                Survolez pour écouter les archives du temps.
+                {t('timeline_hover')}
             </p>
         </div>
     );

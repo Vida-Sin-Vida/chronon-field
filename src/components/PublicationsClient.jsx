@@ -3,8 +3,10 @@
 import { useState, useMemo } from 'react';
 import PublicationCard from './PublicationCard';
 import ParticleBackground from './ParticleBackground';
+import { useGlobal } from '../context/GlobalContext';
 
 export default function PublicationsClient({ initialPublications }) {
+    const { t } = useGlobal();
     const [filterType, setFilterType] = useState('All');
     const [filterLanguage, setFilterLanguage] = useState('All');
     const [sortOrder, setSortOrder] = useState('newest');
@@ -37,17 +39,17 @@ export default function PublicationsClient({ initialPublications }) {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12">
                     <div>
                         <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-                            Publications
+                            {t('publications_title')}
                         </h1>
                         <p className="text-secondary text-lg max-w-2xl">
-                            Archives des travaux de recherche du BRECHETEAU RESEARCH INSTITUT.
+                            {t('publications_desc')}
                         </p>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 mt-6 md:mt-0 w-full md:w-auto">
                         <input
                             type="text"
-                            placeholder="Rechercher..."
+                            placeholder={t('search_placeholder')}
                             className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/20 text-sm"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
@@ -59,7 +61,7 @@ export default function PublicationsClient({ initialPublications }) {
                             onChange={(e) => setFilterLanguage(e.target.value)}
                         >
                             {languages.map(lang => (
-                                <option key={lang} value={lang}>{lang === 'All' ? 'Toutes langues' : lang}</option>
+                                <option key={lang} value={lang}>{lang === 'All' ? t('all_languages') : lang}</option>
                             ))}
                         </select>
 
@@ -69,7 +71,7 @@ export default function PublicationsClient({ initialPublications }) {
                             onChange={(e) => setFilterType(e.target.value)}
                         >
                             {types.map(type => (
-                                <option key={type} value={type}>{type === 'All' ? 'Tous types' : type}</option>
+                                <option key={type} value={type}>{type === 'All' ? t('all_types') : type}</option>
                             ))}
                         </select>
 
@@ -78,8 +80,8 @@ export default function PublicationsClient({ initialPublications }) {
                             value={sortOrder}
                             onChange={(e) => setSortOrder(e.target.value)}
                         >
-                            <option value="newest">Plus récent</option>
-                            <option value="oldest">Plus ancien</option>
+                            <option value="newest">{t('sort_newest')}</option>
+                            <option value="oldest">{t('sort_oldest')}</option>
                         </select>
                     </div>
                 </div>
@@ -92,7 +94,7 @@ export default function PublicationsClient({ initialPublications }) {
 
                 {filteredPublications.length === 0 && (
                     <div className="text-center py-20 text-secondary">
-                        Aucune publication trouvée.
+                        {t('no_publications_found')}
                     </div>
                 )}
             </div>

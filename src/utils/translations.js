@@ -1,0 +1,195 @@
+export const translations = {
+    fr: {
+        // Navbar
+        about: "À propos",
+        publications: "Publications",
+        program: "Programme",
+        vulgarisation: "Vulgarisation",
+        contact: "Contact",
+        switch_to_en: "Switch to English",
+        switch_to_fr: "Passer en Français",
+
+        // Home
+        institute_name: "BRECHETEAU RESEARCH INSTITUT",
+        institute_label: "Voir les informations légales de l'institut",
+        quote: "\"Le temps n'est pas une ligne, c'est un champ de possibles.\"",
+        audio_label: "Activer l'ambiance sonore — battement du monde",
+
+        // Modal (Legal)
+        close: "Fermer",
+        association_type: "Association loi 1901 déclarée",
+        law_ref: "(Loi 1901)",
+        rna: "RNA :",
+        declared_on: "Déclarée le :",
+        location: "Localisation :",
+        location_value: "Loire-Atlantique, France",
+        date_value: "18 Décembre 2025",
+        dedicated_to: "Dédiée à l'exploration de la Physique des Chronons et de la modulation du Vide.",
+
+        // About
+        about_title: "À propos",
+        about_name: "Benjamin Brécheteau",
+        about_text_1: "Je travaille là où peu regardent :",
+        about_text_1_bold: "les zones floues, les ruptures conceptuelles, les structures que les modèles contournent au lieu de les affronter.",
+        about_text_2: "Mon parcours est volontairement transversal. Physique, ingénierie, sciences humaines — non par dispersion, mais par nécessité. Comprendre le réel impose parfois de sortir des cadres disciplinaires et d’assumer l’inconfort intellectuel.",
+        about_text_3: "Mon objet central est le temps. Ou plutôt ce que la physique manipule sous ce nom sans en interroger le statut. À travers le Champ de Chronon, je développe un cadre minimal et testable : le temps n’est pas un flux universel, mais une tenue rythmique locale, mesurable par des protocoles concrets. Aucune métaphysique ajoutée. Aucune entorse à la relativité générale.",
+        about_text_4: "Je mène ce travail de manière indépendante, en dialogue constant avec des chercheurs, ingénieurs et lecteurs issus de disciplines différentes. Les échanges nourrissent la rigueur ; la responsabilité scientifique, elle, reste clairement identifiée.",
+        about_quote: "\"Ce site n’est pas une vitrine institutionnelle. C’est un espace de travail ouvert : articles, hypothèses, résultats, protocoles, prises de position. Ce qui est publié ici est pensé pour être discuté, testé — ou réfuté.\"",
+        publications_count_label: "Publications disponibles sur le site :",
+        timeline_title: "Chronologie Sonore",
+        timeline_interactive: "Interactive",
+        timeline_hover: "Survolez pour écouter les archives du temps.",
+
+        // Contact
+        contact_title: "Contact",
+        contact_desc: "Pour toute demande de collaboration ou d'information, veuillez utiliser le formulaire ci-dessous.",
+        contact_name: "Nom",
+        contact_email: "Email",
+        contact_subject: "Sujet",
+        contact_message: "Message",
+        contact_send: "Envoyer",
+        contact_success_title: "Message envoyé !",
+        contact_success_desc: "Merci de nous avoir contactés. Vos informations ont été transmises avec succès.",
+
+        // Vulgarisation
+        vulgarisation_title: "Vulgarisation",
+        explore_series: "Explorer la série",
+        back_to_series: "Retour aux séries",
+        back_to_articles: "Retour aux articles",
+        formats_available: "formats disponibles",
+        soon_available: "Bientôt disponible",
+        select_format: "Sélectionnez un format pour consulter ce contenu :",
+        consult_format_prefix: "Consulter le format",
+        format_not_supported: "Format non supporté",
+        video_not_supported: "Votre navigateur ne supporte pas l'élément vidéo.",
+
+        // Publications
+        publications_title: "Publications",
+        publications_desc: "Archives des travaux de recherche du BRECHETEAU RESEARCH INSTITUT.",
+        search_placeholder: "Rechercher...",
+        all_languages: "Toutes les langues",
+        all_types: "Tous les types",
+        sort_newest: "Plus récent",
+        sort_oldest: "Plus ancien",
+        no_publications_found: "Aucune publication trouvée.",
+        // Publication Types
+        type_article: "Article",
+        type_traité: "Traité",
+        type_thèse: "Thèse",
+        type_mémoire: "Mémoire",
+        type_rapport: "Rapport",
+
+        // Program
+        program_title: "Programme CHRONON",
+        program_desc: "Accédez à la première version publique de notre outil de recherche et d'analyse.",
+        program_v1_title: "CHRONON - V1.0.0",
+        program_v1_desc: "Version initiale du logiciel d'analyse de champ. Code source complet et documentation disponibles sur GitHub.",
+        download_github: "Télécharger sur GitHub",
+        system_overview: "Aperçu du Système",
+        infographic_alt: "Infographie du fonctionnement du programme Chronon",
+        infographic_desc: "Infographie synthétique des capacités d'analyse du champ Chronon.",
+        tech_documentation: "Documentation Technique",
+        point_chronon_title: "Le Point Chronon",
+        point_chronon_desc: "Diaporama technique détaillant le fondement théorique du programme. Une explication approfondie des mécanismes d'interaction et de la structure du champ.",
+        view_slideshow: "Consulter le Diaporama",
+        download_pdf: "Télécharger PDF",
+        pdf_viewer_title: "Le Point Chronon - Documentation Technique",
+        pdf_viewer_subtitle: "Diaporama PDF"
+    },
+    en: {
+        // Navbar
+        about: "About",
+        publications: "Publications",
+        program: "Program",
+        vulgarisation: "Vulgarization",
+        contact: "Contact",
+        switch_to_en: "Switch to English",
+        switch_to_fr: "Passer en Français",
+
+        // Home
+        institute_name: "BRECHETEAU RESEARCH INSTITUTE",
+        institute_label: "See institute legal information",
+        quote: "\"Time is not a line, it is a field of possibilities.\"",
+        audio_label: "Enable ambient sound — heartbeat of the world",
+
+        // Modal (Legal)
+        close: "Close",
+        association_type: "Registered non-profit association",
+        law_ref: "(French Law 1901)",
+        rna: "RNA:",
+        declared_on: "Declared on:",
+        location: "Location:",
+        location_value: "Loire-Atlantique, France",
+        date_value: "December 18, 2025",
+        dedicated_to: "Dedicated to the exploration of Chronon Physics and Void modulation.",
+
+        // About
+        about_title: "About",
+        about_name: "Benjamin Brécheteau",
+        about_text_1: "I work where few look:",
+        about_text_1_bold: "blurred zones, conceptual ruptures, structures that models bypass instead of confronting.",
+        about_text_2: "My path is deliberately transversal. Physics, engineering, human sciences — not out of dispersion, but out of necessity. Understanding reality sometimes requires stepping out of disciplinary frameworks and accepting intellectual discomfort.",
+        about_text_3: "My central object is time. Or rather what physics manipulates under this name without questioning its status. Through the Chronon Field, I develop a minimal and testable framework: time is not a universal flux, but a local rhythmic holding, measurable by concrete protocols. No added metaphysics. No violation of general relativity.",
+        about_text_4: "I conduct this work independently, in constant dialogue with researchers, engineers, and readers from different disciplines. Exchanges nourish rigor; scientific responsibility, however, remains clearly identified.",
+        about_quote: "\"This site is not an institutional showcase. It is an open workspace: articles, hypotheses, results, protocols, positions. What is published here is intended to be discussed, tested — or refuted.\"",
+        publications_count_label: "Publications available on the site:",
+        timeline_title: "Sound Timeline",
+        timeline_interactive: "Interactive",
+        timeline_hover: "Hover to listen to the archives of time.",
+
+        // Contact
+        contact_title: "Contact",
+        contact_desc: "For any collaboration or information request, please use the form below.",
+        contact_name: "Name",
+        contact_email: "Email",
+        contact_subject: "Subject",
+        contact_message: "Message",
+        contact_send: "Send",
+        contact_success_title: "Message sent!",
+        contact_success_desc: "Thank you for contacting us. Your information has been successfully transmitted.",
+
+        // Vulgarisation
+        vulgarisation_title: "Vulgarization",
+        explore_series: "Explore series",
+        back_to_series: "Back to series",
+        back_to_articles: "Back to articles",
+        formats_available: "formats available",
+        soon_available: "Coming soon",
+        select_format: "Select a format to view this content:",
+        consult_format_prefix: "View format",
+        format_not_supported: "Format not supported",
+        video_not_supported: "Your browser does not support the video element.",
+
+        // Publications
+        publications_title: "Publications",
+        publications_desc: "Research archives of the BRECHETEAU RESEARCH INSTITUTE.",
+        search_placeholder: "Search...",
+        all_languages: "All languages",
+        all_types: "All types",
+        sort_newest: "Newest",
+        sort_oldest: "Oldest",
+        no_publications_found: "No publications found.",
+        // Publication Types
+        type_article: "Article",
+        type_traite: "Treatise",
+        type_protocole: "Experimental Protocol",
+        type_collaboration: "Collaboration",
+
+        // Program
+        program_title: "CHRONON Program",
+        program_desc: "Access the first public version of our research and analysis tool.",
+        program_v1_title: "CHRONON - V1.0.0",
+        program_v1_desc: "Initial version of the field analysis software. Full source code and documentation available on GitHub.",
+        download_github: "Download on GitHub",
+        system_overview: "System Overview",
+        infographic_alt: "Infographic of the Chronon program operation",
+        infographic_desc: "Synthetic infographic of the Chronon field analysis capabilities.",
+        tech_documentation: "Technical Documentation",
+        point_chronon_title: "The Chronon Point",
+        point_chronon_desc: "Technical slideshow detailing the theoretical foundation of the program. An in-depth explanation of interaction mechanisms and field structure.",
+        view_slideshow: "View Slideshow",
+        download_pdf: "Download PDF",
+        pdf_viewer_title: "The Chronon Point - Technical Documentation",
+        pdf_viewer_subtitle: "PDF Slideshow"
+    }
+};

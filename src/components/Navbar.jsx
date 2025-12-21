@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { useGlobal } from '../context/GlobalContext';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isModalOpen, isNavbarVisible, t, language, toggleLanguage } = useGlobal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,16 +20,17 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'À propos', href: '/about' },
-    { name: 'Publications', href: '/publications' },
-    { name: 'Programme', href: '/programme' },
-    { name: 'Vulgarisation', href: '/vulgarisation' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('about'), href: '/about' },
+    { name: t('publications'), href: '/publications' },
+    { name: t('program'), href: '/programme' },
+    { name: t('vulgarisation'), href: '/vulgarisation' },
+    { name: t('contact'), href: '/contact' },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${!isNavbarVisible ? '-translate-y-full' : 'translate-y-0'
+        } ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
         }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -38,8 +41,7 @@ export default function Navbar() {
           Chronon Field
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className={`hidden md:flex items-center space-x-8 transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -50,11 +52,19 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="text-sm font-medium text-secondary hover:text-accent transition-colors border border-secondary/20 rounded-full px-3 py-1"
+          >
+            {language === 'fr' ? 'EN' : 'FR'}
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-accent focus:outline-none"
+          className={`md:hidden text-accent focus:outline-none transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -88,6 +98,15 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          <button
+            onClick={() => {
+              toggleLanguage();
+              setIsMobileMenuOpen(false);
+            }}
+            className="text-base font-medium text-left text-secondary hover:text-accent transition-colors"
+          >
+            {language === 'fr' ? 'Switch to English' : 'Passer en Français'}
+          </button>
         </div>
       )}
     </nav>
