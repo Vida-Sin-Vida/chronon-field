@@ -102,6 +102,10 @@ export function getVulgarisationData() {
                     title.fr += 'L\'effondrement opérationnel';
                     title.en += 'Operational Collapse';
                 }
+                else if (i === 3 && series.id === 'chronon-field') {
+                    title.fr += 'La tenue du réel';
+                    title.en += 'The Holding of Reality';
+                }
                 else if (i === 1 && series.id === 'other') {
                     title.fr += 'Chronon & Vide : Dialogue critique';
                     title.en += 'Chronon & Void: Critical Dialogue';

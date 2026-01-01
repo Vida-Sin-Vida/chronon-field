@@ -64,5 +64,27 @@
     "link": "/document/Collab - Chronons and Void.pdf",
     "authors": "B. Brécheteau, et al.",
     "size": 1479582
+  },
+  {
+    "id": "chronon_field_serie_3_fr.pdf",
+    "title": "Série Champ de Chronon - Épisode 3",
+    "type": "Article",
+    "language": "FR",
+    "date": "2026-01-01T10:00:00.000Z",
+    "excerpt": "Document PDF (FR) - 0.94 MB",
+    "link": "/document/chronon_field_serie_3_fr.pdf",
+    "authors": "B. Brécheteau",
+    "size": 939562
+  },
+  {
+    "id": "chronon_field_serie_3_en.pdf",
+    "title": "The Chronon Field Series - Episode 3",
+    "type": "Article",
+    "language": "EN",
+    "date": "2026-01-01T10:00:00.000Z",
+    "excerpt": "Document PDF (EN) - 0.94 MB",
+    "link": "/document/chronon_field_serie_3_en.pdf",
+    "authors": "B. Brécheteau",
+    "size": 938262
   }
 ]
