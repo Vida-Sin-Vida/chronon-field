@@ -34,12 +34,12 @@
   },
   {
     "id": "CHRONON_1.pdf",
-    "title": "Chronon 1 - Rapport Préliminaire",
+    "title": "CHRONON-1 Experimental of the Chronon Field Residual",
     "type": "Protocole Expérimental",
     "language": "EN",
     "date": "2025-11-10T16:20:53.346Z",
     "excerpt": "Document PDF (EN) - 1.21 MB",
-    "link": "/document/CHRONON_1.pdf",
+    "link": "/document/CHRONON-1 Experimental of the Chronon Field Residual.pdf",
     "authors": "B. Brécheteau",
     "size": 1267567
   },
@@ -86,5 +86,16 @@
     "link": "/document/chronon_field_serie_3_en.pdf",
     "authors": "B. Brécheteau",
     "size": 938262
+  },
+  {
+    "id": "CHRONON-1 Statistical Analysis Plan (SAP).pdf",
+    "title": "Chronon 1 - Statistical Analysis Plan",
+    "type": "Protocole Expérimental",
+    "language": "EN",
+    "date": "2026-01-05T20:42:00.000Z",
+    "excerpt": "Document PDF (EN) - 0.39 MB",
+    "link": "/document/CHRONON-1 Statistical Analysis Plan (SAP).pdf",
+    "authors": "B. Brécheteau",
+    "size": 391895
   }
 ]
