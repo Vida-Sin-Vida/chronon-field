@@ -82,7 +82,8 @@ export const translations = {
         // Program
         program_title: "Programme CHRONON",
         program_desc: "Accédez à la première version publique de notre outil de recherche et d'analyse.",
-        program_v1_title: "CHRONON - V1.0.0",
+        program_v1_title: "CHRONON - V1.0.1",
+        program_doi: "DOI : 10.5281/zenodo.17842188",
         program_v1_desc: "Version initiale du logiciel d'analyse de champ. Code source complet et documentation disponibles sur GitHub.",
         download_github: "Télécharger sur GitHub",
         system_overview: "Aperçu du Système",
@@ -178,7 +179,8 @@ export const translations = {
         // Program
         program_title: "CHRONON Program",
         program_desc: "Access the first public version of our research and analysis tool.",
-        program_v1_title: "CHRONON - V1.0.0",
+        program_v1_title: "CHRONON - V1.0.1",
+        program_doi: "DOI: 10.5281/zenodo.17842188",
         program_v1_desc: "Initial version of the field analysis software. Full source code and documentation available on GitHub.",
         download_github: "Download on GitHub",
         system_overview: "System Overview",

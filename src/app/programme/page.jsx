@@ -11,6 +11,7 @@ const PdfViewer = dynamic(() => import('../../components/PdfViewer'), { ssr: fal
 export default function Programme() {
     const { t } = useGlobal();
     const [isPdfOpen, setIsPdfOpen] = useState(false);
+    const [isImageOpen, setIsImageOpen] = useState(false);
 
     return (
         <div className="min-h-screen pt-24 pb-12 px-6 bg-background relative selection:bg-accent/30">
@@ -29,7 +30,8 @@ export default function Programme() {
                 {/* Download Section */}
                 <section className="mb-20 flex flex-col items-center">
                     <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg max-w-2xl w-full text-center hover:border-accent/30 transition-colors duration-300">
-                        <h2 className="text-2xl font-bold text-primary mb-4">{t('program_v1_title')}</h2>
+                        <h2 className="text-2xl font-bold text-primary mb-2">{t('program_v1_title')}</h2>
+                        <p className="text-sm font-mono text-accent/80 mb-4">{t('program_doi')}</p>
                         <p className="text-secondary mb-8">
                             {t('program_v1_desc')}
                         </p>
@@ -55,12 +57,21 @@ export default function Programme() {
                     </div>
 
                     <div className="bg-white/5 border border-white/10 rounded-xl p-2 md:p-4 shadow-2xl hover:border-accent/30 transition-all duration-500 group">
-                        <div className="relative w-full rounded-lg overflow-hidden bg-background/50">
+                        <div
+                            className="relative w-full rounded-lg overflow-hidden bg-background/50 cursor-pointer group-hover:scale-[1.005] transition-transform duration-500"
+                            onClick={() => setIsImageOpen(true)}
+                        >
                             {/* Using specific dimensions to prevent layout shift, but class ensures it scales */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 z-10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                <span className="bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                    <svg className="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+                                    Agrandir
+                                </span>
+                            </div>
                             <img
-                                src="/unnamed.png"
+                                src="/unnamed.png?v=1.0.1"
                                 alt={t('infographic_alt')}
-                                className="w-full h-auto rounded-lg shadow-lg group-hover:scale-[1.01] transition-transform duration-500"
+                                className="w-full h-auto rounded-lg shadow-lg"
                             />
                         </div>
                         <p className="mt-4 text-center text-secondary text-sm italic">
@@ -101,7 +112,7 @@ export default function Programme() {
                                         {t('view_slideshow')}
                                     </button>
                                     <a
-                                        href="/point_chronon.pdf"
+                                        href="/point_chronon.pdf?v=1.0.1"
                                         download
                                         className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 text-primary font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20"
                                     >
@@ -138,8 +149,36 @@ export default function Programme() {
                         </div>
 
                         <div className="flex-grow bg-black flex items-center justify-center overflow-hidden relative">
-                            <PdfViewer src="/point_chronon.pdf" />
+                            <PdfViewer src="/point_chronon.pdf?v=1.0.1" />
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Image Modal */}
+            {isImageOpen && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in"
+                    onClick={() => setIsImageOpen(false)}
+                >
+                    <button
+                        onClick={() => setIsImageOpen(false)}
+                        className="absolute top-4 right-4 text-white/50 hover:text-white z-50 transition-colors"
+                    >
+                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <div
+                        className="relative max-w-7xl w-full max-h-[95vh] flex items-center justify-center"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <img
+                            src="/unnamed.png?v=1.0.1"
+                            alt={t('infographic_alt')}
+                            className="max-w-full max-h-[90vh] rounded-lg shadow-2xl object-contain ring-1 ring-white/10"
+                        />
                     </div>
                 </div>
             )}
