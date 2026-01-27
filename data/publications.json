@@ -1,40 +1,62 @@
 [
   {
-    "id": "traité_fr.pdf",
-    "title": "Traité ~ Le Temps n'est pas ce qu'on croit",
-    "type": "Traité",
-    "language": "FR",
-    "date": "2025-09-27T16:20:53.492Z",
-    "excerpt": "Document PDF (FR) - 26.82 MB",
-    "link": "/document/traité_fr.pdf",
-    "authors": "B. Brécheteau",
-    "size": 28128011
-  },
-  {
-    "id": "chronon_field_serie_1_fr.pdf",
+    "id": "Le_Temps_qui_bat___Redéfinir_la_pulsation_du_réel (v 4.0).pdf",
     "title": "Série Champ de Chronon - Épisode 1",
     "type": "Article",
     "language": "FR",
-    "date": "2025-11-01T16:20:53.356Z",
-    "excerpt": "Document PDF (FR) - 0.87 MB",
-    "link": "/document/chronon_field_serie_1_fr.pdf",
+    "date": "2025-11-01T10:00:00.000Z",
+    "excerpt": "Document PDF (FR) - 0.89 MB",
+    "link": "/document/Le_Temps_qui_bat___Redéfinir_la_pulsation_du_réel (v 4.0).pdf",
     "authors": "B. Brécheteau",
-    "size": 917094
+    "size": 937938
   },
   {
-    "id": "chronon_field_serie_1_en.pdf",
+    "id": "The_Time_That_Beats__Redefining_the_Pulse_of_the_Real.pdf",
     "title": "The Chronon Field Series - Episode 1",
     "type": "Article",
     "language": "EN",
-    "date": "2025-11-10T16:20:53.351Z",
+    "date": "2025-11-01T10:00:00.000Z",
     "excerpt": "Document PDF (EN) - 0.89 MB",
-    "link": "/document/chronon_field_serie_1_en.pdf",
+    "link": "/document/The_Time_That_Beats__Redefining_the_Pulse_of_the_Real.pdf",
     "authors": "B. Brécheteau",
-    "size": 930743
+    "size": 935106
+  },
+  {
+    "id": "Chronon_field_Φ_x__and_the_physics_of_rhythm.pdf",
+    "title": "~ Chronon Field Φ(x) and the Physics of Rhythm",
+    "type": "Traité",
+    "language": "EN",
+    "date": "2025-10-27T10:00:00.000Z",
+    "excerpt": "Document PDF (EN) - 26.51 MB",
+    "link": "/document/Chronon_field_Φ_x__and_the_physics_of_rhythm.pdf",
+    "authors": "B. Brécheteau",
+    "size": 27794383
+  },
+  {
+    "id": "Champ_de_Chronon_Φ_x__et_physique_du_rythme_v2.0.pdf",
+    "title": "~ Champ de Chronon Φ(x) et Physique du Rythme",
+    "type": "Traité",
+    "language": "FR",
+    "date": "2025-10-27T10:00:00.000Z",
+    "excerpt": "Document PDF (FR) - 26.60 MB",
+    "link": "/document/Champ_de_Chronon_Φ_x__et_physique_du_rythme_v2.0.pdf",
+    "authors": "B. Brécheteau",
+    "size": 27889133
+  },
+  {
+    "id": "CHRONON-1 — Stage 00 Loop-closure Null Tests and an Endpoint-only Constraint from the ROCIT Campaign (March 2022).pdf",
+    "title": "CHRONON-1 : Stage 00 Loop-closure Null Tests and an Endpoint-only Constraint from the ROCIT Campaign (March 2022)",
+    "type": "Rapport Technique",
+    "language": "EN",
+    "date": "2026-01-20T10:00:00.000Z",
+    "excerpt": "Document PDF (EN) - 0.85 MB",
+    "link": "/document/CHRONON-1 — Stage 00 Loop-closure Null Tests and an Endpoint-only Constraint from the ROCIT Campaign (March 2022).pdf",
+    "authors": "B. Brécheteau",
+    "size": 888453
   },
   {
     "id": "CHRONON_1.pdf",
-    "title": "CHRONON-1 Experimental of the Chronon Field Residual",
+    "title": "CHRONON-1 : Experimental of the Chronon Field Residual",
     "type": "Protocole Expérimental",
     "language": "EN",
     "date": "2025-11-10T16:20:53.346Z",
@@ -56,7 +78,7 @@
   },
   {
     "id": "Collab - Chronons and Void.pdf",
-    "title": "Chronons and Void",
+    "title": "Chronons and Void : Critical Dialogue",
     "type": "Collaboration",
     "language": "EN",
     "date": "2025-12-15T12:00:00.000Z",
@@ -89,7 +111,7 @@
   },
   {
     "id": "CHRONON-1 Statistical Analysis Plan (SAP).pdf",
-    "title": "Chronon 1 - Statistical Analysis Plan",
+    "title": "CHRONON-1 : Statistical Analysis Plan",
     "type": "Protocole Expérimental",
     "language": "EN",
     "date": "2026-01-05T20:42:00.000Z",
@@ -100,7 +122,7 @@
   },
   {
     "id": "CHRONON-1 Progressive Validation of a Local Tempo Field.pdf",
-    "title": "CHRONON-1 Progressive Validation of a Local Tempo Field",
+    "title": "CHRONON-1 : Progressive Validation of a Local Tempo Field",
     "type": "Protocole Expérimental",
     "language": "EN",
     "date": "2026-01-10T21:23:00.000Z",
