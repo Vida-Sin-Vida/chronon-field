@@ -119,6 +119,7 @@ export default function Contact() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        type: 'collaboration',
         subject: '',
         message: ''
     });
@@ -178,8 +179,13 @@ export default function Contact() {
         // Simulate delay before redirecting/resetting to allow animation to play
         setTimeout(() => {
             // Mailto fallback
-            const subject = encodeURIComponent(`[Chronon Field] ${formData.subject}`);
-            const body = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+            // Get the translated label for the selected type to send in the email, or just use the key if preferred. 
+            // Ideally we want the readable string like [COLLABORATION].
+            // Mapping value to uppercase key for the subject tag.
+            const typeTag = formData.type.toUpperCase();
+
+            const subject = encodeURIComponent(`[${typeTag}] [Chronon Field] ${formData.subject}`);
+            const body = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\nType: ${formData.type}\n\nMessage:\n${formData.message}`);
             window.location.href = `mailto:contact@chrononfield.com?subject=${subject}&body=${body}`;
 
             // Removed the timeout that hides particles. They will persist until they leave the screen.
@@ -273,6 +279,30 @@ export default function Contact() {
                                             value={formData.email}
                                             onChange={handleChange}
                                         />
+                                    </motion.div>
+
+                                    <motion.div variants={itemVariants}>
+                                        <label htmlFor="type" className="block text-sm font-medium text-foreground mb-2">
+                                            {t('contact_type')}
+                                        </label>
+                                        <div className="relative">
+                                            <select
+                                                id="type"
+                                                name="type"
+                                                className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all appearance-none cursor-pointer"
+                                                value={formData.type}
+                                                onChange={handleChange}
+                                            >
+                                                <option value="collaboration">{t('contact_type_collaboration')}</option>
+                                                <option value="exchange">{t('contact_type_exchange')}</option>
+                                                <option value="info">{t('contact_type_info')}</option>
+                                                <option value="publish">{t('contact_type_publish')}</option>
+                                                <option value="other">{t('contact_type_other')}</option>
+                                            </select>
+                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                            </div>
+                                        </div>
                                     </motion.div>
 
                                     <motion.div variants={itemVariants}>
