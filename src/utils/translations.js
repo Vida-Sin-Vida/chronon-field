@@ -3,6 +3,7 @@ export const translations = {
         // Navbar
         about: "À propos",
         publications: "Publications",
+        software: "Logiciel",
         program: "Programme",
         vulgarisation: "Vulgarisation",
         contact: "Contact",
@@ -89,7 +90,7 @@ export const translations = {
         program_title: "Programme CHRONON",
         program_desc: "Accédez à la première version publique de notre outil de recherche et d'analyse.",
         program_v1_title: "CHRONON - V1.0.1",
-        program_doi: "DOI : 10.5281/zenodo.17842188",
+        program_doi: "DOI : 10.5281/zenodo.18216849",
         program_v1_desc: "Version initiale du logiciel d'analyse de champ. Code source complet et documentation disponibles sur GitHub.",
         download_github: "Télécharger sur GitHub",
         system_overview: "Aperçu du Système",
@@ -101,12 +102,52 @@ export const translations = {
         view_slideshow: "Consulter le Diaporama",
         download_pdf: "Télécharger PDF",
         pdf_viewer_title: "Le Point Chronon - Documentation Technique",
-        pdf_viewer_subtitle: "Diaporama PDF"
+        pdf_viewer_subtitle: "Diaporama PDF",
+
+        // New Programme Page
+        program_hero_title: "Programme CHRONON",
+        program_hero_subtitle: "Carte interactive du programme de recherche, des publications et de la feuille de route.",
+        program_cta_publications: "Voir les publications",
+        program_cta_software: "Voir le logiciel",
+        program_cta_start: "Commencer par ici",
+
+        program_tab_theory: "Théorie / Series",
+        program_tab_theory_desc: "Fondements théoriques du Champ de Chronon.",
+        program_tab_experimental: "Expérimental / CHRONON-1",
+        program_tab_experimental_desc: "Protocoles, pré-enregistrements, et résultats d'expérience.",
+        program_tab_software: "Logiciel / Code",
+        program_tab_software_desc: "Outils d'analyse, code source et reproductibilité.",
+        program_tab_collab: "Collaborations",
+        program_tab_collab_desc: "Dialogues critiques et recherches conjointes.",
+
+        program_filter_all_status: "Tous les statuts",
+        program_filter_published: "Publié",
+        program_filter_upcoming: "À venir",
+
+        program_status_published: "Publié",
+        program_status_planned: "Planned / Coming soon",
+
+        program_view_pdf: "Voir PDF",
+        program_view_link: "Ouvrir",
+        program_search_placeholder: "Rechercher une publication (titre, mots-clés...)",
+
+        program_path_title: "Parcours Recommandés",
+        program_path_new: "Nouveau visiteur (Vision d'ensemble)",
+        program_path_new_desc: "Les textes essentiels pour comprendre la structure et les objectifs du programme.",
+        program_path_theory: "Lecteur orienté théorie",
+        program_path_theory_desc: "Plongée dans les formalismes mathématiques et conceptuels.",
+        program_path_experimental: "Lecteur orienté expérimental (Métrologie)",
+        program_path_experimental_desc: "Focus sur les protocoles, la mesure et la reproductibilité de CHRONON-1.",
+        program_path_software: "Lecteur orienté logiciel",
+        program_path_software_desc: "Code, implémentation et documentation technique de CHRONON.",
+        program_path_skeptic: "Lecteur sceptique (Vérification)",
+        program_path_skeptic_desc: "Falsifiabilité, conditions de test, et robustesse des hypothèses."
     },
     en: {
         // Navbar
         about: "About",
         publications: "Publications",
+        software: "Software",
         program: "Program",
         vulgarisation: "Vulgarization",
         contact: "Contact",
@@ -192,7 +233,7 @@ export const translations = {
         program_title: "CHRONON Program",
         program_desc: "Access the first public version of our research and analysis tool.",
         program_v1_title: "CHRONON - V1.0.1",
-        program_doi: "DOI: 10.5281/zenodo.17842188",
+        program_doi: "DOI: 10.5281/zenodo.18216849",
         program_v1_desc: "Initial version of the field analysis software. Full source code and documentation available on GitHub.",
         download_github: "Download on GitHub",
         system_overview: "System Overview",
@@ -204,6 +245,45 @@ export const translations = {
         view_slideshow: "View Slideshow",
         download_pdf: "Download PDF",
         pdf_viewer_title: "The Chronon Point - Technical Documentation",
-        pdf_viewer_subtitle: "PDF Slideshow"
+        pdf_viewer_subtitle: "PDF Slideshow",
+
+        // New Programme Page
+        program_hero_title: "CHRONON Program",
+        program_hero_subtitle: "Interactive map of the research program, publications, and roadmap.",
+        program_cta_publications: "View Publications",
+        program_cta_software: "View Software",
+        program_cta_start: "Start Here",
+
+        program_tab_theory: "Theory / Series",
+        program_tab_theory_desc: "Theoretical foundations of the Chronon Field.",
+        program_tab_experimental: "Experimental / CHRONON-1",
+        program_tab_experimental_desc: "Protocols, pre-registrations, and experimental results.",
+        program_tab_software: "Software / Code",
+        program_tab_software_desc: "Analysis tools, source code, and reproducibility.",
+        program_tab_collab: "Collaborations",
+        program_tab_collab_desc: "Critical dialogues and joint research.",
+
+        program_filter_all_status: "All Statuses",
+        program_filter_published: "Published",
+        program_filter_upcoming: "Upcoming",
+
+        program_status_published: "Published",
+        program_status_planned: "Planned / Coming soon",
+
+        program_view_pdf: "View PDF",
+        program_view_link: "Open Link",
+        program_search_placeholder: "Search publication (title, keywords...)",
+
+        program_path_title: "Recommended Reading Paths",
+        program_path_new: "New Visitor (Overview)",
+        program_path_new_desc: "Essential texts to understand the program's structure and goals.",
+        program_path_theory: "Theory-oriented Reader",
+        program_path_theory_desc: "Deep dive into mathematical and conceptual formalisms.",
+        program_path_experimental: "Experimental-oriented Reader (Metrology)",
+        program_path_experimental_desc: "Focus on CHRONON-1 protocols, measurement, and reproduction.",
+        program_path_software: "Software-oriented Reader",
+        program_path_software_desc: "Code, implementation, and technical documentation of CHRONON.",
+        program_path_skeptic: "Skeptical Reader (Verification)",
+        program_path_skeptic_desc: "Falsifiability, test conditions, and hypothesis robustness."
     }
 };

@@ -108,16 +108,30 @@ export default function VulgarisationClient({ series }) {
                             }}
                             tabIndex="0"
                             role="button"
-                            className="group cursor-pointer bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:border-accent/30 outline-none focus:ring-2 focus:ring-accent/50"
+                            className="group cursor-pointer bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:border-accent/30 outline-none focus:ring-2 focus:ring-accent/50 relative overflow-hidden"
                         >
-                            <h2 className="text-2xl font-serif font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
-                                {getLocalizedText(s.title)}
-                            </h2>
-                            <p className="text-secondary text-lg">
-                                {getLocalizedText(s.description)}
-                            </p>
-                            <div className="mt-6 flex items-center text-accent font-medium opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
-                                {t('explore_series')} <span className="ml-2">→</span>
+                            {s.id === 'chronon-field' && (
+                                <div
+                                    className="absolute pointer-events-none z-0 bg-contain bg-no-repeat bg-center opacity-[0.12] group-hover:opacity-[0.20] transition-opacity duration-500"
+                                    style={{
+                                        width: '360px',
+                                        height: '360px',
+                                        bottom: '-180px',
+                                        right: '-180px',
+                                        backgroundImage: "url('/symbole/Chronon%20Fields%20Series_Symbole.png')",
+                                    }}
+                                />
+                            )}
+                            <div className="relative z-10">
+                                <h2 className="text-2xl font-serif font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
+                                    {getLocalizedText(s.title)}
+                                </h2>
+                                <p className="text-secondary text-lg">
+                                    {getLocalizedText(s.description)}
+                                </p>
+                                <div className="mt-6 flex items-center text-accent font-medium opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
+                                    {t('explore_series')} <span className="ml-2">→</span>
+                                </div>
                             </div>
                         </div>
                     ))}

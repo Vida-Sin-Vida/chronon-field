@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useGlobal } from '../context/GlobalContext';
+import AnimatedLogo from './AnimatedLogo';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -21,9 +22,10 @@ export default function Navbar() {
 
   const navLinks = [
     { name: t('about'), href: '/about' },
-    { name: t('publications'), href: '/publications' },
     { name: t('program'), href: '/programme' },
+    { name: t('publications'), href: '/publications' },
     { name: t('vulgarisation'), href: '/vulgarisation' },
+    { name: t('software'), href: '/logiciel' },
     { name: t('contact'), href: '/contact' },
   ];
 
@@ -34,12 +36,7 @@ export default function Navbar() {
         }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-2xl font-serif font-bold text-accent tracking-tight transition-transform duration-300 hover:scale-105 inline-block"
-        >
-          Chronon Field
-        </Link>
+        <AnimatedLogo />
 
         <div className={`hidden md:flex items-center space-x-8 transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           {navLinks.map((link) => (

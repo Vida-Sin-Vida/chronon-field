@@ -13,7 +13,6 @@ if (!fs.existsSync(DATA_DIR)) {
 
 // 1. Fix typos and rename files
 const renames = [
-    { dir: DOCUMENTS_DIR, from: 'chonon_field_serie_2_en.pdf', to: 'chronon_field_serie_2_en.pdf' },
     { dir: path.join(PUBLICATIONS_DIR, 'chronon_field_serie/1'), from: 'graph_1.png', to: 'graphi_1.png' },
     { dir: path.join(PUBLICATIONS_DIR, 'chronon_field_serie/2'), from: 'graph_2.png', to: 'graphi_2.png' }
 ];
@@ -37,31 +36,48 @@ const publications = files.map(file => {
     const filePath = path.join(DOCUMENTS_DIR, file);
     const stats = fs.statSync(filePath);
 
-    // Basic metadata extraction logic (similar to existing lib/publications.js)
+    // Basic metadata extraction logic
     const nameWithoutExt = file.replace(/\.pdf$/i, '');
-    let language = 'FR';
-    if (nameWithoutExt.endsWith('_en')) language = 'EN';
+    let language = 'EN'; // Default to EN for the specific documents renamed
+    if (nameWithoutExt.includes('du-substrat') || nameWithoutExt.includes('le-temps-qui-bat') || nameWithoutExt.includes('champ-de-chronon')) language = 'FR';
 
-    let title = nameWithoutExt.replace(/_/g, ' ').replace(/_(en|fr)$/i, '');
+    let title = nameWithoutExt.replace(/-/g, ' ');
     title = title.replace(/\b\w/g, l => l.toUpperCase());
 
-    let type = 'Article';
-    if (title.toLowerCase().includes('traité')) type = 'Traité';
+    // Custom overrides based on the new naming convention
+    if (file === 'le-temps-qui-bat.pdf') title = 'Le Temps qui bat : Redéfinir la pulsation du réel';
+    if (file === 'the-time-that-beats.pdf') title = 'The Time That Beats: Redefining the Pulse of the Real';
+    if (file === 'chronon-field-end-of-timeless-physics.pdf') title = 'Chronon Field and the End of Timeless Physics';
+    if (file === 'renaissance-du-substrat.pdf') title = 'La Renaissance du Substrat';
+    if (file === 'renaissance-of-the-substrate.pdf') title = 'The Renaissance of the Substrate';
+    if (file === 'quantum-rhythm.pdf') title = 'Quantum Rhythm: When Information Breathes in Time';
 
-    // Custom overrides based on filename patterns
-    if (file.includes('chronon_field_serie_1')) title = 'The Chronon Field Series - Episode 1';
-    if (file.includes('chronon_field_serie_2')) title = 'The Chronon Field Series - Episode 2';
-    if (file === 'CHRONON_1.pdf') title = 'Chronon 1 - Rapport Préliminaire';
+    if (file === 'chronon-1-pre-registration.pdf') title = 'CHRONON-1: Experimental Pre-Registration';
+    if (file === 'chronon-1-sap.pdf') title = 'CHRONON-1: Statistical Analysis Plan (SAP)';
+    if (file === 'chronon-1-progressive-validation.pdf') title = 'CHRONON-1: Progressive Validation';
+    if (file === 'chronon-1-stage-00-loop-closure.pdf') title = 'CHRONON-1 (Stage 00): Loop-closure null tests';
+
+    if (file === 'champ-de-chronon-physique-du-rythme.pdf') title = 'Champ de Chronon Φ(x) et Physique du Rythme';
+    if (file === 'chronon-field-physics-of-rhythm.pdf') title = 'Chronon Field Φ(x) and the Physics of Rhythm';
+    if (file === 'chronons-and-void.pdf') title = 'Chronons and Void : Critical Dialogue';
+    if (file === 'chronon-field-program.pdf') title = 'The Chronon Field Program';
+
+    let type = 'Article';
+    if (file.includes('sap') || file.includes('validation') || file.includes('pre-registration')) type = 'Protocole Expérimental';
+    if (file.includes('stage-00')) type = 'Rapport Technique';
+    if (file.includes('physics-of-rhythm') || file.includes('physique-du-rythme')) type = 'Traité';
+    if (file.includes('chronons-and-void')) type = 'Collaboration';
+    if (file.includes('program')) type = 'Programme';
 
     return {
         id: file,
         title: title,
         type: type,
         language: language,
-        date: stats.mtime.toISOString(), // Using mtime as requested
+        date: stats.mtime.toISOString(),
         excerpt: `Document PDF (${language}) - ${(stats.size / 1024 / 1024).toFixed(2)} MB`,
         link: `/document/${file}`,
-        authors: 'Institut Chronon Field',
+        authors: 'B. Brécheteau',
         size: stats.size
     };
 }).sort((a, b) => new Date(b.date) - new Date(a.date));

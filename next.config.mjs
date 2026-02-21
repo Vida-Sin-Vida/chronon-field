@@ -8,6 +8,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/software',
+        destination: '/logiciel',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

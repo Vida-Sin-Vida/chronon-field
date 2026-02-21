@@ -1,21 +1,31 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import PublicationCard from './PublicationCard';
 import ParticleBackground from './ParticleBackground';
 import { useGlobal } from '../context/GlobalContext';
 
 export default function PublicationsClient({ initialPublications }) {
     const { t } = useGlobal();
+    const searchParams = useSearchParams();
+
     const [filterType, setFilterType] = useState('All');
     const [filterLanguage, setFilterLanguage] = useState('All');
     const [sortOrder, setSortOrder] = useState('newest');
     const [searchQuery, setSearchQuery] = useState('');
 
+    useEffect(() => {
+        const typeParam = searchParams.get('type');
+        if (typeParam) {
+            setFilterType(typeParam);
+        }
+    }, [searchParams]);
+
     const filteredPublications = useMemo(() => {
         return initialPublications
             .filter((pub) => {
-                const matchesType = filterType === 'All' || pub.type === filterType;
+                const matchesType = filterType === 'All' || filterType.split(',').includes(pub.type);
                 const matchesLanguage = filterLanguage === 'All' || pub.language === filterLanguage;
                 const matchesSearch = pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     pub.excerpt.toLowerCase().includes(searchQuery.toLowerCase());

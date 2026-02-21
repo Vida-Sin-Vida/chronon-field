@@ -20,7 +20,7 @@
 - `public/document/chronon_field_serie_2_en.pdf` : Renommé de chonon_field_serie_2_en.pdf et importé.
 - `public/document/chronon_field_serie_1_en.pdf` : Présent
 - `public/document/chronon_field_serie_1_fr.pdf` : Présent
-- `public/document/CHRONON_1.pdf` : Présent
+- `public/document/CHRONON_1_Experimental_Pre_Registration_of_the_Chronon_Field_Residual.pdf` : Présent
 - `public/document/traité_fr.pdf` : Présent
 
 ## 2. Fichiers Ignorés
