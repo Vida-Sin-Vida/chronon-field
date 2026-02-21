@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function AnimatedLogo() {
     return (
-        <div className="relative inline-block z-10 -ml-[56px] pl-4">
+        <div className="relative inline-block z-10">
             <Link
                 href="/"
                 className="group relative inline-flex items-center justify-center p-3 transition-all duration-500 ease-out focus:outline-none focus:ring-0 outline-none"

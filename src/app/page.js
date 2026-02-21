@@ -93,13 +93,152 @@ export default function Home() {
 
   const { isModalOpen, setIsModalOpen, t } = useGlobal();
 
+  // Series Symbols State
+  const [isSeriesVisible, setIsSeriesVisible] = useState(false);
+  const [selectedSeries, setSelectedSeries] = useState(null);
+  const [isDistorting, setIsDistorting] = useState(false);
+  const [activeSymbolId, setActiveSymbolId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const series = [
+    {
+      id: 'chronon',
+      title: t('series_chronon_title'),
+      desc: t('series_chronon_desc'),
+      image: '/symbole/Chronon Fields Series_Symbole.png',
+      angle: -67.5,
+      delay: 'delay-0'
+    },
+    {
+      id: 'entanglement',
+      title: t('series_entanglement_title'),
+      desc: t('series_entanglement_desc'),
+      image: '/symbole/Entanglement Dynamics Series_Symbole.png',
+      angle: -22.5,
+      delay: 'delay-75'
+    },
+    {
+      id: 'phi',
+      title: t('series_phi_title'),
+      desc: t('series_phi_desc'),
+      image: '/symbole/The Φ System Series_symbole.png',
+      angle: 22.5,
+      delay: 'delay-150'
+    },
+    {
+      id: 'three_laws',
+      title: t('series_three_laws_title'),
+      image: '/symbole/Three Laws_Symbole.png',
+      angle: 67.5,
+      delay: 'delay-225',
+      isDistortion: true
+    }
+  ];
+
+  const handleLogoClick = () => {
+    setIsSeriesVisible(!isSeriesVisible);
+    if (isSeriesVisible) {
+      setActiveSymbolId(null);
+      setSelectedSeries(null);
+    }
+  };
+
+  const handleSeriesClick = (s) => {
+    if (s.isDistortion) {
+      setIsDistorting(true);
+      setActiveSymbolId(s.id);
+      setTimeout(() => {
+        setIsDistorting(false);
+        setActiveSymbolId(null);
+      }, 800);
+    } else {
+      setActiveSymbolId(s.id);
+      // Wait for slide animation before showing overlay
+      setTimeout(() => {
+        setSelectedSeries(s);
+      }, 600);
+    }
+  };
+
+  const getSymbolPosition = (angle, sId) => {
+    const s = series.find(ser => ser.id === sId);
+    if (activeSymbolId === sId && !s?.isDistortion) return { x: 0, y: 0 };
+    // Responsive radius: smaller on mobile to prevent edge touching
+    const radius = isMobile ? 140 : 240;
+    const rad = (angle - 90) * (Math.PI / 180);
+    return {
+      x: Math.cos(rad) * radius,
+      y: Math.sin(rad) * radius
+    };
+  };
+
   return (
     <div className="relative h-[calc(100vh-80px)] md:h-screen flex flex-col items-center justify-center overflow-hidden">
       <ParticleBackground />
 
-      <div className="z-10 text-center px-4 max-w-4xl flex flex-col items-center justify-center h-full pb-20 md:pb-0">
-        <div className="flex-grow flex flex-col items-center justify-center">
-          <Logo className="w-32 h-32 md:w-48 md:h-48 text-accent mb-6 md:mb-8 animate-fade-in opacity-80" />
+      <div className={`text-center px-4 max-w-4xl flex flex-col items-center justify-center h-full pb-20 md:pb-0 transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isSeriesVisible ? 'z-[60] translate-y-32' : 'z-10 translate-y-0'}`}>
+        <div className="flex-grow flex flex-col items-center justify-center relative">
+
+          {/* Central Logo with Series Symbols */}
+          <div className="relative mb-6 md:mb-8 group">
+            {/* Symbols circling the logo */}
+            {series.map((s) => {
+              const pos = getSymbolPosition(s.angle, s.id);
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => handleSeriesClick(s)}
+                  className={`absolute inset-0 m-auto w-24 h-24 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-20 hover:scale-110 hover:brightness-125 hover:drop-shadow-[0_0_20px_rgba(159,179,200,0.5)] ${isSeriesVisible
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-0 scale-0 pointer-events-none'
+                    } ${s.delay}`}
+                  style={{
+                    transform: isSeriesVisible
+                      ? `translate(${pos.x}px, ${pos.y}px) scale(${activeSymbolId === s.id && !s.isDistortion ? 1.5 : 1})`
+                      : 'translate(0, 0) scale(0)',
+                  }}
+                  title={s.title}
+                >
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className={`w-full h-full object-contain drop-shadow-xl ${activeSymbolId === s.id && s.isDistortion ? 'distortion-active' : ''}`}
+                  />
+                </button>
+              );
+            })}
+
+            <div
+              className={`cursor-pointer transition-all duration-500 relative z-10 ${isSeriesVisible ? 'scale-110' : 'hover:scale-105'}`}
+              onClick={handleLogoClick}
+            >
+              {/* Blurred Logo Background */}
+              <div className={`transition-all duration-500 ${isSeriesVisible ? 'blur-sm opacity-30 shadow-[0_0_30px_rgba(159,179,200,0.1)]' : 'opacity-80'}`}>
+                <Logo className="w-32 h-32 md:w-48 md:h-48 text-accent animate-fade-in" />
+              </div>
+
+              {/* Back Arrow Indicator - Now clear and centered */}
+              <div className={`absolute inset-0 flex flex-col items-center justify-center transition-all ${isSeriesVisible
+                ? 'opacity-100 translate-y-0 duration-700 delay-700'
+                : 'opacity-0 translate-y-4 pointer-events-none duration-[350ms] delay-0'}`}>
+                <div className="bg-background/20 backdrop-blur-md p-3 rounded-full border border-accent/20 shadow-2xl">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent animate-bounce">
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-accent mt-3 font-bold drop-shadow-md">{t('back')}</span>
+              </div>
+            </div>
+          </div>
 
           <button
             onClick={() => setIsModalOpen(true)}
@@ -126,9 +265,45 @@ export default function Home() {
           </blockquote>
         </div>
 
+        {/* Series Explanation Overlay */}
+        {selectedSeries && (
+          <div
+            className="fixed inset-0 z-[110] flex items-center justify-center bg-background/40 backdrop-blur-2xl p-4 animate-fade-in"
+            onClick={() => {
+              setSelectedSeries(null);
+              setActiveSymbolId(null);
+            }}
+          >
+            <div
+              className="max-w-xl w-full text-center space-y-6 animate-scale-up p-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="w-32 h-32 mx-auto relative mb-8">
+                <img src={selectedSeries.image} alt="" className="w-full h-full object-contain" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
+                {selectedSeries.title}
+              </h2>
+              <p className="text-lg md:text-xl text-foreground/80 leading-relaxed font-light">
+                {selectedSeries.desc}
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedSeries(null);
+                  setActiveSymbolId(null);
+                }}
+                className="text-accent border-b border-accent/30 hover:border-accent pb-1 transition-all uppercase tracking-widest text-sm"
+              >
+                {t('close')}
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Spacer to push content up slightly from bottom icons */}
         <div className="h-24 md:h-32"></div>
       </div>
+
 
       <SocialIcons />
 

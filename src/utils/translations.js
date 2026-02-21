@@ -18,6 +18,7 @@ export const translations = {
 
         // Modal (Legal)
         close: "Fermer",
+        back: "Retour",
         association_type: "Association loi 1901 déclarée",
         law_ref: "(Loi 1901)",
         rna: "RNA :",
@@ -141,7 +142,16 @@ export const translations = {
         program_path_software: "Lecteur orienté logiciel",
         program_path_software_desc: "Code, implémentation et documentation technique de CHRONON.",
         program_path_skeptic: "Lecteur sceptique (Vérification)",
-        program_path_skeptic_desc: "Falsifiabilité, conditions de test, et robustesse des hypothèses."
+        program_path_skeptic_desc: "Falsifiabilité, conditions de test, et robustesse des hypothèses.",
+
+        // Series Descriptions
+        series_chronon_title: "Chronon Fields Series",
+        series_chronon_desc: "Chronon Fields Series pose la vision: le temps comme rythme local via Φ(x), sans noyer ça sous des équations. Chronon Fields Series sert d’entrée au programme et annonce ce qui arrive: les ponts vers le formalisme et surtout vers les tests CHRONON.",
+        series_entanglement_title: "Entanglement Dynamics Series",
+        series_entanglement_desc: "Entanglement Dynamics Series attaque le dur: intrication, décohérence, mesure, et ce que Φ(x) change concrètement dans ces dynamiques. Entanglement Dynamics Series est la rampe de lancement des signatures testables et des prédictions prêtes à aller au labo.",
+        series_phi_title: "The Φ System Series",
+        series_phi_desc: "The Φ System Series est la charpente: axiomes, contraintes, dictionnaires, invariants, et tout ce qui empêche Φ(x) de devenir une idée “élastique”. The Φ System Series prépare les dérivations et les outils qui alimentent directement les protocoles CHRONON et les étapes suivantes.",
+        series_three_laws_title: "Three Laws"
     },
     en: {
         // Navbar
@@ -162,6 +172,7 @@ export const translations = {
 
         // Modal (Legal)
         close: "Close",
+        back: "Back",
         association_type: "Registered non-profit association",
         law_ref: "(French Law 1901)",
         rna: "RNA:",
@@ -284,6 +295,15 @@ export const translations = {
         program_path_software: "Software-oriented Reader",
         program_path_software_desc: "Code, implementation, and technical documentation of CHRONON.",
         program_path_skeptic: "Skeptical Reader (Verification)",
-        program_path_skeptic_desc: "Falsifiability, test conditions, and hypothesis robustness."
+        program_path_skeptic_desc: "Falsifiability, test conditions, and hypothesis robustness.",
+
+        // Series Descriptions
+        series_chronon_title: "Chronon Fields Series",
+        series_chronon_desc: "Chronon Fields Series sets the vision: time as a local rhythm via Φ(x), without drowning it in equations. Chronon Fields Series serves as an entry to the program and announces what is coming: bridges to formalism and especially to CHRONON tests.",
+        series_entanglement_title: "Entanglement Dynamics Series",
+        series_entanglement_desc: "Entanglement Dynamics Series tackles the hard part: entanglement, decoherence, measurement, and what Φ(x) concretely changes in these dynamics. Entanglement Dynamics Series is the launchpad for testable signatures and predictions ready for the lab.",
+        series_phi_title: "The Φ System Series",
+        series_phi_desc: "The Φ System Series is the framework: axioms, constraints, dictionaries, invariants, and everything that prevents Φ(x) from becoming an 'elastic' idea. The Φ System Series prepares the derivations and tools that directly feed into the CHRONON protocols and the following steps.",
+        series_three_laws_title: "Three Laws"
     }
 };
