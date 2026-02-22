@@ -27,7 +27,7 @@ const plannedPublications = [
         status: "planned",
         branch: "experimental",
         language: "EN",
-        date: "2026-Q4",
+        date: "2099-01-01T00:00:00.000Z",
         excerpt: "Design du prochain cycle expérimental et métrologique.",
         excerpt_en: "Design of the upcoming experimental and metrological cycle.",
     }
@@ -204,7 +204,11 @@ export default function ProgrammeClient() {
                             <div key={idx} className="relative group">
                                 <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-2 bg-background transition-colors ${pub.status === 'planned' ? 'border-secondary' : 'border-accent'}`}></div>
                                 <div className="bg-white/5 border border-white/10 p-4 rounded-lg inline-block hover:border-accent/30 hover:bg-white/10 transition-colors">
-                                    <span className="text-xs font-mono text-accent block mb-1">{new Date(pub.date).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long' })}</span>
+                                    <span className="text-xs font-mono text-accent block mb-1">
+                                        {new Date(pub.date).getFullYear() > 2090
+                                            ? (language === 'fr' ? 'À venir' : 'Coming soon')
+                                            : new Date(pub.date).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long' })}
+                                    </span>
                                     <h4 className="text-primary font-semibold">{pub.titleLocale}</h4>
                                     <span className="text-xs text-secondary mt-1 block">{pub.status === 'planned' ? t('program_status_planned') : t('program_status_published')}</span>
                                 </div>
