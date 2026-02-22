@@ -186,7 +186,7 @@ export default function Contact() {
 
             const subject = encodeURIComponent(`[${typeTag}] [Chronon Field] ${formData.subject}`);
             const body = encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\nType: ${formData.type}\n\nMessage:\n${formData.message}`);
-            window.location.href = `mailto:contact@chrononfield.com?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:Brecheteaub@gmail.com?subject=${subject}&body=${body}`;
 
             // Removed the timeout that hides particles. They will persist until they leave the screen.
         }, 1500);

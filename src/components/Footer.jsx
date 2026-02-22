@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
                 <div className="mb-4 md:mb-0">
                     <p className="text-sm text-secondary">
-                        &copy; {new Date().getFullYear()} Chronon Field. All rights reserved.
+                        &copy; {new Date().getFullYear()} Brecheteau Research Institute. All rights reserved.
                     </p>
                 </div>
 
