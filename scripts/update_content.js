@@ -31,10 +31,21 @@ renames.forEach(({ dir, from, to }) => {
 });
 
 // 2. Generate data/publications.json
+const PUBLICATIONS_JSON_PATH = path.join(DATA_DIR, 'publications.json');
+let existingPublications = [];
+if (fs.existsSync(PUBLICATIONS_JSON_PATH)) {
+    try {
+        existingPublications = JSON.parse(fs.readFileSync(PUBLICATIONS_JSON_PATH, 'utf8'));
+    } catch (e) {
+        console.warn('Could not parse existing publications.json');
+    }
+}
+
 const files = fs.readdirSync(DOCUMENTS_DIR).filter(f => f.toLowerCase().endsWith('.pdf'));
 const publications = files.map(file => {
     const filePath = path.join(DOCUMENTS_DIR, file);
     const stats = fs.statSync(filePath);
+    const existingEntry = existingPublications.find(p => p.id === file);
 
     // Basic metadata extraction logic
     const nameWithoutExt = file.replace(/\.pdf$/i, '');
@@ -74,15 +85,15 @@ const publications = files.map(file => {
         title: title,
         type: type,
         language: language,
-        date: stats.mtime.toISOString(),
+        date: existingEntry ? existingEntry.date : stats.mtime.toISOString(),
         excerpt: `Document PDF (${language}) - ${(stats.size / 1024 / 1024).toFixed(2)} MB`,
         link: `/document/${file}`,
-        authors: 'B. Brécheteau',
+        authors: existingEntry ? existingEntry.authors : 'B. Brécheteau',
         size: stats.size
     };
 }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-fs.writeFileSync(path.join(DATA_DIR, 'publications.json'), JSON.stringify(publications, null, 2));
+fs.writeFileSync(PUBLICATIONS_JSON_PATH, JSON.stringify(publications, null, 2));
 console.log('Generated data/publications.json');
 
 // 3. Generate data/vulgarisation.json
