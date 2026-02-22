@@ -268,23 +268,24 @@ export default function Home() {
         {/* Series Explanation Overlay */}
         {selectedSeries && (
           <div
-            className="fixed inset-0 z-[110] flex items-center justify-center bg-background/40 backdrop-blur-2xl p-4 animate-fade-in"
+            className="fixed inset-0 z-[110] flex items-center justify-center bg-background/60 backdrop-blur-2xl p-6 md:p-8 animate-fade-in overflow-y-auto"
             onClick={() => {
               setSelectedSeries(null);
               setActiveSymbolId(null);
             }}
           >
             <div
-              className="max-w-xl w-full text-center space-y-6 animate-scale-up p-8"
+              className="max-w-xl w-full text-center space-y-4 md:space-y-6 animate-scale-up py-12 md:py-8 relative"
+              style={{ marginTop: '-7cm' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="w-32 h-32 mx-auto relative mb-8">
+              <div className="w-24 h-24 md:w-32 md:h-32 mx-auto relative mb-4 md:mb-8">
                 <img src={selectedSeries.image} alt="" className="w-full h-full object-contain" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
+              <h2 className="text-2xl md:text-4xl font-serif font-bold text-foreground">
                 {selectedSeries.title}
               </h2>
-              <p className="text-lg md:text-xl text-foreground/80 leading-relaxed font-light">
+              <p className="text-base md:text-xl text-foreground/80 leading-relaxed font-light">
                 {selectedSeries.desc}
               </p>
               <button
@@ -292,7 +293,7 @@ export default function Home() {
                   setSelectedSeries(null);
                   setActiveSymbolId(null);
                 }}
-                className="text-accent border-b border-accent/30 hover:border-accent pb-1 transition-all uppercase tracking-widest text-sm"
+                className="mt-4 text-accent border-b border-accent/30 hover:border-accent pb-1 transition-all uppercase tracking-widest text-sm font-bold"
               >
                 {t('close')}
               </button>

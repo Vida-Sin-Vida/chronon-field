@@ -36,6 +36,7 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
+  color-scheme: light !important;
 }
 
 h1,
@@ -111,18 +112,22 @@ h6 {
     filter: blur(0px) contrast(1);
     transform: scale(1) skew(0deg);
   }
+
   20% {
     filter: blur(2px) contrast(1.5) hue-rotate(90deg);
     transform: scale(1.1) skew(5deg);
   }
+
   40% {
     filter: blur(4px) contrast(2) hue-rotate(180deg);
     transform: scale(0.9) skew(-5deg);
   }
+
   60% {
     filter: blur(2px) contrast(1.5) hue-rotate(270deg);
     transform: scale(1.05) skew(2deg);
   }
+
   100% {
     filter: blur(0px) contrast(1) hue-rotate(360deg);
     transform: scale(1) skew(0deg);
@@ -138,9 +143,11 @@ h6 {
     opacity: 0;
     transform: scale(0) translate(0, 0);
   }
+
   70% {
     transform: scale(1.1);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);

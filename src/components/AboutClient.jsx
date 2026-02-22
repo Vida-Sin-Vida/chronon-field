@@ -82,7 +82,7 @@ export default function AboutClient({ publicationCount }) {
                         {/* Decorative line before quote */}
                         <div className="w-16 h-[1px] bg-accent/30 mb-8"></div>
 
-                        <p className="font-medium text-foreground text-xl md:text-2xl italic font-serif opacity-90 drop-shadow-md animate-subtle-breathe pl-0 md:pl-8 border-l-2 border-accent/20">
+                        <p className="font-medium text-foreground text-xl md:text-2xl italic font-serif opacity-90 drop-shadow-md animate-subtle-breathe pl-[11px] md:pl-8 border-l-2 border-accent/20">
                             {t('about_quote')}
                         </p>
 

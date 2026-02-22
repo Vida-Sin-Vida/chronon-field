@@ -79,6 +79,7 @@ export const translations = {
         all_types: "Tous les types",
         sort_newest: "Plus récent",
         sort_oldest: "Plus ancien",
+        reset_filters: "Réinitialiser",
         no_publications_found: "Aucune publication trouvée.",
         // Publication Types
         type_article: "Article",
@@ -88,7 +89,7 @@ export const translations = {
         type_rapport: "Rapport",
 
         // Program
-        program_title: "Programme CHRONON",
+        program_title: "Logiciel CHRONON",
         program_desc: "Accédez à la première version publique de notre outil de recherche et d'analyse.",
         program_v1_title: "CHRONON - V1.0.1",
         program_doi: "DOI : 10.5281/zenodo.18216849",
@@ -106,7 +107,8 @@ export const translations = {
         pdf_viewer_subtitle: "Diaporama PDF",
 
         // New Programme Page
-        program_hero_title: "Programme CHRONON",
+        programme_hero_title: "Programme CHRONON",
+        program_hero_title: "Logiciel CHRONON",
         program_hero_subtitle: "Carte interactive du programme de recherche, des publications et de la feuille de route.",
         program_cta_publications: "Voir les publications",
         program_cta_software: "Voir le logiciel",
@@ -233,6 +235,7 @@ export const translations = {
         all_types: "All types",
         sort_newest: "Newest",
         sort_oldest: "Oldest",
+        reset_filters: "Reset",
         no_publications_found: "No publications found.",
         // Publication Types
         type_article: "Article",
@@ -241,7 +244,7 @@ export const translations = {
         type_collaboration: "Collaboration",
 
         // Program
-        program_title: "CHRONON Program",
+        program_title: "CHRONON Software",
         program_desc: "Access the first public version of our research and analysis tool.",
         program_v1_title: "CHRONON - V1.0.1",
         program_doi: "DOI: 10.5281/zenodo.18216849",
@@ -259,7 +262,8 @@ export const translations = {
         pdf_viewer_subtitle: "PDF Slideshow",
 
         // New Programme Page
-        program_hero_title: "CHRONON Program",
+        programme_hero_title: "CHRONON Program",
+        program_hero_title: "CHRONON Software",
         program_hero_subtitle: "Interactive map of the research program, publications, and roadmap.",
         program_cta_publications: "View Publications",
         program_cta_software: "View Software",

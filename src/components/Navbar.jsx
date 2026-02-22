@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${!isNavbarVisible ? '-translate-y-full' : 'translate-y-0'
-        } ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+        } ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm py-[15px] md:py-4' : 'bg-transparent py-[22px] md:py-6'
         }`}
     >
       <div className="container mx-auto px-6 flex items-center h-16 relative">

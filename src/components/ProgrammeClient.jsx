@@ -87,7 +87,7 @@ export default function ProgrammeClient() {
                 {/* Hero Section */}
                 <header className="mb-16 text-center animate-fade-in-up">
                     <h1 className="text-4xl md:text-6xl font-serif font-bold text-accent mb-6 leading-tight">
-                        {t('program_hero_title')}
+                        {t('programme_hero_title')}
                     </h1>
                     <p className="text-lg md:text-xl text-secondary max-w-3xl mx-auto leading-relaxed mb-10">
                         {t('program_hero_subtitle')}
