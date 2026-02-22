@@ -9,15 +9,15 @@ import publicationsRaw from '../../data/publications.json';
 const plannedPublications = [
     {
         id: "upcoming-1",
-        title: "Série Champ de Chronon - Épisode 5",
-        title_en: "The Chronon Field Series - Episode 5",
+        title: "Philosophie du Battement : Bergson, Heidegger et le Temps Local",
+        title_en: "Philosophy of the Beat: Bergson, Heidegger and Local Time",
         type: "Article",
         status: "planned",
         branch: "theory",
         language: "FR/EN",
-        date: "2026-Q3",
-        excerpt: "Structure topologique des modulations rythmiques.",
-        excerpt_en: "Topological structure of rhythmic modulations.",
+        date: "2026-03-01T12:00:00.000Z",
+        excerpt: "Série Champ de Chronon — Épisode 5",
+        excerpt_en: "The Chronon Field Series — Episode 5",
     },
     {
         id: "upcoming-2",
