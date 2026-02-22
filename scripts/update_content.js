@@ -176,7 +176,7 @@ function scanVulgarisationData() {
                     title.fr += 'Rythme Quantique';
                     title.en += 'Quantum Rhythm';
                 } else if (i === 5 && series.id === 'chronon-field') {
-                    title.fr += 'Philosophie du Battement : Bergson, Heidegger et le Temps Local';
+                    title.fr += 'Philosophy of the Beat: Bergson, Heidegger and Local Time';
                     title.en += 'Philosophy of the Beat: Bergson, Heidegger and Local Time';
                 } else if (i === 1 && series.id === 'other') {
                     title.fr += 'Chronon & Vide : Dialogue critique';

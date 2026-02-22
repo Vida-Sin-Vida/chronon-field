@@ -9,7 +9,7 @@ import publicationsRaw from '../../data/publications.json';
 const plannedPublications = [
     {
         id: "upcoming-1",
-        title: "Philosophie du Battement : Bergson, Heidegger et le Temps Local",
+        title: "Philosophy of the Beat: Bergson, Heidegger and Local Time",
         title_en: "Philosophy of the Beat: Bergson, Heidegger and Local Time",
         type: "Article",
         status: "planned",
