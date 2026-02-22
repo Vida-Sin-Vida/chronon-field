@@ -1,0 +1,254 @@
+[
+  {
+    "id": "chronon-field",
+    "title": {
+      "fr": "Série Champ de Chronon",
+      "en": "The Chronon Field Series"
+    },
+    "description": {
+      "fr": "Une plongée au cœur de la théorie du champ de chronon.",
+      "en": "A deep dive into the Chronon field theory."
+    },
+    "folderName": "chronon_field_serie",
+    "totalEpisodes": 12,
+    "articles": [
+      {
+        "id": "chronon-field-01",
+        "title": {
+          "fr": "01 — Le temps qui bat",
+          "en": "01 — The Beating Time"
+        },
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/1/map_1.png?v=1764711141842"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/1/graphi_1.png?v=1764711141825"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/1/audio_1.m4a?v=1764711141764"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/1/video_1.mp4?v=1764711142248"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/1/point_1.pdf?v=1764711141928"
+          }
+        ],
+        "isPublished": true
+      },
+      {
+        "id": "chronon-field-02",
+        "title": {
+          "fr": "02 — L'effondrement opérationnel",
+          "en": "02 — Operational Collapse"
+        },
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/2/map_2.png?v=1764711142522"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/2/graphi_2.png?v=1764711142502"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/2/audio_2.m4a?v=1764711142441"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/2/video_2.mp4?v=1764711142977"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/2/point_2.pdf?v=1764711142607"
+          }
+        ],
+        "isPublished": true
+      },
+      {
+        "id": "chronon-field-03",
+        "title": {
+          "fr": "03 — La tenue du réel",
+          "en": "03 — The Holding of Reality"
+        },
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/3/map_3.png?v=1764616872714"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/3/graph_3.png?v=1764616910945"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/3/audio_3.m4a?v=1764617875097"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/3/video_3.mp4?v=1764617870602"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/3/point_3.pdf?v=1764617439852"
+          }
+        ],
+        "isPublished": true
+      },
+      {
+        "id": "chronon-field-04",
+        "title": {
+          "fr": "04 — Rythme Quantique",
+          "en": "04 — Quantum Rhythm"
+        },
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/4/map_4.png?v=1764618799487"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/4/graph_4.png?v=1764618956132"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/4/audio_4.m4a?v=1764619289813"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/4/video_4.mp4?v=1764619796732"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/4/point_4.pdf?v=1764619454057"
+          }
+        ],
+        "isPublished": true
+      },
+      {
+        "id": "chronon-field-05",
+        "title": {
+          "fr": "05 — A venir",
+          "en": "05 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-06",
+        "title": {
+          "fr": "06 — A venir",
+          "en": "06 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-07",
+        "title": {
+          "fr": "07 — A venir",
+          "en": "07 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-08",
+        "title": {
+          "fr": "08 — A venir",
+          "en": "08 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-09",
+        "title": {
+          "fr": "09 — A venir",
+          "en": "09 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-10",
+        "title": {
+          "fr": "10 — A venir",
+          "en": "10 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-11",
+        "title": {
+          "fr": "11 — A venir",
+          "en": "11 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      },
+      {
+        "id": "chronon-field-12",
+        "title": {
+          "fr": "12 — A venir",
+          "en": "12 — Coming soon"
+        },
+        "formats": [],
+        "isPublished": false
+      }
+    ]
+  },
+  {
+    "id": "other",
+    "title": {
+      "fr": "Autre",
+      "en": "Other"
+    },
+    "description": {
+      "fr": "Explorations diverses et curiosités scientifiques.",
+      "en": "Various explorations and scientific curiosities."
+    },
+    "folderName": "Other",
+    "totalEpisodes": 1,
+    "articles": [
+      {
+        "id": "other-01",
+        "title": {
+          "fr": "01 — Chronon & Vide : Dialogue critique",
+          "en": "01 — Chronon & Void: Critical Dialogue"
+        },
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/Other/1/map_1.png?v=1764867634418"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/Other/1/graph_1.png?v=1764867588030"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/Other/1/audio_1.m4a?v=1764867584088"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/Other/1/video_1.mp4?v=1764867575524"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/Other/1/point_1.pdf?v=1765799382875"
+          }
+        ],
+        "isPublished": true
+      }
+    ]
+  }
+]
