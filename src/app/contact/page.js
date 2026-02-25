@@ -4,115 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGlobal } from '../../context/GlobalContext';
 
-class Particle {
-    constructor(canvas) {
-        this.canvas = canvas;
-        // Emit from the center of the screen
-        this.x = canvas.width / 2;
-        this.y = canvas.height / 2;
-        this.size = Math.random() * 3 + 1; // 1-4px
-
-        // Radial movement
-        const angle = Math.random() * Math.PI * 2;
-        const velocity = Math.random() * 2 + 1; // Speed
-        this.speedX = Math.cos(angle) * velocity;
-        this.speedY = Math.sin(angle) * velocity;
-
-        this.opacity = Math.random() * 0.5 + 0.2;
-        // Color matching Home page: #0B2240
-        this.color = `rgba(11, 34, 64, ${this.opacity})`;
-    }
-
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-    }
-
-    draw(ctx) {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    isOutOfBounds() {
-        return (
-            this.x < -50 ||
-            this.x > this.canvas.width + 50 ||
-            this.y < -50 ||
-            this.y > this.canvas.height + 50
-        );
-    }
-}
-
-const ParticleWave = () => {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-        let particles = [];
-        const startTime = Date.now();
-
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const init = () => {
-            // Create a burst of particles
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle(canvas));
-            }
-        };
-
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Emit particles only for the first 1.5 seconds
-            if (Date.now() - startTime < 1500) {
-                if (particles.length < 500) {
-                    particles.push(new Particle(canvas));
-                    particles.push(new Particle(canvas));
-                }
-            }
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw(ctx);
-                if (particles[i].isOutOfBounds()) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-
-            // Continue animation if particles exist or if we are still in emission window
-            if (particles.length > 0 || Date.now() - startTime < 1500) {
-                animationFrameId = requestAnimationFrame(animate);
-            }
-        };
-
-        init();
-        animate();
-
-        return () => {
-            window.removeEventListener('resize', resizeCanvas);
-            cancelAnimationFrame(animationFrameId);
-        };
-    }, []);
-
-    return (
-        <canvas
-            ref={canvasRef}
-            className="fixed top-0 left-0 w-full h-full pointer-events-none"
-            style={{ zIndex: 0 }} // Behind the success card (which is z-10 or higher)
-        />
-    );
-};
+// The old isolated ParticleWave component has been removed as we now trigger the main ParticleBackground waves
 
 export default function Contact() {
     const { t } = useGlobal();
@@ -124,7 +16,6 @@ export default function Contact() {
         message: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [showParticles, setShowParticles] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -173,8 +64,21 @@ export default function Contact() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitted(true);
-        setShowParticles(true);
         playSuccessSound();
+
+        // Dispatch an event to the ParticleBackground to trigger 4 waves of decreasing intensity
+        const btnRect = e.target.querySelector('button[type="submit"]').getBoundingClientRect();
+        const waveX = btnRect.left + btnRect.width / 2;
+        const waveY = btnRect.top + btnRect.height / 2;
+
+        const event = new CustomEvent('trigger-chronon-wave', {
+            detail: {
+                x: waveX,
+                y: waveY,
+                intensities: [1.5, 1.1, 0.7, 0.4] // 4 waves decreasing in magnitude
+            }
+        });
+        window.dispatchEvent(event);
 
         // Simulate delay before redirecting/resetting to allow animation to play
         setTimeout(() => {
@@ -223,9 +127,6 @@ export default function Contact() {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-
-            {showParticles && <ParticleWave />}
-
             <div className="container mx-auto px-6 py-12 max-w-2xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -238,6 +139,20 @@ export default function Contact() {
                     <p className="text-secondary text-center mb-12">
                         {t('contact_desc')}
                     </p>
+
+                    <div className="flex justify-center mb-12">
+                        <a
+                            href="https://www.linkedin.com/company/brecheteau-research-institut/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-6 py-3 bg-white/50 border border-gray-200 rounded-lg shadow-sm hover:bg-white/80 hover:border-accent/40 hover:shadow-md transition-all duration-300 text-foreground font-medium group"
+                        >
+                            <svg className="w-5 h-5 mr-3 text-black group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                            {t('contact_linkedin')}
+                        </a>
+                    </div>
 
                     <div className="relative min-h-[500px]">
                         <AnimatePresence mode="wait">

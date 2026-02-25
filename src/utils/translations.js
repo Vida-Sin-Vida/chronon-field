@@ -58,6 +58,7 @@ export const translations = {
         contact_send: "Envoyer",
         contact_success_title: "Message envoyé !",
         contact_success_desc: "Merci de nous avoir contactés. Vos informations ont été transmises avec succès.",
+        contact_linkedin: "LinkedIn Officiel",
 
         // Vulgarisation
         vulgarisation_title: "Vulgarisation",
@@ -214,6 +215,7 @@ export const translations = {
         contact_send: "Send",
         contact_success_title: "Message sent!",
         contact_success_desc: "Thank you for contacting us. Your information has been successfully transmitted.",
+        contact_linkedin: "Official LinkedIn",
 
         // Vulgarisation
         vulgarisation_title: "Vulgarization",

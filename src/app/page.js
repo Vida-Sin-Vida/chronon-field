@@ -123,16 +123,16 @@ export default function Home() {
       title: t('series_entanglement_title'),
       desc: t('series_entanglement_desc'),
       image: '/symbole/Entanglement Dynamics Series_Symbole.png',
-      angle: -22.5,
-      delay: 'delay-75'
+      angle: 22.5,
+      delay: 'delay-150'
     },
     {
       id: 'phi',
       title: t('series_phi_title'),
       desc: t('series_phi_desc'),
       image: '/symbole/The Φ System Series_symbole.png',
-      angle: 22.5,
-      delay: 'delay-150'
+      angle: -22.5,
+      delay: 'delay-75'
     },
     {
       id: 'three_laws',
@@ -183,7 +183,7 @@ export default function Home() {
 
   return (
     <div className="relative h-[calc(100vh-80px)] md:h-screen flex flex-col items-center justify-center overflow-hidden">
-      <ParticleBackground />
+      <ParticleBackground isPlaying={isPlaying} />
 
       <div className={`text-center px-4 max-w-4xl flex flex-col items-center justify-center h-full pb-20 md:pb-0 transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isSeriesVisible ? 'z-[60] translate-y-32' : 'z-10 translate-y-0'}`}>
         <div className="flex-grow flex flex-col items-center justify-center relative">
@@ -197,7 +197,7 @@ export default function Home() {
                 <button
                   key={s.id}
                   onClick={() => handleSeriesClick(s)}
-                  className={`absolute inset-0 m-auto w-24 h-24 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-20 hover:scale-110 hover:brightness-125 hover:drop-shadow-[0_0_20px_rgba(159,179,200,0.5)] ${isSeriesVisible
+                  className={`absolute inset-0 m-auto w-24 h-24 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-20 group/symbol hover:scale-110 hover:brightness-125 hover:drop-shadow-[0_0_20px_rgba(159,179,200,0.5)] ${isSeriesVisible
                     ? 'opacity-100 scale-100'
                     : 'opacity-0 scale-0 pointer-events-none'
                     } ${s.delay}`}
@@ -213,6 +213,9 @@ export default function Home() {
                     alt={s.title}
                     className={`w-full h-full object-contain drop-shadow-xl ${activeSymbolId === s.id && s.isDistortion ? 'distortion-active' : ''}`}
                   />
+                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 group-hover/symbol:opacity-100 transition-opacity duration-300 text-sm font-serif text-accent drop-shadow-md pointer-events-none">
+                    {s.title}
+                  </span>
                 </button>
               );
             })}
@@ -253,6 +256,7 @@ export default function Home() {
             Chronon Field
           </h1>
           <blockquote
+            id="quote-text"
             className={`text-lg md:text-xl font-light italic text-secondary/80 animate-fade-in-up delay-200 transition-all duration-1000 cursor-pointer max-w-2xl mx-auto p-4 rounded-lg select-none outline-none focus:ring-1 focus:ring-accent/50 ${isPlaying ? 'text-accent text-shadow-glow scale-105' : 'hover:text-accent hover:text-shadow-glow'}`}
             onClick={toggleAudio}
             onKeyDown={handleKeyDown}

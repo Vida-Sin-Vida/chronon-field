@@ -30,11 +30,13 @@ export default function Navbar() {
   ];
 
   const isHome = pathname === '/';
+  const isAbout = pathname === '/about';
+  const isTransparentPage = isHome || isAbout;
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${!isNavbarVisible ? '-translate-y-full' : 'translate-y-0'
-        } ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm py-[15px] md:py-4' : 'bg-transparent py-[22px] md:py-6'
+        } ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-sm py-[15px] md:py-4' : (isTransparentPage ? 'bg-transparent py-[22px] md:py-6' : 'bg-background py-[22px] md:py-6')
         }`}
     >
       <div className="container mx-auto px-6 flex items-center h-16 relative">
@@ -53,11 +55,11 @@ export default function Navbar() {
         {/* Navigation Links - Centered on Home, Slid Right on Pages */}
         <div className="flex-grow flex items-center justify-center relative h-full">
           <div
-            className={`flex items-center space-x-6 lg:space-x-8 transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            className={`flex items-center space-x-6 lg:space-x-8 px-6 py-2 rounded-full transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
               } ${isHome
                 ? 'translate-x-0'
                 : 'md:translate-x-[15%] lg:translate-x-[20%] xl:translate-x-[25%]'
-              } hidden md:flex`}
+              } ${isTransparentPage && !isScrolled ? 'bg-background/60 shadow-[0_4px_20px_rgba(247,246,243,0.8)] backdrop-blur-md' : ''} hidden md:flex`}
           >
             {navLinks.map((link) => (
               <Link
