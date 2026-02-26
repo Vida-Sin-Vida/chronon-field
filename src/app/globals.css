@@ -157,3 +157,199 @@ h6 {
 .animate-pop-out {
   animation: pop-out 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
+/* Three Laws Directional Fog Transitions */
+
+/* Symbol-specific blur-out */
+@keyframes symbol-blur-out {
+  0% {
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    filter: blur(15px);
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.animate-symbol-blur-out {
+  animation: symbol-blur-out 0.6s ease-in-out forwards;
+}
+
+/* Fog out: header slides and blurs upward */
+@keyframes fog-out-top {
+  0% {
+    transform: translateY(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-80px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+.animate-fog-out-top {
+  animation: fog-out-top 0.8s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Fog out: social icons slide and blur downward */
+@keyframes fog-out-bottom {
+  0% {
+    transform: translateY(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(80px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+.animate-fog-out-bottom {
+  animation: fog-out-bottom 0.8s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Fog out: central content slides and blurs to the left */
+@keyframes fog-out-left {
+  0% {
+    transform: translateX(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-120px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+.animate-fog-out-left {
+  animation: fog-out-left 0.8s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Fog in: countdown slides and clarifies from the right */
+@keyframes fog-in-right {
+  0% {
+    transform: translateX(120px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.animate-fog-in-right {
+  animation: fog-in-right 1s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* Distortion out: countdown exit on "Accueil" click */
+@keyframes distortion-out {
+  0% {
+    filter: blur(0px) contrast(1) hue-rotate(0deg);
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  40% {
+    filter: blur(4px) contrast(2) hue-rotate(180deg);
+    transform: scale(1.08) skew(3deg);
+    opacity: 0.6;
+  }
+
+  100% {
+    filter: blur(20px) contrast(0.5) hue-rotate(360deg);
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+.animate-distortion-out {
+  animation: distortion-out 0.7s ease-in forwards;
+}
+
+/* "Accueil" button slides down on exit */
+@keyframes slide-down-fast {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+}
+
+.animate-slide-down-fast {
+  animation: slide-down-fast 0.5s ease-in forwards;
+}
+
+/* Fog in: restore top (for header return) */
+@keyframes fog-in-top {
+  0% {
+    transform: translateY(-80px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.animate-fog-in-top {
+  animation: fog-in-top 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* Fog in: restore bottom (for social icons return) */
+@keyframes fog-in-bottom {
+  0% {
+    transform: translateY(80px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.animate-fog-in-bottom {
+  animation: fog-in-bottom 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* Fog in from left: central content returns */
+@keyframes fog-in-left {
+  0% {
+    transform: translateX(-120px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.animate-fog-in-left {
+  animation: fog-in-left 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
