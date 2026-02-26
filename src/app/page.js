@@ -213,7 +213,7 @@ export default function Home() {
                     alt={s.title}
                     className={`w-full h-full object-contain drop-shadow-xl ${activeSymbolId === s.id && s.isDistortion ? 'distortion-active' : ''}`}
                   />
-                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 group-hover/symbol:opacity-100 transition-opacity duration-300 text-sm font-serif text-accent drop-shadow-md pointer-events-none">
+                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 group-hover/symbol:opacity-100 transition-opacity duration-300 text-sm font-serif text-accent drop-shadow-md pointer-events-none bg-background/90 px-3 py-1 rounded-full border border-accent/10">
                     {s.title}
                   </span>
                 </button>

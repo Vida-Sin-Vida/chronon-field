@@ -108,7 +108,9 @@ export default function ParticleBackground({ className, isPlaying = false }) {
         let waves = [];
         let lastWaveTime = 0;
 
-        // ── Resize handler ────────────────────────────────────────────────────────
+        let cachedFields = []; // Precomputed lattice per layer
+
+        // ── Resize handler & Field Initialization ─────────────────────────────────
         const resize = () => {
             const dpr = window.devicePixelRatio || 1;
             const w = window.innerWidth;
@@ -118,10 +120,46 @@ export default function ParticleBackground({ className, isPlaying = false }) {
             canvas.style.width = `${w}px`;
             canvas.style.height = `${h}px`;
             ctx.scale(dpr, dpr);
+
+            const W = w;
+            const H = h;
+
+            // Precompute the static field properties for all layers
+            cachedFields = LAYERS.map((layer, index) => {
+                const { spacing, noiseScale } = layer;
+                const offsetX = (spacing / 2) * (index % 2);
+                const offsetY = (spacing / 3) * (index % 2);
+
+                const cols = Math.ceil(W / spacing) + 1;
+                const rows = Math.ceil(H / spacing) + 1;
+                const dots = [];
+
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const px = col * spacing + offsetX;
+                        const py = row * spacing + offsetY;
+
+                        // Static math precomputed once per resize
+                        const phi = fbm(px * noiseScale, py * noiseScale); // in [-1, 1]
+                        const staticAngle = fbm(px * noiseScale * 2.5, py * noiseScale * 2.5) * Math.PI * 2;
+                        const staticDisp = Math.abs(fbm(px * noiseScale * 1.5 + 500, py * noiseScale * 1.5 + 500)) * (spacing * 0.35);
+
+                        dots.push({ px, py, phi, staticAngle, staticDisp });
+                    }
+                }
+                return { layer, dots };
+            });
+        };
+
+        // Debounce resize to prevent layout thrashing
+        let resizeTimeout;
+        const onResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resize, 100);
         };
 
         resize();
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', onResize);
 
         // ── Mouse tracking ────────────────────────────────────────────────────────
         const onMouseMove = (e) => {
@@ -140,9 +178,8 @@ export default function ParticleBackground({ className, isPlaying = false }) {
             const timeSinceLastMove = now - lastMouseMoveTime;
             const mouseActiveFactor = Math.max(0, 1 - timeSinceLastMove / 1000); // Fades out over 1s after stopping
 
-            const dpr = window.devicePixelRatio || 1;
-            const W = canvas.width / dpr;
-            const H = canvas.height / dpr;
+            const W = canvas.width / (window.devicePixelRatio || 1);
+            const H = canvas.height / (window.devicePixelRatio || 1);
             const mx = mouseRef.current.x;
             const my = mouseRef.current.y;
 
@@ -156,7 +193,6 @@ export default function ParticleBackground({ className, isPlaying = false }) {
                     const quoteEl = document.getElementById('quote-text');
                     if (quoteEl) {
                         const rect = quoteEl.getBoundingClientRect();
-                        // Coordinates should be in logical CSS pixels matching px, py.
                         waveX = rect.left + rect.width / 2;
                         waveY = rect.top + rect.height / 2;
                     }
@@ -170,97 +206,87 @@ export default function ParticleBackground({ className, isPlaying = false }) {
             waves = waves.filter(w => now - w.startTime < 6000);
 
             // Clear with deep background
-            // Match globals.css --color-background: #F7F6F3;
             ctx.fillStyle = '#F7F6F3';
             ctx.fillRect(0, 0, W, H);
 
             // ── Render each layer ─────────────────────────────────────────────────
-            for (const layer of LAYERS) {
-                const { spacing, tempoMul, baseOpacity, noiseScale, dotRadius, phaseOffset } = layer;
+            for (const field of cachedFields) {
+                const { layer, dots } = field;
+                const { tempoMul, baseOpacity, dotRadius, phaseOffset } = layer;
 
-                // Add a small half-spacing offset per layer so grids don't sit on top
-                const offsetX = (spacing / 2) * (LAYERS.indexOf(layer) % 2);
-                const offsetY = (spacing / 3) * (LAYERS.indexOf(layer) % 2);
+                for (let i = 0; i < dots.length; i++) {
+                    const dot = dots[i];
+                    const { px, py, phi, staticAngle, staticDisp } = dot;
 
-                const cols = Math.ceil(W / spacing) + 1;
-                const rows = Math.ceil(H / spacing) + 1;
+                    // Local breathing: φ(x,y,t) = sin( t * tempo * (1 + 0.35*Φ) + phaseOffset + Φ*π )
+                    const localTempo = tempoMul * (1 + 0.35 * phi);
+                    const phase = Math.sin(t * localTempo + phaseOffset + phi * Math.PI);
 
-                for (let row = 0; row < rows; row++) {
-                    for (let col = 0; col < cols; col++) {
-                        const px = col * spacing + offsetX;
-                        const py = row * spacing + offsetY;
+                    // phase in [-1,1] → normalized [0,1] for colour & opacity
+                    const norm = (phase + 1) * 0.5;
 
-                        // Local phase Φ(x, y) — smooth spatial variation of tempo
-                        const phi = fbm(px * noiseScale, py * noiseScale); // in [-1, 1]
+                    // Mouse influence
+                    const dx = px - mx;
+                    const dy = py - my;
+                    const dist = Math.hypot(dx, dy); // Much faster than sqrt(dx*dx + dy*dy)
 
-                        // Local breathing: φ(x,y,t) = sin( t * tempo * (1 + 0.35*Φ) + phaseOffset + Φ*π )
-                        const localTempo = tempoMul * (1 + 0.35 * phi);
-                        const phase = Math.sin(t * localTempo + phaseOffset + phi * Math.PI);
+                    let mouseFactor = 0;
+                    if (dist < MOUSE_INFLUENCE_RADIUS) {
+                        mouseFactor = MOUSE_BOOST * (1 - dist / MOUSE_INFLUENCE_RADIUS) * (0.5 + 0.5 * Math.abs(phi));
+                    }
+                    mouseFactor *= mouseActiveFactor;
 
-                        // phase in [-1,1] → normalized [0,1] for colour & opacity
-                        const norm = (phase + 1) * 0.5;
+                    // Wave influence
+                    let waveBoost = 0;
+                    for (let wIdx = 0; wIdx < waves.length; wIdx++) {
+                        const w = waves[wIdx];
+                        const wd = Math.hypot(px - w.x, py - w.y);
+                        const age = (now - w.startTime) * 0.001; // seconds
+                        const waveRadius = age * 500; // slower speed: 500px/s
 
-                        // Mouse influence — reveals anisotropy, never follows cursor, fades when mouse stops moving
-                        const dx = px - mx;
-                        const dy = py - my;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        let mouseFactor = dist < MOUSE_INFLUENCE_RADIUS
-                            ? MOUSE_BOOST * (1 - dist / MOUSE_INFLUENCE_RADIUS) * (0.5 + 0.5 * Math.abs(phi))
-                            : 0;
-
-                        mouseFactor *= mouseActiveFactor;
-
-                        // Wave influence — heartbeat concentric pulses
-                        let waveBoost = 0;
-                        for (const w of waves) {
-                            const wd = Math.sqrt((px - w.x) ** 2 + (py - w.y) ** 2);
-                            const age = (now - w.startTime) / 1000; // seconds
-                            const waveRadius = age * 500; // slower speed: 500px/s
-
-                            const distToWave = Math.abs(wd - waveRadius);
-                            const waveThickness = 120; // How wide the wave crest is
-                            if (distToWave < waveThickness) {
-                                const intensity = Math.pow(1 - distToWave / waveThickness, 2); // Smoother, sharper peak
-                                const fade = Math.max(0, 1 - age / 4); // fades out over 4 seconds
-                                waveBoost = Math.max(waveBoost, intensity * fade * 0.85 * (w.intensityMult || 1.0));
-                            }
+                        const distToWave = Math.abs(wd - waveRadius);
+                        const waveThickness = 120;
+                        if (distToWave < waveThickness) {
+                            const intensity = Math.pow(1 - distToWave / waveThickness, 2);
+                            const fade = Math.max(0, 1 - age * 0.25); // age / 4
+                            const currentBoost = intensity * fade * 0.85 * (w.intensityMult || 1.0);
+                            if (currentBoost > waveBoost) waveBoost = currentBoost;
                         }
+                    }
 
-                        const finalBoost = Math.max(mouseFactor, waveBoost);
-                        const opacity = Math.min(1, baseOpacity * (0.1 + 0.9 * norm) + finalBoost);
-                        const [r, g, b] = lerpColor(norm * 0.7 + finalBoost * 1.5);
+                    const finalBoost = Math.max(mouseFactor, waveBoost);
+                    const opacity = baseOpacity * (0.1 + 0.9 * norm) + finalBoost;
+                    const finalOpacity = opacity > 1 ? 1 : opacity;
+                    const [r, g, b] = lerpColor(norm * 0.7 + finalBoost * 1.5);
 
-                        // Static spatial deformation to make it feel organic, but NOT moving over time.
-                        // Phase is purely temporal. We add a tiny temporal radial pulse so the wave "breathes" spatially without drifting.
-                        const staticAngle = fbm(px * noiseScale * 2.5, py * noiseScale * 2.5) * Math.PI * 2;
-                        const staticDisp = Math.abs(fbm(px * noiseScale * 1.5 + 500, py * noiseScale * 1.5 + 500)) * (spacing * 0.35);
+                    // Displacement
+                    const pulseDisp = phase * 2.0;
+                    const totalDisp = staticDisp + pulseDisp;
+                    const dpx = px + totalDisp * Math.cos(staticAngle);
+                    const dpy = py + totalDisp * Math.sin(staticAngle);
 
-                        const pulseDisp = phase * 2.0; // Local wave breathing amplitude
-                        const totalDisp = staticDisp + pulseDisp;
+                    // Draw dot
+                    ctx.globalAlpha = finalOpacity;
+                    ctx.fillStyle = `rgb(${r},${g},${b})`;
+                    ctx.beginPath();
+                    ctx.arc(dpx, dpy, dotRadius, 0, Math.PI * 2);
+                    ctx.fill();
 
-                        const dpx = px + totalDisp * Math.cos(staticAngle);
-                        const dpy = py + totalDisp * Math.sin(staticAngle);
+                    // Micro-halo
+                    if (norm > 0.50 || finalBoost > 0.05) {
+                        const haloAlpha = (norm - 0.50) * 0.25 + finalBoost * 0.35;
+                        const finalHaloAlpha = haloAlpha > 0.25 ? 0.25 : haloAlpha;
+                        const haloRadius = dotRadius * 4.0;
 
-                        // Draw dot
-                        ctx.globalAlpha = opacity;
-                        ctx.fillStyle = `rgb(${r},${g},${b})`;
+                        ctx.globalAlpha = finalHaloAlpha;
+                        const grad = ctx.createRadialGradient(dpx, dpy, 0, dpx, dpy, haloRadius);
+                        grad.addColorStop(0, `rgba(${r},${g},${b},1)`);
+                        grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+                        ctx.fillStyle = grad;
+
                         ctx.beginPath();
-                        ctx.arc(dpx, dpy, dotRadius, 0, Math.PI * 2);
+                        ctx.arc(dpx, dpy, haloRadius, 0, Math.PI * 2);
                         ctx.fill();
-
-                        // Micro-halo
-                        if (norm > 0.50 || finalBoost > 0.05) {
-                            const haloAlpha = (norm - 0.50) * 0.25 + finalBoost * 0.35;
-                            const haloRadius = dotRadius * 4.0;
-                            ctx.globalAlpha = Math.min(0.25, haloAlpha);
-                            const grad = ctx.createRadialGradient(dpx, dpy, 0, dpx, dpy, haloRadius);
-                            grad.addColorStop(0, `rgba(${r},${g},${b},1)`);
-                            grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-                            ctx.fillStyle = grad;
-                            ctx.beginPath();
-                            ctx.arc(dpx, dpy, haloRadius, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
                     }
                 }
             }

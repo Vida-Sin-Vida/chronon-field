@@ -15,6 +15,11 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: '#F7F6F3',
+  colorScheme: 'light only',
+};
+
 export const metadata = {
   title: "Chronon Field",
   description: "BRECHETEAU RESEARCH INSTITUT",
