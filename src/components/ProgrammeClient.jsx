@@ -72,8 +72,8 @@ export default function ProgrammeClient() {
 
 
     const readingPaths = [
-        { id: 'new', title: t('program_path_new'), desc: t('program_path_new_desc'), refs: ["chronon-field-program.pdf", "the-time-that-beats.pdf", "renaissance-of-the-substrate.pdf", "philosophy-of-the-beat.pdf"] },
-        { id: 'theory', title: t('program_path_theory'), desc: t('program_path_theory_desc'), refs: ["chronon-field-physics-of-rhythm.pdf", "chronon-field-end-of-timeless-physics.pdf", "quantum-rhythm.pdf", "philosophy-of-the-beat.pdf"] },
+        { id: 'new', title: t('program_path_new'), desc: t('program_path_new_desc'), refs: ["chronon-field-program.pdf", "the-time-that-beats.pdf", "renaissance-of-the-substrate.pdf", "Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf"] },
+        { id: 'theory', title: t('program_path_theory'), desc: t('program_path_theory_desc'), refs: ["chronon-field-physics-of-rhythm.pdf", "chronon-field-end-of-timeless-physics.pdf", "quantum-rhythm.pdf", "Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf"] },
         { id: 'experimental', title: t('program_path_experimental'), desc: t('program_path_experimental_desc'), refs: ["chronon-1-progressive-validation.pdf", "chronon-1-pre-registration.pdf"] },
         { id: 'software', title: t('program_path_software'), desc: t('program_path_software_desc'), refs: ["chronon-field-program.pdf"] },
         { id: 'skeptic', title: t('program_path_skeptic'), desc: t('program_path_skeptic_desc'), refs: ["chronon-1-progressive-validation.pdf", "chronon-1-pre-registration.pdf", "chronon-1-sap.pdf", "chronon-1-stage-00-loop-closure.pdf", "chronons-and-void.pdf"] }

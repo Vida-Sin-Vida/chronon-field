@@ -6,7 +6,9 @@ const SERIES_IDS = [
     'le-temps-qui-bat.pdf',
     'chronon-field-end-of-timeless-physics.pdf',
     'philosophie-du-battement.pdf',
-    'philosophy-of-the-beat.pdf'
+    'philosophy-of-the-beat.pdf',
+    'Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf',
+    'Philosophie_du_battement___Bergson__Heidegger_et_le_temps_local.pdf'
 ];
 
 export default function PublicationCard({ publication }) {
