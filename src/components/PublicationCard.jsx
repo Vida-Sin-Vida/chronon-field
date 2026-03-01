@@ -4,7 +4,9 @@ const SERIES_IDS = [
     'the-time-that-beats.pdf',
     'quantum-rhythm.pdf',
     'le-temps-qui-bat.pdf',
-    'chronon-field-end-of-timeless-physics.pdf'
+    'chronon-field-end-of-timeless-physics.pdf',
+    'philosophie-du-battement.pdf',
+    'philosophy-of-the-beat.pdf'
 ];
 
 export default function PublicationCard({ publication }) {

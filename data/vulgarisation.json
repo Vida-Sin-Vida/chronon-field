@@ -135,11 +135,32 @@
       {
         "id": "chronon-field-05",
         "title": {
-          "fr": "05 — A venir",
-          "en": "05 — Coming soon"
+          "fr": "05 — Le Temps des Objets",
+          "en": "05 — The Time of Objects"
         },
-        "formats": [],
-        "isPublished": false
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/5/map_5.png?v=1764618799487"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/5/graph_5.png?v=1764618956132"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/5/audio_5.m4a?v=1764619289813"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/5/video_5.mp4?v=1764619796732"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/5/point_5.pdf?v=1764619454057"
+          }
+        ],
+        "isPublished": true
       },
       {
         "id": "chronon-field-06",

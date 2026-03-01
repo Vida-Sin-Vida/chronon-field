@@ -8,16 +8,16 @@ import publicationsRaw from '../../data/publications.json';
 
 const plannedPublications = [
     {
-        id: "upcoming-1",
-        title: "Philosophy of the Beat: Bergson, Heidegger and Local Time",
-        title_en: "Philosophy of the Beat: Bergson, Heidegger and Local Time",
-        type: "Article",
-        status: "planned",
-        branch: "theory",
-        language: "FR/EN",
-        date: "2026-03-01T12:00:00.000Z",
-        excerpt: "Série Champ de Chronon — Épisode 5",
-        excerpt_en: "The Chronon Field Series — Episode 5",
+        "id": "upcoming-1",
+        "title": "Chronon Field Cosmology : Rethinking Expansion and Horizon",
+        "title_en": "Chronon Field Cosmology : Rethinking Expansion and Horizon",
+        "type": "Article",
+        "status": "planned",
+        "branch": "theory",
+        "language": "EN",
+        "date": "2026-04-01T10:00:00.000Z",
+        "excerpt": "Exploration des implications cosmologiques du champ de chronon.",
+        "excerpt_en": "Exploring the cosmological implications of the Chronon field.",
     },
     {
         id: "upcoming-2",
@@ -72,8 +72,8 @@ export default function ProgrammeClient() {
 
 
     const readingPaths = [
-        { id: 'new', title: t('program_path_new'), desc: t('program_path_new_desc'), refs: ["chronon-field-program.pdf", "the-time-that-beats.pdf", "renaissance-of-the-substrate.pdf"] },
-        { id: 'theory', title: t('program_path_theory'), desc: t('program_path_theory_desc'), refs: ["chronon-field-physics-of-rhythm.pdf", "chronon-field-end-of-timeless-physics.pdf", "quantum-rhythm.pdf"] },
+        { id: 'new', title: t('program_path_new'), desc: t('program_path_new_desc'), refs: ["chronon-field-program.pdf", "the-time-that-beats.pdf", "renaissance-of-the-substrate.pdf", "philosophy-of-the-beat.pdf"] },
+        { id: 'theory', title: t('program_path_theory'), desc: t('program_path_theory_desc'), refs: ["chronon-field-physics-of-rhythm.pdf", "chronon-field-end-of-timeless-physics.pdf", "quantum-rhythm.pdf", "philosophy-of-the-beat.pdf"] },
         { id: 'experimental', title: t('program_path_experimental'), desc: t('program_path_experimental_desc'), refs: ["chronon-1-progressive-validation.pdf", "chronon-1-pre-registration.pdf"] },
         { id: 'software', title: t('program_path_software'), desc: t('program_path_software_desc'), refs: ["chronon-field-program.pdf"] },
         { id: 'skeptic', title: t('program_path_skeptic'), desc: t('program_path_skeptic_desc'), refs: ["chronon-1-progressive-validation.pdf", "chronon-1-pre-registration.pdf", "chronon-1-sap.pdf", "chronon-1-stage-00-loop-closure.pdf", "chronons-and-void.pdf"] }
