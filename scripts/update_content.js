@@ -72,6 +72,14 @@ const publications = files.map(file => {
     if (file === 'chronon-field-physics-of-rhythm.pdf') title = 'Chronon Field Φ(x) and the Physics of Rhythm';
     if (file === 'chronons-and-void.pdf') title = 'Chronons and Void : Critical Dialogue';
     if (file === 'chronon-field-program.pdf') title = 'The Chronon Field Program';
+    if (file === 'Philosophie_du_battement___Bergson__Heidegger_et_le_temps_local.pdf') {
+        title = 'Philosophie du battement : Bergson, Heidegger et le temps local';
+        language = 'FR';
+    }
+    if (file === 'Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf') {
+        title = 'Philosophy of the Beat: Bergson, Heidegger and Local Time';
+        language = 'EN';
+    }
 
     let type = 'Article';
     if (file.includes('sap') || file.includes('validation') || file.includes('pre-registration')) type = 'Protocole Expérimental';
@@ -176,8 +184,8 @@ function scanVulgarisationData() {
                     title.fr += 'Rythme Quantique';
                     title.en += 'Quantum Rhythm';
                 } else if (i === 5 && series.id === 'chronon-field') {
-                    title.fr += 'Philosophy of the Beat: Bergson, Heidegger and Local Time';
-                    title.en += 'Philosophy of the Beat: Bergson, Heidegger and Local Time';
+                    title.fr += 'Le Temps des Objets';
+                    title.en += 'The Time of Objects';
                 } else if (i === 1 && series.id === 'other') {
                     title.fr += 'Chronon & Vide : Dialogue critique';
                     title.en += 'Chronon & Void: Critical Dialogue';
