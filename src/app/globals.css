@@ -31,12 +31,16 @@
   }
 }
 
+:root {
+  color-scheme: only light;
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
-  color-scheme: light !important;
+  color-scheme: only light !important;
 }
 
 h1,

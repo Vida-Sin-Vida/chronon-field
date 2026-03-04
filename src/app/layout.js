@@ -18,7 +18,7 @@ const playfair = Playfair_Display({
 
 export const viewport = {
   themeColor: '#F7F6F3',
-  colorScheme: 'light only',
+  colorScheme: 'light',
 };
 
 export const metadata = {
