@@ -1,16 +1,5 @@
 [
   {
-    "id": "Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf",
-    "title": "Philosophy of the Beat: Bergson, Heidegger and Local Time",
-    "type": "Article",
-    "language": "EN",
-    "date": "2026-03-01T10:00:00.000Z",
-    "excerpt": "Document PDF (EN) - 0.82 MB",
-    "link": "/document/Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf",
-    "authors": "B. Brécheteau",
-    "size": 860199
-  },
-  {
     "id": "Philosophie_du_battement___Bergson__Heidegger_et_le_temps_local.pdf",
     "title": "Philosophie du battement : Bergson, Heidegger et le temps local",
     "type": "Article",
@@ -20,6 +9,17 @@
     "link": "/document/Philosophie_du_battement___Bergson__Heidegger_et_le_temps_local.pdf",
     "authors": "B. Brécheteau",
     "size": 862323
+  },
+  {
+    "id": "Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf",
+    "title": "Philosophy of the Beat: Bergson, Heidegger and Local Time",
+    "type": "Article",
+    "language": "EN",
+    "date": "2026-03-01T10:00:00.000Z",
+    "excerpt": "Document PDF (EN) - 0.82 MB",
+    "link": "/document/Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf",
+    "authors": "B. Brécheteau",
+    "size": 860199
   },
   {
     "id": "chronon-field-program.pdf",

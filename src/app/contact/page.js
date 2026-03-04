@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGlobal } from '../../context/GlobalContext';
+import useSoundEffects from '../../hooks/useSoundEffects';
 
 // The old isolated ParticleWave component has been removed as we now trigger the main ParticleBackground waves
 
 export default function Contact() {
     const { t } = useGlobal();
+    const { playEmailSent } = useSoundEffects();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -21,50 +23,10 @@ export default function Contact() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const playSuccessSound = () => {
-        try {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (!AudioContext) return;
-
-            const ctx = new AudioContext();
-            const oscillator = ctx.createOscillator();
-            const gainNode = ctx.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(ctx.destination);
-
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, ctx.currentTime); // A4
-            oscillator.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1); // A5
-
-            // Add a second oscillator for a "sparkle" effect
-            const osc2 = ctx.createOscillator();
-            const gain2 = ctx.createGain();
-            osc2.connect(gain2);
-            gain2.connect(ctx.destination);
-            osc2.type = 'triangle';
-            osc2.frequency.setValueAtTime(880, ctx.currentTime);
-            osc2.frequency.linearRampToValueAtTime(1760, ctx.currentTime + 0.2);
-
-            gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.0);
-
-            gain2.gain.setValueAtTime(0.05, ctx.currentTime);
-            gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.0);
-
-            oscillator.start();
-            oscillator.stop(ctx.currentTime + 1.0);
-            osc2.start();
-            osc2.stop(ctx.currentTime + 1.0);
-        } catch (error) {
-            console.error("Audio playback failed", error);
-        }
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitted(true);
-        playSuccessSound();
+        playEmailSent();
 
         // Dispatch an event to the ParticleBackground to trigger 4 waves of decreasing intensity
         const btnRect = e.target.querySelector('button[type="submit"]').getBoundingClientRect();

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import useSoundEffects from '../hooks/useSoundEffects';
 
 const LAW_DATES = {
     hypostasis: new Date('2030-01-01T00:00:00'),
@@ -63,19 +64,26 @@ const CountdownRow = ({ label, targetDate, transparency = 100, isPrimary = false
         </div>
     );
 };
-
 export default function ThreeLawsCountdown({ onClose }) {
     const [phase, setPhase] = useState('entering'); // 'entering' | 'visible' | 'exiting-btn' | 'exiting'
+    const { startTicking, stopTicking } = useSoundEffects();
 
     useEffect(() => {
         // Transition from entering to visible after animation
-        const t = setTimeout(() => setPhase('visible'), 50);
-        return () => clearTimeout(t);
-    }, []);
+        const t = setTimeout(() => {
+            setPhase('visible');
+            startTicking();
+        }, 50);
+        return () => {
+            clearTimeout(t);
+            stopTicking();
+        };
+    }, [startTicking, stopTicking]);
 
     const handleClose = () => {
         // 1. Animate button sliding down
         setPhase('exiting-btn');
+        stopTicking();
         setTimeout(() => {
             // 2. Distort the whole panel
             setPhase('exiting');

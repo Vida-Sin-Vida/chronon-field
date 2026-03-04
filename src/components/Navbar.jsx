@@ -5,12 +5,21 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useGlobal } from '../context/GlobalContext';
 import AnimatedLogo from './AnimatedLogo';
+import useSoundEffects from '../hooks/useSoundEffects';
+import SettingsMenu from './SettingsMenu';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isModalOpen, isNavbarVisible, t, language, toggleLanguage } = useGlobal();
+  const { isModalOpen, isNavbarVisible, t, language, changeLanguage } = useGlobal();
+  const { playPageTransition, playHeaderClick } = useSoundEffects();
+
+  // Trigger page transition sound on pathname change
+  useEffect(() => {
+    // Only play if it's not the initial mount/render
+    playPageTransition();
+  }, [pathname, playPageTransition]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,26 +48,30 @@ export default function Navbar() {
         } ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-sm py-[15px] md:py-4' : (isTransparentPage ? 'bg-transparent py-[22px] md:py-6' : 'bg-background py-[22px] md:py-6')
         }`}
     >
-      <div className="container mx-auto px-6 flex items-center h-16 relative">
-        {/* Logo Section - Left Aligned */}
-        <div className="w-32 lg:w-48 flex-shrink-0 flex items-center">
-          <div
-            className={`transition-all duration-1000 ease-in-out ${isHome
+      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Left Column - Logo (Fixed Width) */}
+        <div className="flex-1 flex items-center justify-start min-w-[60px] md:min-w-[120px] lg:min-w-[200px] gap-4">
+          {/* Gear on left for mobile only */}
+          <div className={`md:hidden ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'} transition-opacity`}>
+            <SettingsMenu />
+          </div>
+
+          <button
+            onClick={playHeaderClick}
+            className={`transition-all duration-1000 ease-in-out cursor-pointer hover:scale-105 active:scale-95 ${isHome
               ? 'opacity-0 blur-[20px] scale-90 pointer-events-none -translate-x-8'
               : 'opacity-100 blur-0 scale-100 translate-x-0'
               }`}
+            aria-label="Home / Play Beep"
           >
             <AnimatedLogo />
-          </div>
+          </button>
         </div>
 
-        {/* Navigation Links - Centered on Home, Slid Right on Pages */}
-        <div className="flex-grow flex items-center justify-center relative h-full">
+        {/* Center Column - Navigation Links (Naturally Centered) */}
+        <div className="flex-grow-0 flex items-center justify-center">
           <div
-            className={`flex items-center space-x-6 lg:space-x-8 px-6 py-2 rounded-full transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-              } ${isHome
-                ? 'translate-x-0'
-                : 'md:translate-x-[15%] lg:translate-x-[20%] xl:translate-x-[25%]'
+            className={`flex items-center space-x-4 lg:space-x-8 px-6 py-2 rounded-full transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
               } ${isTransparentPage && !isScrolled ? 'bg-background/60 shadow-[0_4px_20px_rgba(247,246,243,0.8)] backdrop-blur-md' : ''} hidden md:flex`}
           >
             {navLinks.map((link) => (
@@ -74,37 +87,34 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Language Toggle - Fixed on the right (hidden on mobile) */}
-        <div className="w-32 lg:w-48 flex-shrink-0 flex justify-end items-center hidden md:flex">
+        {/* Right Column - Gear & Menu Button (Fixed Width, balanced with Left) */}
+        <div className="flex-1 flex items-center justify-end gap-4 min-w-[60px] md:min-w-[120px] lg:min-w-[200px]">
+          {/* Gear on right for desktop and medium screens */}
+          <div className={`hidden md:block ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'} transition-opacity`}>
+            <SettingsMenu />
+          </div>
+
+          {/* Hamburger Menu Button (Mobile only) */}
           <button
-            onClick={toggleLanguage}
-            className={`text-xs md:text-sm font-medium text-secondary hover:text-accent transition-all duration-300 border border-secondary/20 rounded-full px-3 py-1 hover:border-accent/50 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-              }`}
+            className={`md:hidden text-accent focus:outline-none transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {language === 'fr' ? 'EN' : 'FR'}
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className={`md:hidden absolute right-6 text-accent focus:outline-none transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -121,20 +131,6 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <div className="pt-4 border-t border-secondary/10">
-            <button
-              onClick={() => {
-                toggleLanguage();
-                setIsMobileMenuOpen(false);
-              }}
-              className="text-lg font-medium text-left text-secondary hover:text-accent transition-colors flex items-center space-x-2"
-            >
-              <span>{language === 'fr' ? 'Switch to English' : 'Passer en Français'}</span>
-              <span className="text-xs border border-secondary/20 rounded-full px-2 py-0.5">
-                {language === 'fr' ? 'EN' : 'FR'}
-              </span>
-            </button>
-          </div>
         </div>
       )}
     </nav>

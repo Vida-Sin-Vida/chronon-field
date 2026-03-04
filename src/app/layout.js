@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import DesignerBadge from "../components/DesignerBadge";
+import DisplayOverlay from "../components/DisplayOverlay";
 import { GlobalProvider } from "../context/GlobalContext";
 
 const inter = Inter({
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen`}
       >
         <GlobalProvider>
+          <DisplayOverlay />
           <Navbar />
           <main className="flex-grow pt-20">
             {children}

@@ -80,6 +80,10 @@ export default function PublicationsClient({ initialPublications }) {
                             value={filterType}
                             onChange={(e) => setFilterType(e.target.value)}
                         >
+                            {/* Force display of combined types if coming from Program page */}
+                            {filterType !== 'All' && !types.includes(filterType) && (
+                                <option value={filterType}>{filterType}</option>
+                            )}
                             {types.map(type => (
                                 <option key={type} value={type}>{type === 'All' ? t('all_types') : type}</option>
                             ))}

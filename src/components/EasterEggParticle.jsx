@@ -161,6 +161,7 @@ export default function EasterEggParticle() {
                 className={`
                     w-1 h-1 rounded-full cursor-pointer 
                     bg-[#0B2240] shadow-[0_0_4px_rgba(11,34,64,0.3)]
+                    ${isHovered ? 'w-2 h-2 !opacity-100' : ''}
                 `}
                 style={particleStyle}
             ></div>
@@ -183,9 +184,9 @@ export default function EasterEggParticle() {
                     50% { opacity: 0.12; transform: scale(1); }
                 }
                 @keyframes scintillate {
-                    0% { opacity: 0.2; transform: scale(1) translateY(0px); filter: brightness(1) drop-shadow(0 0 2px rgba(11,34,64,0.5)); }
-                    50% { opacity: 1; transform: scale(1.4) translateY(-1px); filter: brightness(1.5) drop-shadow(0 0 8px rgba(11,34,64,1)); }
-                    100% { opacity: 0.2; transform: scale(1) translateY(0px); filter: brightness(1) drop-shadow(0 0 2px rgba(11,34,64,0.5)); }
+                    0% { opacity: 0; transform: scale(1) translateY(0px) rotate(0deg); filter: brightness(1); }
+                    50% { opacity: 1; transform: scale(2.5) translateY(-2px) rotate(45deg); filter: brightness(2) drop-shadow(0 0 10px rgba(11,34,64,0.8)); }
+                    100% { opacity: 0; transform: scale(1) translateY(0px) rotate(90deg); filter: brightness(1); }
                 }
                 @keyframes floatAndFade {
                     0% { opacity: 1; transform: translateY(0) scale(1); }

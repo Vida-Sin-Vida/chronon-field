@@ -228,7 +228,7 @@ export default function ParticleBackground({ className, isPlaying = false }) {
                     // Mouse influence
                     const dx = px - mx;
                     const dy = py - my;
-                    const dist = Math.hypot(dx, dy); // Much faster than sqrt(dx*dx + dy*dy)
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
                     let mouseFactor = 0;
                     if (dist < MOUSE_INFLUENCE_RADIUS) {
@@ -240,7 +240,9 @@ export default function ParticleBackground({ className, isPlaying = false }) {
                     let waveBoost = 0;
                     for (let wIdx = 0; wIdx < waves.length; wIdx++) {
                         const w = waves[wIdx];
-                        const wd = Math.hypot(px - w.x, py - w.y);
+                        const dxw = px - w.x;
+                        const dyw = py - w.y;
+                        const wd = Math.sqrt(dxw * dxw + dyw * dyw);
                         const age = (now - w.startTime) * 0.001; // seconds
                         const waveRadius = age * 500; // slower speed: 500px/s
 

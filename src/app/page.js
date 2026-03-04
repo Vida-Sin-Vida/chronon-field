@@ -5,13 +5,17 @@ import ParticleBackground from '../components/ParticleBackground';
 import SocialIcons from '../components/SocialIcons';
 import Logo from '../components/Logo';
 import ThreeLawsCountdown from '../components/ThreeLawsCountdown';
+import SeriesModal from '../components/SeriesModal';
 import { useGlobal } from '../context/GlobalContext';
+import useSoundEffects from '../hooks/useSoundEffects';
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioContextRef = useRef(null);
   const oscillatorRef = useRef(null);
   const gainNodeRef = useRef(null);
+
+  const { playCenterClick, playSymbolClick } = useSoundEffects();
 
   const startHeartbeat = () => {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -87,17 +91,19 @@ export default function Home() {
 
   const series = [
     { id: 'chronon', title: t('series_chronon_title'), desc: t('series_chronon_desc'), image: '/symbole/Chronon Fields Series_Symbole.png', angle: -67.5, delay: 'delay-0' },
-    { id: 'entanglement', title: t('series_entanglement_title'), desc: t('series_entanglement_desc'), image: '/symbole/Entanglement Dynamics Series_Symbole.png', angle: 22.5, delay: 'delay-150' },
     { id: 'phi', title: t('series_phi_title'), desc: t('series_phi_desc'), image: '/symbole/The Φ System Series_symbole.png', angle: -22.5, delay: 'delay-75' },
+    { id: 'entanglement', title: t('series_entanglement_title'), desc: t('series_entanglement_desc'), image: '/symbole/Entanglement Dynamics Series_Symbole.png', angle: 22.5, delay: 'delay-150' },
     { id: 'three_laws', title: t('series_three_laws_title'), image: '/symbole/Three Laws_Symbole.png', angle: 67.5, delay: 'delay-225', isDistortion: true }
   ];
 
   const handleLogoClick = () => {
+    playCenterClick();
     setIsSeriesVisible(!isSeriesVisible);
     if (isSeriesVisible) { setActiveSymbolId(null); setSelectedSeries(null); }
   };
 
   const handleSeriesClick = (s) => {
+    playSymbolClick();
     if (s.isDistortion) {
       if (s.id === 'three_laws') {
         // Phase 1: symbol blurs out
@@ -113,7 +119,7 @@ export default function Home() {
       } else {
         setIsDistorting(true);
         setActiveSymbolId(s.id);
-        setTimeout(() => { setIsDistorting(false); setActiveSymbolId(null); }, 800);
+        setTimeout(() => { setIsDistorting(false); setActiveSymbolId(null); setSelectedSeries(s) }, 800);
       }
     } else {
       setActiveSymbolId(s.id);
@@ -240,32 +246,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Series Explanation Overlay */}
-        {selectedSeries && (
-          <div
-            className="fixed inset-0 z-[110] flex items-center justify-center bg-background/60 backdrop-blur-2xl p-6 md:p-8 animate-fade-in overflow-y-auto"
-            onClick={() => { setSelectedSeries(null); setActiveSymbolId(null); }}
-          >
-            <div
-              className="max-w-xl w-full text-center space-y-4 md:space-y-6 animate-scale-up py-12 md:py-8 relative"
-              style={{ marginTop: '-7cm' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="w-24 h-24 md:w-32 md:h-32 mx-auto relative mb-4 md:mb-8">
-                <img src={selectedSeries.image} alt="" className="w-full h-full object-contain" />
-              </div>
-              <h2 className="text-2xl md:text-4xl font-serif font-bold text-foreground">{selectedSeries.title}</h2>
-              <p className="text-base md:text-xl text-foreground/80 leading-relaxed font-light">{selectedSeries.desc}</p>
-              <button
-                onClick={() => { setSelectedSeries(null); setActiveSymbolId(null); }}
-                className="mt-4 text-accent border-b border-accent/30 hover:border-accent pb-1 transition-all uppercase tracking-widest text-sm font-bold"
-              >
-                {t('close')}
-              </button>
-            </div>
-          </div>
-        )}
-
         <div className="h-24 md:h-32"></div>
       </div>
 
@@ -274,11 +254,25 @@ export default function Home() {
         <SocialIcons />
       </div>
 
+      {/* Series Explanation Box */}
+      {selectedSeries && (
+        <SeriesModal
+          series={series.filter(s => s.id !== 'three_laws')}
+          initialIndex={series.filter(s => s.id !== 'three_laws').findIndex(s => s.id === selectedSeries.id)}
+          onClose={() => { setSelectedSeries(null); setActiveSymbolId(null); }}
+        />
+      )}
+
       {/* Info Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full relative animate-scale-up border border-gray-100 overflow-hidden">
-            <ParticleBackground className="absolute inset-0 w-full h-full z-0 pointer-events-none" color={[159, 179, 200]} />
+        <div
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full relative animate-scale-up border border-gray-100 max-h-[85vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-accent transition-colors p-2 z-20"
@@ -306,7 +300,6 @@ export default function Home() {
               <p className="text-xs text-secondary/60 pt-2">{t('dedicated_to')}</p>
             </div>
           </div>
-          <div className="absolute inset-0 -z-10" onClick={() => setIsModalOpen(false)}></div>
         </div>
       )}
     </div>
