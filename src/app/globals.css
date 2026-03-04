@@ -31,13 +31,21 @@
   }
 }
 
-:root {
-  color-scheme: only light;
+:root,
+* {
+  color-scheme: only light !important;
+  supported-color-schemes: light !important;
+  forced-color-adjust: none !important;
+}
+
+html {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
   color-scheme: only light !important;

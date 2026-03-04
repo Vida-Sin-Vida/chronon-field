@@ -48,9 +48,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr">
+    <html lang="fr" style={{ colorScheme: 'light' }}>
+      <head>
+        <meta name="color-scheme" content="only light" />
+        <meta name="supported-color-schemes" content="light" />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen`}
+        style={{ backgroundColor: '#F7F6F3' }}
       >
         <GlobalProvider>
           <DisplayOverlay />

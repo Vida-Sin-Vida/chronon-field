@@ -47,6 +47,9 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${!isNavbarVisible ? '-translate-y-full' : 'translate-y-0'
         } ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-sm py-[15px] md:py-4' : (isTransparentPage ? 'bg-transparent py-[22px] md:py-6' : 'bg-background py-[22px] md:py-6')
         }`}
+      style={{
+        backgroundColor: isTransparentPage && !isScrolled ? 'transparent' : '#F7F6F3'
+      }}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         {/* Left Column - Logo (Fixed Width) */}
