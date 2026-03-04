@@ -48,7 +48,7 @@ export default function Navbar() {
         } ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-sm py-[15px] md:py-4' : (isTransparentPage ? 'bg-transparent py-[22px] md:py-6' : 'bg-background py-[22px] md:py-6')
         }`}
       style={{
-        backgroundColor: isTransparentPage && !isScrolled ? 'transparent' : '#F7F6F3'
+        backgroundColor: isTransparentPage && !isScrolled ? 'transparent' : (isScrolled ? 'rgba(247, 246, 243, 0.95)' : '#F7F6F3')
       }}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">

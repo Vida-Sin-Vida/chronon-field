@@ -44,7 +44,7 @@ html {
 }
 
 body {
-  background-color: var(--color-background) !important;
+  background-color: transparent !important;
   color: var(--color-foreground) !important;
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;

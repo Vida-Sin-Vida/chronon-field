@@ -55,7 +55,6 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen`}
-        style={{ backgroundColor: '#F7F6F3' }}
       >
         <GlobalProvider>
           <DisplayOverlay />
