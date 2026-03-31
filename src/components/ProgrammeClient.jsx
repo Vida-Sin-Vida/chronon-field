@@ -9,15 +9,15 @@ import publicationsRaw from '../../data/publications.json';
 const plannedPublications = [
     {
         "id": "upcoming-1",
-        "title": "Chronon Field Cosmology : Rethinking Expansion and Horizon",
-        "title_en": "Chronon Field Cosmology : Rethinking Expansion and Horizon",
+        "title": "The Instant, Memory and Resonance: Revisiting Lived Time",
+        "title_en": "The Instant, Memory and Resonance: Revisiting Lived Time",
         "type": "Article",
         "status": "planned",
         "branch": "theory",
         "language": "EN",
-        "date": "2026-04-01T10:00:00.000Z",
-        "excerpt": "Exploration des implications cosmologiques du champ de chronon.",
-        "excerpt_en": "Exploring the cosmological implications of the Chronon field.",
+        "date": "2026-05-01T10:00:00.000Z",
+        "excerpt": "Revisiting the concept of lived time through memory and resonance.",
+        "excerpt_en": "Revisiting the concept of lived time through memory and resonance.",
     },
     {
         id: "upcoming-2",
@@ -28,8 +28,8 @@ const plannedPublications = [
         branch: "experimental",
         language: "EN",
         date: "2099-01-01T00:00:00.000Z",
-        excerpt: "Design du prochain cycle expérimental et métrologique.",
-        excerpt_en: "Design of the upcoming experimental and metrological cycle.",
+        "excerpt": "Design du prochain cycle expérimental et métrologique.",
+        "excerpt_en": "Design of the upcoming experimental and metrological cycle.",
     }
 ];
 

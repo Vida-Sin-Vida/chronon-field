@@ -165,11 +165,32 @@
       {
         "id": "chronon-field-06",
         "title": {
-          "fr": "06 — A venir",
-          "en": "06 — Coming soon"
+          "fr": "06 — Repenser l'Expansion et l'Horizon",
+          "en": "06 — Rethinking Expansion and Horizon"
         },
-        "formats": [],
-        "isPublished": false
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/6/map_6.png?v=1764623275680"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/6/graph_6.png?v=1764623259317"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/6/audio_6.m4a?v=1764623289393"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/6/video_6.mp4?v=1764623834528"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/6/point_6.pdf?v=1764716753920"
+          }
+        ],
+        "isPublished": true
       },
       {
         "id": "chronon-field-07",

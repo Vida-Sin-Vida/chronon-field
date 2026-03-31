@@ -8,7 +8,8 @@ const SERIES_IDS = [
     'philosophie-du-battement.pdf',
     'philosophy-of-the-beat.pdf',
     'Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf',
-    'Philosophie_du_battement___Bergson__Heidegger_et_le_temps_local.pdf'
+    'Philosophie_du_battement___Bergson__Heidegger_et_le_temps_local.pdf',
+    'CFC__Rethinking_Expansion_and_Horizon.pdf'
 ];
 
 export default function PublicationCard({ publication }) {

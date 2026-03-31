@@ -80,6 +80,10 @@ const publications = files.map(file => {
         title = 'Philosophy of the Beat: Bergson, Heidegger and Local Time';
         language = 'EN';
     }
+    if (file === 'CFC__Rethinking_Expansion_and_Horizon.pdf') {
+        title = 'Chronon Field Cosmology : Rethinking Expansion and Horizon';
+        language = 'EN';
+    }
 
     let type = 'Article';
     if (file.includes('sap') || file.includes('validation') || file.includes('pre-registration')) type = 'Protocole Expérimental';
@@ -186,6 +190,9 @@ function scanVulgarisationData() {
                 } else if (i === 5 && series.id === 'chronon-field') {
                     title.fr += 'Le Temps des Objets';
                     title.en += 'The Time of Objects';
+                } else if (i === 6 && series.id === 'chronon-field') {
+                    title.fr += 'Repenser l\'Expansion et l\'Horizon';
+                    title.en += 'Rethinking Expansion and Horizon';
                 } else if (i === 1 && series.id === 'other') {
                     title.fr += 'Chronon & Vide : Dialogue critique';
                     title.en += 'Chronon & Void: Critical Dialogue';
