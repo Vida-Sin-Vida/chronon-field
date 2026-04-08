@@ -2,7 +2,6 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import DesignerBadge from "../components/DesignerBadge";
 import DisplayOverlay from "../components/DisplayOverlay";
 import { GlobalProvider } from "../context/GlobalContext";
 
@@ -63,7 +62,6 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           <Footer />
-          <DesignerBadge />
         </GlobalProvider>
       </body>
     </html>

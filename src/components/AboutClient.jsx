@@ -27,12 +27,12 @@ export default function AboutClient({ publicationCount }) {
 
             {/* Main Content */}
             <div className={`
-                relative z-10 max-w-[800px] px-8 py-20 md:py-32 text-center
+                relative z-10 max-w-[800px] px-8 py-20 md:py-32 text-center pointer-events-none
                 transition-opacity duration-1000 ease-out
                 ${isVisible ? 'opacity-100' : 'opacity-0'}
             `}>
                 {/* Header - Kept Centered */}
-                <div className="mb-16 relative inline-block text-center w-full">
+                <div className="mb-16 relative inline-block text-center w-full pointer-events-auto">
                     <h1 className="text-sm md:text-base font-sans font-bold tracking-[0.25em] text-foreground/80 uppercase mb-3 drop-shadow-sm">
                         {t('about_title')}
                     </h1>
@@ -47,7 +47,7 @@ export default function AboutClient({ publicationCount }) {
 
                 {/* Name - Kept Centered */}
                 <h2 className={`
-                    text-4xl md:text-5xl font-serif text-foreground mb-20 tracking-wide drop-shadow-md text-center
+                    text-4xl md:text-5xl font-serif text-foreground mb-20 tracking-wide drop-shadow-md text-center pointer-events-auto
                     transition-all duration-1000 delay-300 ease-out
                     ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
                 `}>
@@ -60,34 +60,34 @@ export default function AboutClient({ publicationCount }) {
                     transition-all duration-1000 delay-500 ease-out
                     ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
                 `}>
-                    <p className="drop-shadow-sm">
+                    <p className="drop-shadow-sm pointer-events-auto">
                         {t('about_text_1')}<br />
                         <span className="font-normal text-foreground">{t('about_text_1_bold')}</span>
                     </p>
 
-                    <p className="drop-shadow-sm">
+                    <p className="drop-shadow-sm pointer-events-auto">
                         {t('about_text_2')}
                     </p>
 
-                    <p className="drop-shadow-sm">
+                    <p className="drop-shadow-sm pointer-events-auto">
                         {t('about_text_3')}
                     </p>
 
-                    <p className="drop-shadow-sm">
+                    <p className="drop-shadow-sm pointer-events-auto">
                         {t('about_text_4')}
                     </p>
 
                     {/* Quote & Signature Section - Slightly Offset or Centered block */}
-                    <div className="pt-16 pb-8 relative">
+                    <div className="pt-16 pb-8 relative pointer-events-none">
                         {/* Decorative line before quote */}
                         <div className="w-16 h-[1px] bg-accent/30 mb-8"></div>
 
-                        <p className="font-medium text-foreground text-xl md:text-2xl italic font-serif opacity-90 drop-shadow-md animate-subtle-breathe pl-[11px] md:pl-8 border-l-2 border-accent/20">
+                        <p className="font-medium text-foreground text-xl md:text-2xl italic font-serif opacity-90 drop-shadow-md animate-subtle-breathe pl-[11px] md:pl-8 border-l-2 border-accent/20 pointer-events-auto">
                             {t('about_quote')}
                         </p>
 
                         {/* Signature - Organic positioning */}
-                        <div className="flex justify-end mt-12 mr-0 md:-mr-8 opacity-80 hover:opacity-100 transition-opacity duration-500 transform rotate-[-2deg]">
+                        <div className="flex justify-end mt-12 mr-0 md:-mr-8 opacity-80 hover:opacity-100 transition-opacity duration-500 transform rotate-[-2deg] pointer-events-auto">
                             <img
                                 src="/signature_transparent.png"
                                 alt="Signature Benjamin Brécheteau"
@@ -96,7 +96,7 @@ export default function AboutClient({ publicationCount }) {
                         </div>
                     </div>
 
-                    <p className="pt-4 text-sm md:text-base text-accent font-semibold tracking-wide opacity-80 text-center">
+                    <p className="pt-4 text-sm md:text-base text-accent font-semibold tracking-wide opacity-80 text-center pointer-events-auto">
                         — {t('publications_count_label')} {publicationCount}
                     </p>
                 </div>
@@ -104,7 +104,7 @@ export default function AboutClient({ publicationCount }) {
 
             {/* Timeline Section - Kept discrete at the bottom */}
             <div className={`
-                w-full max-w-4xl px-6 pb-20 mt-12
+                w-full max-w-4xl px-6 pb-20 mt-12 pointer-events-auto
                 transition-all duration-1000 delay-700 ease-out
                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
             `}>

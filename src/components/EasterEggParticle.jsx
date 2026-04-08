@@ -132,17 +132,14 @@ export default function EasterEggParticle() {
 
     if (!position || !isVisible) return null;
 
-    // Dynamic styles for the particle
     const particleStyle = isAnimating
         ? { opacity: 0, transform: 'scale(0.6)', transition: 'all 380ms ease-out' }
-        : isHovered
-            ? { animation: 'scintillate 0.2s linear infinite' }
-            : { animation: 'pulseSubtle 2.8s ease-in-out infinite' };
+        : { animation: 'starTwinkle 4s ease-in-out infinite' };
 
     return (
         <div
             id="easter-egg-particle"
-            className="fixed z-40 flex items-center justify-center select-none"
+            className="fixed z-0 flex items-center justify-center select-none"
             style={{ top: position.top, left: position.left }}
         >
             <div
@@ -160,8 +157,8 @@ export default function EasterEggParticle() {
                 }}
                 className={`
                     w-1 h-1 rounded-full cursor-pointer 
-                    bg-[#0B2240] shadow-[0_0_4px_rgba(11,34,64,0.3)]
-                    ${isHovered ? 'w-2 h-2 !opacity-100' : ''}
+                    bg-gray-400 shadow-[0_0_5px_rgba(156,163,175,0.9)]
+                    ${isHovered ? 'w-1.5 h-1.5 !opacity-100' : ''}
                 `}
                 style={particleStyle}
             ></div>
@@ -179,14 +176,12 @@ export default function EasterEggParticle() {
             )}
 
             <style jsx>{`
-                @keyframes pulseSubtle {
-                    0%, 100% { opacity: 0.05; transform: scale(1); }
-                    50% { opacity: 0.12; transform: scale(1); }
-                }
-                @keyframes scintillate {
-                    0% { opacity: 0; transform: scale(1) translateY(0px) rotate(0deg); filter: brightness(1); }
-                    50% { opacity: 1; transform: scale(2.5) translateY(-2px) rotate(45deg); filter: brightness(2) drop-shadow(0 0 10px rgba(11,34,64,0.8)); }
-                    100% { opacity: 0; transform: scale(1) translateY(0px) rotate(90deg); filter: brightness(1); }
+                @keyframes starTwinkle {
+                    0%, 100% { opacity: 0.3; transform: scale(0.8); filter: brightness(0.8); }
+                    20% { opacity: 0.9; transform: scale(1.2); filter: brightness(1.2) drop-shadow(0 0 8px rgba(156,163,175,0.9)); }
+                    40% { opacity: 0.2; transform: scale(0.7); filter: brightness(0.7); }
+                    60% { opacity: 1; transform: scale(1.4); filter: brightness(1.5) drop-shadow(0 0 12px rgba(200,200,200,1)); }
+                    80% { opacity: 0.4; transform: scale(0.9); filter: brightness(0.9); }
                 }
                 @keyframes floatAndFade {
                     0% { opacity: 1; transform: translateY(0) scale(1); }

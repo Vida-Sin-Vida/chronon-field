@@ -20,6 +20,18 @@ const plannedPublications = [
         "excerpt_en": "Revisiting the concept of lived time through memory and resonance.",
     },
     {
+        "id": "upcoming-3",
+        "title": "Open Charm Production under the Chronon Field Φ(x)",
+        "title_en": "Open Charm Production under the Chronon Field Φ(x)",
+        "type": "Article",
+        "status": "planned",
+        "branch": "theory",
+        "language": "EN",
+        "date": "2026-04-15T10:00:00.000Z",
+        "excerpt": "Open Charm Production under the Chronon Field Φ(x).",
+        "excerpt_en": "Open Charm Production under the Chronon Field Φ(x).",
+    },
+    {
         id: "upcoming-2",
         title: "CHRONON-2 : Architecture et Spécifications",
         title_en: "CHRONON-2 : Architecture and Specifications",
@@ -200,10 +212,10 @@ export default function ProgrammeClient() {
                     </div>
 
                     <div className="relative border-l-2 border-accent/20 pl-6 ml-2 md:ml-6 space-y-8 mb-12">
-                        {publications.filter(p => p.language && p.language.includes('EN')).sort((a, b) => new Date(b.date) - new Date(a.date)).map((pub, idx) => (
-                            <div key={idx} className="relative group">
-                                <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-2 bg-background transition-colors ${pub.status === 'planned' ? 'border-secondary' : 'border-accent'}`}></div>
-                                <div className="bg-white/5 border border-white/10 p-4 rounded-lg inline-block hover:border-accent/30 hover:bg-white/10 transition-colors">
+                        {publications.filter(p => p.language && p.language.includes('EN')).sort((a, b) => new Date(b.date) - new Date(a.date)).map((pub, idx) => {
+                            const isClickable = pub.status === 'published' && pub.link;
+                            const CardContent = (
+                                <>
                                     <span className="text-xs font-mono text-accent block mb-1">
                                         {new Date(pub.date).getFullYear() > 2090
                                             ? (language === 'fr' ? 'À venir' : 'Coming soon')
@@ -211,9 +223,24 @@ export default function ProgrammeClient() {
                                     </span>
                                     <h4 className="text-primary font-semibold">{pub.titleLocale}</h4>
                                     <span className="text-xs text-secondary mt-1 block">{pub.status === 'planned' ? t('program_status_planned') : t('program_status_published')}</span>
+                                </>
+                            );
+
+                            return (
+                                <div key={idx} className="relative group">
+                                    <div className={`absolute -left-[35px] w-4 h-4 rounded-full border-2 bg-background transition-colors ${pub.status === 'planned' ? 'border-secondary' : 'border-accent'}`}></div>
+                                    {isClickable ? (
+                                        <Link href={pub.link} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-4 rounded-lg inline-block hover:border-accent/30 hover:bg-white/10 transition-colors cursor-pointer group-hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(43,43,43,0.1)] block w-fit">
+                                            {CardContent}
+                                        </Link>
+                                    ) : (
+                                        <div className="bg-white/5 border border-white/10 p-4 rounded-lg inline-block hover:border-accent/30 hover:bg-white/10 transition-colors">
+                                            {CardContent}
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
 
                     <div className="flex flex-wrap gap-4 mt-8">
