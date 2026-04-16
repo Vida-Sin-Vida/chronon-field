@@ -20,18 +20,6 @@ const plannedPublications = [
         "excerpt_en": "Revisiting the concept of lived time through memory and resonance.",
     },
     {
-        "id": "upcoming-3",
-        "title": "Open Charm Production under the Chronon Field Φ(x)",
-        "title_en": "Open Charm Production under the Chronon Field Φ(x)",
-        "type": "Article",
-        "status": "planned",
-        "branch": "theory",
-        "language": "EN",
-        "date": "2026-04-15T10:00:00.000Z",
-        "excerpt": "Open Charm Production under the Chronon Field Φ(x).",
-        "excerpt_en": "Open Charm Production under the Chronon Field Φ(x).",
-    },
-    {
         id: "upcoming-2",
         title: "CHRONON-2 : Architecture et Spécifications",
         title_en: "CHRONON-2 : Architecture and Specifications",
