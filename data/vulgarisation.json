@@ -201,23 +201,23 @@
         "formats": [
           {
             "type": "Mind Map",
-            "src": "/publication/chronon_field_serie/7/map_7.png?v=1777824879000"
+            "src": "/publication/chronon_field_serie/7/map_7.png?v=1764623983644"
           },
           {
             "type": "Infographie",
-            "src": "/publication/chronon_field_serie/7/graph_7.png?v=1777824879000"
+            "src": "/publication/chronon_field_serie/7/graph_7.png?v=1764624284031"
           },
           {
             "type": "Audio",
-            "src": "/publication/chronon_field_serie/7/audio_7.m4a?v=1777824879000"
+            "src": "/publication/chronon_field_serie/7/audio_7.m4a?v=1764624777917"
           },
           {
             "type": "Vidéo",
-            "src": "/publication/chronon_field_serie/7/video_7.mp4?v=1777824879000"
+            "src": "/publication/chronon_field_serie/7/video_7.mp4?v=1764624851745"
           },
           {
             "type": "Point Scientifique",
-            "src": "/publication/chronon_field_serie/7/point_7.pdf?v=1777824879000"
+            "src": "/publication/chronon_field_serie/7/point_7.pdf?v=1764716783139"
           }
         ],
         "isPublished": true
@@ -280,7 +280,7 @@
       "en": "Various explorations and scientific curiosities."
     },
     "folderName": "Other",
-    "totalEpisodes": 2,
+    "totalEpisodes": 1,
     "articles": [
       {
         "id": "other-01",
@@ -308,36 +308,6 @@
           {
             "type": "Point Scientifique",
             "src": "/publication/Other/1/point_1.pdf?v=1765799382875"
-          }
-        ],
-        "isPublished": true
-      },
-      {
-        "id": "other-02",
-        "title": {
-          "fr": "02 — La Production du Charme au cœur du Chronon",
-          "en": "02 — Charm Production at the Heart of the Chronon"
-        },
-        "formats": [
-          {
-            "type": "Mind Map",
-            "src": "/publication/Other/2/map_2.png"
-          },
-          {
-            "type": "Infographie",
-            "src": "/publication/Other/2/graph_2.png"
-          },
-          {
-            "type": "Audio",
-            "src": "/publication/Other/2/audio_2.m4a"
-          },
-          {
-            "type": "Vidéo",
-            "src": "/publication/Other/2/video_2.mp4"
-          },
-          {
-            "type": "Point Scientifique",
-            "src": "/publication/Other/2/point_2.pdf"
           }
         ],
         "isPublished": true

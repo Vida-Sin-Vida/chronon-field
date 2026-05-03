@@ -84,6 +84,18 @@ const publications = files.map(file => {
         title = 'Chronon Field Cosmology : Rethinking Expansion and Horizon';
         language = 'EN';
     }
+    if (file === 'Open_Charm_Production_under_the_Chronon_Field_Φ_x_.pdf') {
+        title = 'Open Charm Production under the Chronon Field Φ(x)';
+        language = 'EN';
+    }
+    if (file === 'The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf') {
+        title = 'The Instant, Memory and Resonance: Revisiting Lived Time';
+        language = 'EN';
+    }
+    if (file === 'L_Instant__la_Mémoire_et_la_Résonance___le_temps_vécu_revisité.pdf') {
+        title = "L'Instant, la Mémoire et la Résonance : le temps vécu revisité";
+        language = 'FR';
+    }
 
     let type = 'Article';
     if (file.includes('sap') || file.includes('validation') || file.includes('pre-registration')) type = 'Protocole Expérimental';
@@ -193,9 +205,15 @@ function scanVulgarisationData() {
                 } else if (i === 6 && series.id === 'chronon-field') {
                     title.fr += 'Repenser l\'Expansion et l\'Horizon';
                     title.en += 'Rethinking Expansion and Horizon';
+                } else if (i === 7 && series.id === 'chronon-field') {
+                    title.fr += 'L\'Instant, la Mémoire et la Résonance';
+                    title.en += 'The Instant, Memory and Resonance';
                 } else if (i === 1 && series.id === 'other') {
                     title.fr += 'Chronon & Vide : Dialogue critique';
                     title.en += 'Chronon & Void: Critical Dialogue';
+                } else if (i === 2 && series.id === 'other') {
+                    title.fr += 'La Production du Charme au cœur du Chronon';
+                    title.en += 'Charm Production at the Heart of the Chronon';
                 } else {
                     title.fr += 'Episode ' + i;
                     title.en += 'Episode ' + i;

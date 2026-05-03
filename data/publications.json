@@ -1,16 +1,5 @@
 [
   {
-    "id": "The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf",
-    "title": "The Instant, Memory and Resonance: Revisiting Lived Time",
-    "type": "Article",
-    "language": "EN",
-    "date": "2026-05-02T10:00:00.000Z",
-    "excerpt": "Document PDF (EN) - 0.78 MB",
-    "link": "/document/The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf",
-    "authors": "B. Brécheteau",
-    "size": 821091
-  },
-  {
     "id": "L_Instant__la_Mémoire_et_la_Résonance___le_temps_vécu_revisité.pdf",
     "title": "L'Instant, la Mémoire et la Résonance : le temps vécu revisité",
     "type": "Article",
@@ -20,6 +9,17 @@
     "link": "/document/L_Instant__la_Mémoire_et_la_Résonance___le_temps_vécu_revisité.pdf",
     "authors": "B. Brécheteau",
     "size": 823504
+  },
+  {
+    "id": "The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf",
+    "title": "The Instant, Memory and Resonance: Revisiting Lived Time",
+    "type": "Article",
+    "language": "EN",
+    "date": "2026-05-02T10:00:00.000Z",
+    "excerpt": "Document PDF (EN) - 0.78 MB",
+    "link": "/document/The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf",
+    "authors": "B. Brécheteau",
+    "size": 821091
   },
   {
     "id": "Open_Charm_Production_under_the_Chronon_Field_Φ_x_.pdf",

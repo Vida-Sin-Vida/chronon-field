@@ -72,7 +72,7 @@ export default function ProgrammeClient() {
 
 
     const readingPaths = [
-        { id: 'new', title: t('program_path_new'), desc: t('program_path_new_desc'), refs: ["chronon-field-program.pdf", "the-time-that-beats.pdf", "renaissance-of-the-substrate.pdf", "Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf"] },
+        { id: 'new', title: t('program_path_new'), desc: t('program_path_new_desc'), refs: ["The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf", "Open_Charm_Production_under_the_Chronon_Field_Φ_x_.pdf", "CFC__Rethinking_Expansion_and_Horizon.pdf", "Philosophy_of_the_Beat__Bergson__Heidegger_et_le_temps_local.pdf"] },
         { id: 'theory', title: t('program_path_theory'), desc: t('program_path_theory_desc'), refs: ["chronon-field-physics-of-rhythm.pdf", "chronon-field-end-of-timeless-physics.pdf", "quantum-rhythm.pdf", "Philosophy_of_the_Beat__Bergson__Heidegger_and_Local_Time.pdf"] },
         { id: 'experimental', title: t('program_path_experimental'), desc: t('program_path_experimental_desc'), refs: ["chronon-1-progressive-validation.pdf", "chronon-1-pre-registration.pdf"] },
         { id: 'software', title: t('program_path_software'), desc: t('program_path_software_desc'), refs: ["chronon-field-program.pdf"] },
