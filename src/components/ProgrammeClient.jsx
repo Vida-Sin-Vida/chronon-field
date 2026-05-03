@@ -9,15 +9,15 @@ import publicationsRaw from '../../data/publications.json';
 const plannedPublications = [
     {
         "id": "upcoming-1",
-        "title": "The Instant, Memory and Resonance: Revisiting Lived Time",
-        "title_en": "The Instant, Memory and Resonance: Revisiting Lived Time",
+        "title": "Entropic Gravity and Temporal Gradients : Φ(x) as a Thermodynamic",
+        "title_en": "Entropic Gravity and Temporal Gradients : Φ(x) as a Thermodynamic",
         "type": "Article",
         "status": "planned",
         "branch": "theory",
         "language": "EN",
-        "date": "2026-05-01T10:00:00.000Z",
-        "excerpt": "Revisiting the concept of lived time through memory and resonance.",
-        "excerpt_en": "Revisiting the concept of lived time through memory and resonance.",
+        "date": "2026-06-01T10:00:00.000Z",
+        "excerpt": "Exploration des liens entre la gravité entropique et les gradients temporels du champ Φ(x).",
+        "excerpt_en": "Exploring the links between entropic gravity and the temporal gradients of the Φ(x) field.",
     },
     {
         id: "upcoming-2",

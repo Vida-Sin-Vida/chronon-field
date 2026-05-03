@@ -195,11 +195,32 @@
       {
         "id": "chronon-field-07",
         "title": {
-          "fr": "07 — A venir",
-          "en": "07 — Coming soon"
+          "fr": "07 — L'Instant, la Mémoire et la Résonance",
+          "en": "07 — The Instant, Memory and Resonance"
         },
-        "formats": [],
-        "isPublished": false
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/chronon_field_serie/7/map_7.png?v=1777824879000"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/chronon_field_serie/7/graph_7.png?v=1777824879000"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/chronon_field_serie/7/audio_7.m4a?v=1777824879000"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/chronon_field_serie/7/video_7.mp4?v=1777824879000"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/chronon_field_serie/7/point_7.pdf?v=1777824879000"
+          }
+        ],
+        "isPublished": true
       },
       {
         "id": "chronon-field-08",
