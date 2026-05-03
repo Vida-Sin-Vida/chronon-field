@@ -141,7 +141,7 @@ function scanVulgarisationData() {
                 en: 'Various explorations and scientific curiosities.'
             },
             folderName: 'Other',
-            totalEpisodes: 1
+            totalEpisodes: 2
         }
     ];
 

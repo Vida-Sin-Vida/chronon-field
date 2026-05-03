@@ -280,7 +280,7 @@
       "en": "Various explorations and scientific curiosities."
     },
     "folderName": "Other",
-    "totalEpisodes": 1,
+    "totalEpisodes": 2,
     "articles": [
       {
         "id": "other-01",
@@ -308,6 +308,36 @@
           {
             "type": "Point Scientifique",
             "src": "/publication/Other/1/point_1.pdf?v=1765799382875"
+          }
+        ],
+        "isPublished": true
+      },
+      {
+        "id": "other-02",
+        "title": {
+          "fr": "02 — La Production du Charme au cœur du Chronon",
+          "en": "02 — Charm Production at the Heart of the Chronon"
+        },
+        "formats": [
+          {
+            "type": "Mind Map",
+            "src": "/publication/Other/2/map_2.png?v=1776365121971"
+          },
+          {
+            "type": "Infographie",
+            "src": "/publication/Other/2/graph_2.png?v=1776365083545"
+          },
+          {
+            "type": "Audio",
+            "src": "/publication/Other/2/audio_2.m4a?v=1776365053957"
+          },
+          {
+            "type": "Vidéo",
+            "src": "/publication/Other/2/video_2.mp4?v=1776365041458"
+          },
+          {
+            "type": "Point Scientifique",
+            "src": "/publication/Other/2/point_2.pdf?v=1776365026034"
           }
         ],
         "isPublished": true
