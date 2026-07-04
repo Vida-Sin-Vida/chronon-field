@@ -8,16 +8,16 @@ import publicationsRaw from '../../data/publications.json';
 
 const plannedPublications = [
     {
-        "id": "upcoming-1",
-        "title": "Entropic Gravity and Temporal Gradients : Φ(x) as a Thermodynamic",
-        "title_en": "Entropic Gravity and Temporal Gradients : Φ(x) as a Thermodynamic",
+        "id": "upcoming-3",
+        "title": "The Collapse of Time: When Decoherence Meets Chronon",
+        "title_en": "The Collapse of Time: When Decoherence Meets Chronon",
         "type": "Article",
         "status": "planned",
         "branch": "theory",
         "language": "EN",
-        "date": "2026-06-01T10:00:00.000Z",
-        "excerpt": "Exploration des liens entre la gravité entropique et les gradients temporels du champ Φ(x).",
-        "excerpt_en": "Exploring the links between entropic gravity and the temporal gradients of the Φ(x) field.",
+        "date": "2026-08-01T10:00:00.000Z",
+        "excerpt": "Exploration of the intersection between decoherence and the Chronon field.",
+        "excerpt_en": "Exploration of the intersection between decoherence and the Chronon field."
     },
     {
         id: "upcoming-2",
