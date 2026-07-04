@@ -96,6 +96,18 @@ const publications = files.map(file => {
         title = "L'Instant, la Mémoire et la Résonance : le temps vécu revisité";
         language = 'FR';
     }
+    if (file === 'Rhythms_of_Power__Politics_and_Temporal_Justice.pdf') {
+        title = 'Rhythms of Power: Politics and Temporal Justice';
+        language = 'EN';
+    }
+    if (file === 'Rythmes_du_pouvoir___politique_et_justice_temporelle.pdf') {
+        title = 'Rythmes du pouvoir : politique et justice temporelle';
+        language = 'FR';
+    }
+    if (file === 'Entropic_Gravity_and_Temporal_Gradients.pdf') {
+        title = 'Entropic Gravity and Temporal Gradients : Φ(x) as a Thermodynamic';
+        language = 'EN';
+    }
 
     let type = 'Article';
     if (file.includes('sap') || file.includes('validation') || file.includes('pre-registration')) type = 'Protocole Expérimental';
@@ -208,6 +220,12 @@ function scanVulgarisationData() {
                 } else if (i === 7 && series.id === 'chronon-field') {
                     title.fr += 'L\'Instant, la Mémoire et la Résonance';
                     title.en += 'The Instant, Memory and Resonance';
+                } else if (i === 8 && series.id === 'chronon-field') {
+                    title.fr += 'Gravité Entropique';
+                    title.en += 'Entropic Gravity';
+                } else if (i === 9 && series.id === 'chronon-field') {
+                    title.fr += 'Rythmes du Pouvoir';
+                    title.en += 'Rhythms of Power';
                 } else if (i === 1 && series.id === 'other') {
                     title.fr += 'Chronon & Vide : Dialogue critique';
                     title.en += 'Chronon & Void: Critical Dialogue';
