@@ -1,4 +1,7 @@
 const SERIES_IDS = [
+    'Entropic_Gravity_and_Temporal_Gradients.pdf',
+    'Rhythms_of_Power__Politics_and_Temporal_Justice.pdf',
+    'Rythmes_du_pouvoir___politique_et_justice_temporelle.pdf',
     'The_Instant__Memory_and_Resonance__Revisiting_Lived_Time.pdf',
     'L_Instant__la_Mémoire_et_la_Résonance___le_temps_vécu_revisité.pdf',
     'renaissance-of-the-substrate.pdf',
